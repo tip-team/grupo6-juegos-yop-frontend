@@ -1,0 +1,9 @@
+<mat-card class="example-card">
+    <img mat-card-image src="{{srcImage}}" style="border-bottom: solid 2px #01579b; max-height: 170px;">
+    <mat-card-content>
+        <p>{{description}}</p>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: -16px; margin-right: -16px; border-top: solid 2px #01579b !important;">
+        <button mat-raised-button color="primary" (click)="sendToMercadoPago()" class="buttonMercadoPago">COMPRAR</button>
+    </mat-card-actions>
+</mat-card>

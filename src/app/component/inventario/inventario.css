@@ -1,0 +1,16 @@
+.example-card {
+    max-width: 400px;
+}
+
+.mat-card {
+    background: #0288d1cf;
+    border: solid 2px #01579b;
+}
+
+.border {
+    border-bottom: solid 2px #01579b !important;
+}
+
+.separateBottom {
+    margin-bottom: 10px;
+}

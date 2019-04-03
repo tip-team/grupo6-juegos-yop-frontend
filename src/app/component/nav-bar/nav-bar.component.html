@@ -1,0 +1,65 @@
+<div class="menu">
+    <a class="hamburger" (click)="toogleMenu()" [@juegosYopMenu]="juegosYopMenu"><mat-icon class="svgIcon" svgIcon="juegos-yop"></mat-icon></a>
+    <div class="menu-text">
+        <div class="selectedScreen">
+            <p class="componentTitle">{{title}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div>
+        <nav id="sidebar" [@slideInOut]="menuState">
+            <ul class="list-unstyled components">
+                <li>
+                    <a mat-flat-button (click)="clickRoute()" class="router-link productosA" routerLink="/{{ app.INVENTARIO.path }}" routerLinkActive="active-link">
+                        <div class="productosContent">
+                            <i class="fas fa-democrat productos"></i>
+                            <p class="productosTitle titleFont">{{ app.INVENTARIO.title.toUpperCase() }}</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a mat-flat-button class="router-link" (click)="clickRoute()" routerLink="/crecer-jugando" routerLinkActive="active-link">
+                        <div class="productosContent">
+                            <mat-icon class="childFace">child_care</mat-icon>
+                            <p class="crecerJugandoTitle titleFont">{{ app.CRECER_JUGANDO.title.toUpperCase() }}</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a mat-flat-button class="router-link" (click)="clickRoute()" routerLink="/contacto" routerLinkActive="active-link">
+                        <div class="productosContent">
+                            <mat-icon class="contactoIcon">phone_in_talk</mat-icon>
+                            <p class="contactoTitle titleFont">{{ app.CONTACTO.title.toUpperCase() }}</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a mat-flat-button class="router-link" (click)="clickRoute()" routerLink="/nosotros" routerLinkActive="active-link">
+                        <div class="productosContent">
+                            <mat-icon class="nosotrosIcon">group</mat-icon>
+                            <p class="nosotrosTitle titleFont">{{ app.NOSOTROS.title.toUpperCase() }}</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <p class="redesSociales redesSocialesTitle">Seguinos</p>
+            <p class="redesSociales redesSocialesSubtitle">en redes sociales</p>
+            <div class="socialDiv">
+                <button class="instagramButton" mat-icon-button aria-label="instagram" (click)="openInstagram()">
+                    <mat-icon class="iconHeight"><i class="fab fa-instagram instagramIcon"></i></mat-icon>
+                </button>
+                <button class="facebookButton" mat-icon-button aria-label="facebook" (click)="openFacebook()">
+                    <mat-icon class="iconHeight"><i class="fab fa-facebook-square facebookIcon"></i></mat-icon>
+                </button>
+            </div>
+        </nav>
+    </div>
+   
+    <div id="content" [className]="menuState == 'out' ? 'content' : 'content contentAdapt' ">
+        <router-outlet class="router" (deactivate)="onDeactivate($event)"></router-outlet>
+    </div>
+    
+</div>
+
