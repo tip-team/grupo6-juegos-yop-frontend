@@ -8,7 +8,7 @@ app.use(express.static('./dist/grupo6-juegos-yop-frontend'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile('/dist/grupo6-juegos-yop-frontend/index.html');
+res.sendFile('/dist/index.html');
 });
 
 // Start the app by listening on the default Heroku port
