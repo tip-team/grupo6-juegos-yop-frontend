@@ -1,12 +1,12 @@
 <mat-card class="example-card">
-    <img mat-card-image src="{{srcImage}}" style="border-bottom: solid 2px #01579b; max-height: 160px;">
+    <img mat-card-image src="{{producto.imagen}}" style="border-bottom: solid 2px #01579b; max-height: 160px;">
     <mat-card-content>
         <div class="row">
             <div class="col-md-8 descriptionTextDiv">
-                <p class="descriptionText">{{description}}</p>
+                <p class="descriptionText">{{ producto.nombre }}</p>
             </div>
             <div class="col-md-4">
-                <p style="margin-bottom: 0px;" class="money">$5500</p>
+                <p style="margin-bottom: 0px;" class="money">${{ producto.precio }}</p>
             </div>
         </div>
     </mat-card-content>

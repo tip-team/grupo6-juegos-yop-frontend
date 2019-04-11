@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Producto } from '../../model/producto';
+import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.service';
 
 @Component({
     selector: 'product-card',
@@ -7,12 +9,16 @@ import { Component, Input } from '@angular/core';
 })
 export class ProductCardComponent {
 
-    @Input() srcImage: string;
-    @Input() description: string;
-    @Input() mercadoPagoURL: string;
+    @Input() producto: Producto;
+
+    constructor(private _mercadoPagoService: MercadoPagoService) { }
 
     sendToMercadoPago() {
-        window.open(this.mercadoPagoURL, '_blank');
+        this._mercadoPagoService.getUrlPago(this.producto.id).subscribe(response => {
+            window.open(response.urlPago);
+        }, error => {
+            console.log(error);
+        });
     }
 
 }

@@ -1,27 +1,35 @@
+<div *ngIf="productos">
 <div class="row">
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2TA2Dsa" description="Sube y baja" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[0]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2TA2Dsa" description="Sube y baja" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
 
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2KacAgG" description="Tobogán" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[1]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2KacAgG" description="Tobogán" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
 
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2YLL64b" description="Mecedor" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[2]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2YLL64b" description="Mecedor" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2CS8bJ1" description="Mesa y silla" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[3]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2CS8bJ1" description="Mesa y silla" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
 
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2FSXsA2" description="Mesa y silla jardín de infantes" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[4]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2FSXsA2" description="Mesa y silla jardín de infantes" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
 
     <div class="col-md-4 separateBottom">
-        <product-card srcImage="https://bit.ly/2FSXwQi" description="Calesita" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card>
+        <product-card [producto]="productos[5]"></product-card>
+        <!-- <product-card srcImage="https://bit.ly/2FSXwQi" description="Calesita" mercadoPagoURL="https://bit.ly/2UfeBvI"></product-card> -->
     </div>
+</div>
 </div>

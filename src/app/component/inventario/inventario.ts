@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from 'src/app/service/producto.service';
+import { Producto } from '../../model/producto';
+import { ProductoService } from '../../service/producto/producto.service';
 
 @Component({
     selector: 'inventario',
@@ -8,10 +9,15 @@ import { ProductoService } from 'src/app/service/producto.service';
 })
 export class InventarioComponent implements OnInit {
 
+    productos: Producto[];
+
     constructor(private _productoService: ProductoService) { }
 
     ngOnInit() {
-        this._productoService.getAllProductos().subscribe(productos => console.log(productos), error => console.log(error));
+        this._productoService.getAllProductos().subscribe(productos => {
+            this.productos = productos;
+            console.log(productos);
+        }, error => console.log(error));
     }
 
 }
