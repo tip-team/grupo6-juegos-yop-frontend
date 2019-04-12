@@ -10,7 +10,7 @@ import { InventarioComponent } from './component/inventario/inventario';
 import { CrecerJugandoComponent } from './component/crecer-jugando/crecer-jugando';
 import { ContactoComponent } from './component/contacto/contacto';
 import { NosotrosComponent } from './component/nosotros/nosotros';
-import { ProductCardComponent } from './component/product-card/product-card';
+import { ProductCardComponent } from './component/product-card/product-card.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 

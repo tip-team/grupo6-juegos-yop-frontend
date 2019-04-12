@@ -4,8 +4,8 @@ import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.serv
 
 @Component({
     selector: 'product-card',
-    templateUrl: './product-card.html',
-    styleUrls: ['./product-card.css']
+    templateUrl: './product-card.component.html',
+    styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
 
