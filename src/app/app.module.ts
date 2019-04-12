@@ -12,6 +12,7 @@ import { ContactoComponent } from './component/contacto/contacto';
 import { NosotrosComponent } from './component/nosotros/nosotros';
 import { ProductCardComponent } from './component/product-card/product-card';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    NgxSpinnerModule,
     HttpClientModule
   ],
   entryComponents: [],
