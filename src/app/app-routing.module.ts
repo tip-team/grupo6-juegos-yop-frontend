@@ -6,8 +6,10 @@ import { InventarioComponent } from './component/inventario/inventario';
 import { CrecerJugandoComponent } from './component/crecer-jugando/crecer-jugando';
 import { ContactoComponent } from './component/contacto/contacto';
 import { NosotrosComponent } from './component/nosotros/nosotros';
+import { LoginComponent } from './component/login/login';
 
 const routes: Routes = [
+  { path: 'admin', component: LoginComponent },
   {
       path: '',
       component: NavBarComponent,

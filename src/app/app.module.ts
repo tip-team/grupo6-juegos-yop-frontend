@@ -13,6 +13,7 @@ import { NosotrosComponent } from './component/nosotros/nosotros';
 import { ProductCardComponent } from './component/product-card/product-card.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoginComponent } from './component/login/login';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CrecerJugandoComponent,
     ContactoComponent,
     NosotrosComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
