@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {LoginData} from '../../model/login';
+import {User} from '../../model/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TokenStorageService} from './token.service';
 
@@ -17,8 +17,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {}
 
-  public login(loginData: LoginData) {
-    return this.http.post(this.loginUrl, loginData, httpOptions);
+  public login(user: User) {
+    return this.http.post(this.loginUrl, user, httpOptions);
   }
 
   public logout() {
