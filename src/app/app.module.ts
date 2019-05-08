@@ -14,6 +14,10 @@ import { ProductCardComponent } from './component/product-card/product-card.comp
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './component/login/login';
+import { AdminComponent } from './component/admin/admin';
+import { AgregarProductoComponent } from './component/CRUD/producto/agregarProducto';
+import { EliminarProductoComponent} from './component/CRUD/producto/eliminarProducto';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { LoginComponent } from './component/login/login';
     ContactoComponent,
     NosotrosComponent,
     ProductCardComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    AgregarProductoComponent,
+    EliminarProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +43,12 @@ import { LoginComponent } from './component/login/login';
     MatIconModule,
     MatCardModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatIconModule,
+    ModalModule.forRoot()
   ],
-  entryComponents: [],
+  entryComponents: [AgregarProductoComponent, EliminarProductoComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

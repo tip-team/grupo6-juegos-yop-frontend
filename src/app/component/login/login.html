@@ -1,5 +1,8 @@
 <div *ngIf="isLoggedIn; else loggedOut">
   <p>Acceso a contenido protegido</p>
+
+  <admin></admin>
+
   <button class="btn btn-primary" (click)="logout()">Logout</button>
 </div>
 

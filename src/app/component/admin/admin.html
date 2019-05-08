@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+            <h3>Administrador de productos</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <span (click)="agregarProducto()" class="btn btn-primary btn-xs">Agregar Producto</span>
+            <br /><br />
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Habilitado</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let producto of productos">
+                        <td>{{producto.id}}</td>
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.imagen}}</td>
+                        <td>true</td>
+                        <td><span class="btn btn-primary btn-xs" (click)="editarProducto(producto)"><span class="far fa-edit"></span></span></td>
+                        <td><span class="btn btn-danger btn-xs" (click)="eliminarProducto(producto)"><span class="far fa-trash-alt"></span></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

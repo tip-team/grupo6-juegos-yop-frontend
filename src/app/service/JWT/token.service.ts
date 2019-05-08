@@ -5,6 +5,7 @@ const TOKEN_KEY = 'AuthToken';
 @Injectable({
   providedIn: 'root'
 })
+
 export class TokenStorageService {
   public saveToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -12,7 +13,7 @@ export class TokenStorageService {
   }
 
   public getToken() {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return window.sessionStorage.getItem(TOKEN_KEY);
   }
 
   public clear() {
