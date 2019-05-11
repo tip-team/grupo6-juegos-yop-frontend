@@ -22,15 +22,15 @@
                         <td>{{producto.id}}</td>
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.precio}}</td>
-                        <td>{{producto.imagen | slice:0:10}}</td>
+                        <td><img class="img-responsive" src="{{producto.imagen}}" alt="imagen" style="width: 50px;"/></td>
                         <td>true</td>
                         <td><span class="btn btn-primary btn-xs" (click)="editarProducto(producto)"><span class="far fa-edit"></span></span></td>
                         <td><span class="btn btn-danger btn-xs" (click)="eliminarProducto(producto)"><span class="far fa-trash-alt"></span></span></td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
+falta la parte de pagos
 </div>
