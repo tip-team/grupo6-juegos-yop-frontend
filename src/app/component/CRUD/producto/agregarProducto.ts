@@ -4,7 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'agregar-proucto',
+  selector: 'agregar-producto',
   templateUrl: './agregarProducto.html',
   styleUrls: ['./agregarProducto.css']
 })
@@ -12,6 +12,7 @@ export class AgregarProductoComponent {
 
   productoForm: FormGroup;
   event: EventEmitter<any> = new EventEmitter();
+  base64textString: string;
 
   constructor(private productoService: ProductoService, private builder: FormBuilder, private bsModalRef: BsModalRef) {
     this.productoForm = this.builder.group({
@@ -30,7 +31,7 @@ export class AgregarProductoComponent {
     const producto = {
       'nombre': this.productoForm.get('nombre').value,
       'precio': this.productoForm.get('precio').value,
-      'imagen': this.productoForm.get('imagen').value
+      'imagen': this.base64textString
       // 'habilitado': this.productoForm.get('habilitado').value este campo todavia no existe
     };
 
@@ -53,6 +54,23 @@ export class AgregarProductoComponent {
 
   private reloadPage() {
     window.location.reload();
+  }
+
+  public guardarImagen(evt) {
+    const files = evt.target.files;
+    const file = files[0];
+
+    if (files && file) {
+      const reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    const binaryString = readerEvt.target.result;
+    this.base64textString = 'data:image/png;base64,' + btoa(binaryString);
+    console.log(btoa(binaryString));
   }
 }
 

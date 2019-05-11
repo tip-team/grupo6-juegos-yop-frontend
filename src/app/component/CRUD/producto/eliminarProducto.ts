@@ -1,5 +1,4 @@
 import {Component, EventEmitter} from '@angular/core';
-import {Producto} from '../../../model/producto';
 import {ProductoService} from '../../../service/producto/producto.service';
 import {BsModalRef} from 'ngx-bootstrap';
 
@@ -10,9 +9,6 @@ import {BsModalRef} from 'ngx-bootstrap';
 })
 export class EliminarProductoComponent {
 
-  idP: number;
-  nombre: string;
-  producto: Producto;
   event: EventEmitter<any> = new EventEmitter();
 
   constructor(private productoService: ProductoService, private bsModalRef: BsModalRef) { }

@@ -17,6 +17,7 @@ import { LoginComponent } from './component/login/login';
 import { AdminComponent } from './component/admin/admin';
 import { AgregarProductoComponent } from './component/CRUD/producto/agregarProducto';
 import { EliminarProductoComponent} from './component/CRUD/producto/eliminarProducto';
+import { EditarProductoComponent} from './component/CRUD/producto/editarProducto';
 import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ModalModule } from 'ngx-bootstrap';
     LoginComponent,
     AdminComponent,
     AgregarProductoComponent,
-    EliminarProductoComponent
+    EliminarProductoComponent,
+    EditarProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { ModalModule } from 'ngx-bootstrap';
     MatIconModule,
     ModalModule.forRoot()
   ],
-  entryComponents: [AgregarProductoComponent, EliminarProductoComponent],
+  entryComponents: [AgregarProductoComponent, EliminarProductoComponent, EditarProductoComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

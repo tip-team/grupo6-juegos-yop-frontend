@@ -13,7 +13,7 @@ const httpOptions = {
 })
 
 export class AuthService {
-  private loginUrl = ''; // Coloque aquí su URL de base.
+  private loginUrl = 'https://tip-juegos-yop-backend.herokuapp.com/auth/token'; // Coloque aquí su URL de base.
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {}
 
