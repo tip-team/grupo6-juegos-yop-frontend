@@ -9,6 +9,9 @@ import {BsModalRef} from 'ngx-bootstrap';
 })
 export class EliminarProductoComponent {
 
+  idP: number;
+  nombre: string;
+  imagen: number;
   event: EventEmitter<any> = new EventEmitter();
 
   constructor(private productoService: ProductoService, private bsModalRef: BsModalRef) { }

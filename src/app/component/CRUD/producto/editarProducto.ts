@@ -14,6 +14,7 @@ export class EditarProductoComponent {
   idP: number;
   nombre: string;
   precio: number;
+  imagen: string;
   productoForm: FormGroup;
   base64textString: string;
   event: EventEmitter<any> = new EventEmitter();
