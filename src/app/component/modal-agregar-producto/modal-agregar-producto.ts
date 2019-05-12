@@ -38,16 +38,19 @@ export class ModalAgregarProductoComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.registerForm.controls.nombre.value);
-    console.log(this.base64textString);
-    console.log(this.registerForm.controls.precio.value);
-    this.modalService.dismissAll('close');
     this.productoService.addProducto({
         precio: this.registerForm.controls.precio.value,
         imagen: this.base64textString,
         nombre: this.registerForm.controls.nombre.value,
         habilitado: this.checked
-    })
+    }).subscribe(() => {
+        console.log('OK');
+        this.modalService.dismissAll('close');
+    }, error => {
+        console.log(error)
+        this.modalService.dismissAll('close');
+    });
+    
   }
 
   guardarImagen(evento) {
