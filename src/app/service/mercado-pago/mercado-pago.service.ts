@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from 'src/app/model/configuration';
 import {Pago} from '../../model/pago';
@@ -12,8 +12,10 @@ export class MercadoPagoService {
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
 
-  getUrlPago(id: number): Observable<any> {
-    return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago/${id}`);
+  getUrlPago(id: number, email: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.set('id', id.toString()).set('email', email.toString());
+    return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago`, {params: params});
   }
 
   getAllPagos() {

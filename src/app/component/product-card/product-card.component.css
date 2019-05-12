@@ -15,6 +15,10 @@
     margin-left: 10px !important;
 }
 
+.fullSize {
+    width: 100%;
+}
+
 .buttonsRow {
     margin-left: 0px;
     margin-right: 0px;
@@ -51,6 +55,7 @@
     white-space: pre-wrap !important;
     padding-left: 8px;
     padding-right: 8px;
+    float: right;
 }
 
 .money {

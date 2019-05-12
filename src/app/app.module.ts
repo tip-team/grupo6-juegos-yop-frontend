@@ -20,6 +20,7 @@ import { VentasComponent } from './component/ventas/ventas';
 import { ModalAgregarProductoComponent } from './component/modal-agregar-producto/modal-agregar-producto';
 import { ModalComponent } from './component/modal/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EmailModalComponent } from './component/email-modal/email-modal';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AgregarProductoComponent,
     VentasComponent,
     ModalComponent,
-    ModalAgregarProductoComponent
+    ModalAgregarProductoComponent,
+    EmailModalComponent
   ],
   imports: [
     BrowserModule,
