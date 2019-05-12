@@ -32,3 +32,9 @@ input[type=number]::-webkit-outer-spin-button {
 .imagenDiv {
     margin-top: 30px;
 }
+
+.agregarProductoButton {
+    float: right;
+    margin-right: 40px;
+    margin-top: 10px;
+}
