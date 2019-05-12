@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
+.title {
+    font-family: 'Fredoka One', cursive;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.fila {
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 2px solid black;
+}

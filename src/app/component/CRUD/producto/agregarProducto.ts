@@ -4,9 +4,9 @@ import { BsModalRef } from 'ngx-bootstrap';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'agregar-producto',
-  templateUrl: './agregarProducto.html',
-  styleUrls: ['./agregarProducto.css']
+  selector: 'agregar-producto-2',
+  templateUrl: './agregarProducto-2.html',
+  styleUrls: ['./agregarProducto-2.css']
 })
 export class AgregarProductoComponent {
 
@@ -35,9 +35,9 @@ export class AgregarProductoComponent {
       // 'habilitado': this.productoForm.get('habilitado').value este campo todavia no existe
     };
 
-    this.productoService.addProducto(producto).subscribe(
-      data => this.onSuccess(data),
-      error => this.handleError(error));
+    // this.productoService.addProducto(producto).subscribe(
+    //   data => this.onSuccess(data),
+    //   error => this.handleError(error));
   }
 
   private handleError(error: any) {

@@ -1,0 +1,34 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.agregar {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.header {
+    border-bottom-width: 0px;
+}
+
+.modalBorder {
+    border: 3px solid black;
+    border-radius: 4px;
+}
+
+.imagen {
+    /* max-width: 100px;
+    max-height: 100px; */
+    max-width: 200px;
+    max-height: 150px;
+}
+
+.imagenDiv {
+    margin-top: 30px;
+}

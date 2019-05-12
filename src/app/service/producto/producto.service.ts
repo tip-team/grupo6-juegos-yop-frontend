@@ -17,7 +17,7 @@ export class ProductoService {
     return this.http.get<Producto[]>(Configuration.BASE_URL + '/productos');
   }
 
-  addProducto(data: { precio: any; imagen: any; nombre: any }) {
+  addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }) {
     console.log('me traigo el token del storage');
     console.log(this.tokenStorage.getToken());
     const httpOptions = {

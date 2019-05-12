@@ -1,0 +1,14 @@
+<ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+          <i class="material-icons pointer" (click)="modal.close()">close</i>
+        </div>
+        <div class="modal-body">
+          <p>HOLA</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button"(click)="modal.close()">Save</button>
+        </div>
+</ng-template>
+      
+<button (click)="open(content)">{{openButton}}</button>

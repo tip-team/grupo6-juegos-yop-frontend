@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+    <div class="modalBorder">
+        <div class="modal-header header">
+          <h4 class="modal-title" id="modal-basic-title">Agregar Producto</h4>
+          <i class="material-icons pointer" (click)="modal.close()">close</i>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Nombre" formControlName="nombre" />
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-group">
+                        <button type="button" mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">
+                            Seleccionar imágen
+                        </button>
+                        <div *ngIf="base64textString" class="imagenDiv">
+                            <img src="{{base64textString}}" alt="Imágen" class="imagen">
+                        </div>
+                        <input id="fileToUpload" type="file" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align">
+                        <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-slide-toggle color="primary" [checked]="checked" (change)="cambiarHabilitado($event)">{{checked ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
+                </div>
+
+                <div class="form-group">
+                    <button mat-raised-button color="primary" class="agregar">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+      
+<button (click)="open(content)">Agregar Producto</button>
