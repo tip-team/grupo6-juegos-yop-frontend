@@ -13,7 +13,10 @@ export class AgregarProductoComponent {
     constructor(private productoService: ProductoService) {}
 
     ngOnInit() {
-        this.productoService.getAllProductos().subscribe(productosResponse => this.productos = productosResponse, error => console.log(error));
+        this.productoService.getAllProductos().subscribe(productosResponse => {
+            this.productos = productosResponse;
+            console.log(this.productos.map(x => x.id));
+        }, error => console.log(error));
     }
 
 }

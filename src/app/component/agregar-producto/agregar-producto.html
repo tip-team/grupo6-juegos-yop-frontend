@@ -5,9 +5,11 @@
     <div class="col title">Habilitado</div>
 </div>
 <div *ngFor="let producto of productos">
-    <div class="col title">{{producto.nombre}}</div>
-    <div class="col title">{{producto.imagen}}</div>
-    <div class="col title">{{producto.precio}}</div>
-    <div class="col title">{{producto.habilitado ? 'SÍ' : 'NO'}}</div>
+    <div class="row fila">
+        <div class="col colValor">{{producto.nombre}}</div>
+        <div class="col colValor"> <img class="imagen" src="{{producto.imagen}}" alt="Imagen"> </div>
+        <div class="col colValor">{{producto.precio}}</div>
+        <div class="col colValor">{{producto.habilitado ? 'SÍ' : 'NO'}}</div>
+    </div>
 </div>
 <modal-agregar-producto></modal-agregar-producto>

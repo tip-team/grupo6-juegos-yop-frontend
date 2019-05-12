@@ -11,3 +11,21 @@
     margin-right: 0px;
     border: 2px solid black;
 }
+
+.valor {
+    border-right: 2px solid black;
+}
+
+.colValor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.imagen {
+    max-height: 74px;
+    max-width: 162px;
+}
