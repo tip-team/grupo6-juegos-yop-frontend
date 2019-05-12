@@ -11,9 +11,9 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  private loginUrl = 'https://tip-juegos-yop-backend.herokuapp.com/auth/token'; // Coloque aquí su URL de base.
+
+  private loginUrl; //Coloque aquí su URL de base /auth/token.
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {}
 
