@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule , MatFormFieldModule, MatInputModule, MatSlideToggleModule  } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule , MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InventarioComponent } from './component/inventario/inventario';
@@ -15,10 +15,11 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './component/login/login';
 import { AdminComponent } from './component/admin/admin';
-import { AgregarProductoComponent } from './component/agregar-producto/agregar-producto';
-import { VentasComponent } from './component/ventas/ventas';
+import { ModuloProductoComponent} from './component/modulo-producto/producto';
+import { ModuloVentasComponent } from './component/modulo-ventas/ventas';
 import { ModalAgregarProductoComponent } from './component/modal-agregar-producto/modal-agregar-producto';
-import { ModalComponent } from './component/modal/modal';
+import { ModalEliminarProductoComponent } from './component/modal-eliminar-producto/modal-eliminar-producto';
+import { ModalEditarProductoComponent } from './component/modal-editar-producto/modal-editar-producto';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmailModalComponent } from './component/email-modal/email-modal';
 
@@ -33,10 +34,11 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
     ProductCardComponent,
     LoginComponent,
     AdminComponent,
-    AgregarProductoComponent,
-    VentasComponent,
-    ModalComponent,
+    ModuloProductoComponent,
+    ModuloVentasComponent,
     ModalAgregarProductoComponent,
+    ModalEliminarProductoComponent,
+    ModalEditarProductoComponent,
     EmailModalComponent
   ],
   imports: [
@@ -56,9 +58,11 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
     NgbModule.forRoot()
   ],
-  entryComponents: [ ModalComponent ],
+  entryComponents: [ ModalAgregarProductoComponent, ModalEliminarProductoComponent, ModalEditarProductoComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

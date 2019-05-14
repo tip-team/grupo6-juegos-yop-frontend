@@ -24,17 +24,7 @@ export class ModalAgregarProductoComponent implements OnInit {
       imagen: [''],
       precio: ['']
     });
-  }
-
-  open(content) {
-    this.checked = true;
-    this.registerForm = this.formBuilder.group({
-        nombre: [''],
-        imagen: [''],
-        precio: ['']
-      });
-      this.base64textString = null;
-    this.modalService.open(content, { centered: true });
+    this.base64textString = null;
   }
 
   handleSubmit() {
@@ -50,7 +40,6 @@ export class ModalAgregarProductoComponent implements OnInit {
         console.log(error)
         this.modalService.dismissAll('close');
     });
-    
   }
 
   guardarImagen(evento) {

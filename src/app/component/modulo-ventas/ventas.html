@@ -1,0 +1,56 @@
+<div class="example-header">
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="idCompra">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.idCompra}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreProducto">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.nombreProducto}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="monto">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+            <mat-cell *matCellDef="let row"> ${{row.monto}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="montoRecibido">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Monto Recibido </mat-header-cell>
+            <mat-cell *matCellDef="let row"> ${{row.montoRecibido}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="estadoDePago">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.estadoDePago}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.fecha}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row class="title" *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row class="fila" *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
+</div>

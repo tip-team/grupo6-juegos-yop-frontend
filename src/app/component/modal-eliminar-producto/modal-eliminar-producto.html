@@ -1,0 +1,20 @@
+<div class="modal-content modalBorder">
+    <div class="modal-header header">
+        <h4 class="modal-title" id="modal-basic-title">Eliminar Producto</h4>
+        <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+                <label>Esta seguro de eliminar el producto {{producto.nombre}} </label>
+                <div class="imagenDiv">
+                    <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button mat-raised-button color="primary" class="agregar">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>

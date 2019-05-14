@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Producto } from '../../model/producto';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Configuration } from 'src/app/model/configuration';
-import {TokenStorageService} from '../JWT/token.service';
+import { TokenStorageService } from '../JWT/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductoService {
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+    }),
+  };
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
 
@@ -18,50 +24,14 @@ export class ProductoService {
   }
 
   addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }) {
-    console.log('me traigo el token del storage');
-    console.log(this.tokenStorage.getToken());
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      }),
-    };
-    return this.http.post(Configuration.BASE_URL + '/productos', data, httpOptions);
+    return this.http.post(Configuration.BASE_URL + '/productos', data, this.httpOptions);
   }
 
   delProducto(id: number) {
-    console.log('me traigo el token del storage para borrar');
-    console.log(this.tokenStorage.getToken());
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      }),
-    };
-    return this.http.delete(Configuration.BASE_URL + '/productos/' + id, httpOptions);
+    return this.http.delete(Configuration.BASE_URL + '/productos/' + id, this.httpOptions);
   }
 
-  updateProducto(data: {id: any; precio: any; imagen: string; nombre: any}) {
-    console.log('me traigo el token del storage para actualizar');
-    console.log(this.tokenStorage.getToken());
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      }),
-    };
-    return this.http.put(Configuration.BASE_URL + '/productos/' + data.id, data, httpOptions);
-  }
-
-  getProducto(idP: number) {
-    console.log('me traigo el token del storage para traer un producto');
-    console.log(this.tokenStorage.getToken());
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      }),
-    };
-    return this.http.get(Configuration.BASE_URL + '/productos/' + idP, httpOptions);
+  updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
+    return this.http.put(Configuration.BASE_URL + '/productos/' + data.id, data, this.httpOptions);
   }
 }

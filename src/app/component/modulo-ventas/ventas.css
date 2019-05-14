@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+.title {
+    font-family: 'Fredoka One', cursive;
+    /*border: 2px solid black;*/
+    text-align: center;
+}
+
+.fila {
+    font-family: 'Dosis', sans-serif;
+    margin-left: 0px;
+    margin-right: 0px;
+    /*border: 2px solid black;*/
+}
