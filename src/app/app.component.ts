@@ -12,6 +12,7 @@ export class AppComponent {
   static CRECER_JUGANDO = { title: 'Crecer Jugando', path: 'crecer-jugando'};
   static CONTACTO = { title: 'Contacto', path: 'contacto'};
   static NOSOTROS = { title: 'Nosotros', path: 'nosotros'};
+  static ADMIN = { title: 'Admin', path: 'admin'};
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(

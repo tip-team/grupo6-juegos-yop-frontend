@@ -3,8 +3,10 @@ import { User } from '../../model/user';
 import { AuthService } from '../../service/JWT/auth.service';
 import { TokenStorageService } from '../../service/JWT/token.service';
 import { HttpResponse } from '@angular/common/http';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
+  providers: [NavBarComponent],
   selector: 'login',
   templateUrl: './login.html',
   styleUrls: ['./login.css']
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   private user: User;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private navBar: NavBarComponent) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.isLoggedIn = false;
     this.isLoginFailed = false;
+    this.navBar.setLoggedIn(false);
   }
 
   public login() {
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.tokenStorage.saveToken(data.headers.get('Authorization'));
     this.isLoginFailed = false;
     this.isLoggedIn = true;
+    this.navBar.setLoggedIn(true);
   }
 
   private handleError(error: any) {

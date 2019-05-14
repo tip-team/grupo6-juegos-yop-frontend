@@ -9,7 +9,6 @@ import { NosotrosComponent } from './component/nosotros/nosotros';
 import { LoginComponent } from './component/login/login';
 
 const routes: Routes = [
-  { path: 'admin', component: LoginComponent },
   {
       path: '',
       component: NavBarComponent,
@@ -33,6 +32,11 @@ const routes: Routes = [
           path: AppComponent.NOSOTROS.path,
           component: NosotrosComponent,
           data: { title: AppComponent.NOSOTROS.title }
+        },
+        { 
+          path:  AppComponent.ADMIN.path, 
+          component: LoginComponent,
+          data: { title: AppComponent.ADMIN.title }
         }
       ]
   }

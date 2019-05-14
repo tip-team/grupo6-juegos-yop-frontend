@@ -43,6 +43,14 @@
                         </div>
                     </a>
                 </li>
+                <li *ngIf="loggedIn">
+                    <a mat-flat-button class="router-link" (click)="clickRoute()" routerLink="/admin" routerLinkActive="active-link">
+                        <div class="productosContent">
+                            <mat-icon class="nosotrosIcon">group</mat-icon>
+                            <p class="nosotrosTitle titleFont">{{ app.ADMIN.title.toUpperCase() }}</p>
+                        </div>
+                    </a>
+                </li>
             </ul>
             <p class="redesSociales redesSocialesTitle">Seguinos</p>
             <p class="redesSociales redesSocialesSubtitle">en redes sociales</p>

@@ -55,3 +55,9 @@
 .mat-header-cell:nth-child(7){
     flex: 0 0 7%;
 }
+
+.centrar {
+    margin: auto;
+    padding: 8% 0 0;
+    width: 360px;
+}
