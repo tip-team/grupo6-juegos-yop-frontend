@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { AppComponent } from '../../app.component';
 import { TokenStorageService } from 'src/app/service/JWT/token.service';
+import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+import { AuthService } from 'src/app/service/JWT/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -37,31 +39,19 @@ import { TokenStorageService } from 'src/app/service/JWT/token.service';
     ])
   ]
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   menuState = 'in';
   arrowState = 'right';
   juegosYopMenu = 'on';
-  loggedIn;
   title: string;
   app = AppComponent;
   
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private tokenStorage: TokenStorageService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
       this.router.navigateByUrl(baseUrl + this.app.INVENTARIO.path);
     }
     this.setTitle();
-  }
-
-  ngOnInit() {
-    if (this.tokenStorage.getToken()) {
-      this.loggedIn = true;
-    }
-  }
-
-  setLoggedIn(value) {
-    this.loggedIn = value;
-    console.log('Entro');
   }
 
   setTitle() {

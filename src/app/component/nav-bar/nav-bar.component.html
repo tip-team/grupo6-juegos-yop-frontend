@@ -43,7 +43,7 @@
                         </div>
                     </a>
                 </li>
-                <li *ngIf="loggedIn">
+                <li *ngIf="authService.isLoggedIn()">
                     <a mat-flat-button class="router-link" (click)="clickRoute()" routerLink="/admin" routerLinkActive="active-link">
                         <div class="productosContent">
                             <mat-icon class="nosotrosIcon">group</mat-icon>

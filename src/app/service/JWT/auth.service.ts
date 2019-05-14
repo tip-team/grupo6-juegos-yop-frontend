@@ -13,12 +13,16 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl; //Coloque aquí su URL de base /auth/token.
+  private loginUrl;
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {}
 
   public login(user: User) {
     return this.http.post(this.loginUrl, user, httpOptions);
+  }
+
+  public isLoggedIn() {
+    return this.tokenStorage.getToken();
   }
 
   public logout() {

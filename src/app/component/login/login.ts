@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.isLoggedIn = false;
     this.isLoginFailed = false;
-    this.navBar.setLoggedIn(false);
   }
 
   public login() {
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
     this.tokenStorage.saveToken(data.headers.get('Authorization'));
     this.isLoginFailed = false;
     this.isLoggedIn = true;
-    this.navBar.setLoggedIn(true);
   }
 
   private handleError(error: any) {
