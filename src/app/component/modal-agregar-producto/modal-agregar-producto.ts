@@ -34,7 +34,6 @@ export class ModalAgregarProductoComponent implements OnInit {
         nombre: this.registerForm.controls.nombre.value,
         habilitado: this.checked
     }).subscribe(() => {
-        console.log('OK');
         this.modalService.dismissAll('close');
     }, error => {
         console.log(error)

@@ -19,9 +19,6 @@ export class ModalEditarProductoComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log('miro las imagenes');
-    console.log(this.producto.imagen);
-    console.log(this.base64textString);
     this.productoService.updateProducto({
       id: this.producto.id,
       precio: this.editForm.controls.precio.value,
@@ -29,7 +26,6 @@ export class ModalEditarProductoComponent implements OnInit {
       nombre: this.editForm.controls.nombre.value,
       habilitado: this.checked
     }).subscribe(() => {
-      console.log('OK');
       this.modalService.dismissAll('close');
     }, error => {
       console.log(error)

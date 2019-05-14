@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
     this.isLoggedIn = false;
     this.isLoginFailed = false;
-    // this.reloadPage();
   }
 
   public login() {
@@ -41,14 +40,9 @@ export class LoginComponent implements OnInit {
       error => this.handleError(error));
   }
   private onSuccess(data: HttpResponse<any>) {
-    console.log('Miro que me llego');
-    console.log(data.headers.keys());
     this.tokenStorage.saveToken(data.headers.get('Authorization'));
-    console.log('Miro que guarde');
-    console.log(this.tokenStorage.getToken());
     this.isLoginFailed = false;
     this.isLoggedIn = true;
-    // this.reloadPage();
   }
 
   private handleError(error: any) {
@@ -56,7 +50,4 @@ export class LoginComponent implements OnInit {
     this.isLoginFailed = true;
   }
 
-  private reloadPage() {
-    window.location.reload();
-  }
 }

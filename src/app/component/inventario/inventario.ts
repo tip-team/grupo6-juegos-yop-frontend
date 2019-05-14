@@ -17,7 +17,6 @@ export class InventarioComponent implements OnInit {
     ngOnInit() {
         this._productoService.getAllProductos().subscribe(productos => {
             this.productos = productos;
-            console.log(productos);
         }, error => console.log(error));
     }
 

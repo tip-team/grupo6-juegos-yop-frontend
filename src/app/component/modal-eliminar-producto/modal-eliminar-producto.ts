@@ -14,10 +14,7 @@ export class ModalEliminarProductoComponent {
   constructor(private productoService: ProductoService, private modalService: NgbModal) {}
 
   handleSubmit() {
-    console.log('Voy a eliminar ');
-    console.log(this.producto.id);
     this.productoService.delProducto(this.producto.id).subscribe(() => {
-      console.log('OK');
       this.modalService.dismissAll('close');
     }, error => {
       console.log(error)

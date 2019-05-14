@@ -10,6 +10,13 @@ import {TokenStorageService} from '../JWT/token.service';
 })
 export class MercadoPagoService {
 
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+    }),
+  };
+
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
 
   getUrlPago(id: number, email: string): Observable<any> {
@@ -19,12 +26,6 @@ export class MercadoPagoService {
   }
 
   getAllPagos() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      }),
-    };
-    return this.http.get<Pago[]>(Configuration.BASE_URL + '/mp/pagos', httpOptions);
+    return this.http.get<Pago[]>(Configuration.BASE_URL + '/mp/pagos', this.httpOptions);
   }
 }

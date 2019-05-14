@@ -10,6 +10,7 @@ import { TokenStorageService } from '../JWT/token.service';
 })
 
 export class ProductoService {
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
