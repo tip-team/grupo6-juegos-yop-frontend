@@ -17,7 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModuloProductoComponent {
 
   displayedColumns = ['nombre', 'precio', 'imagen', 'habilitado', 'actions'];
-  pageSize: number[] = [1, 10, 20];
+  pageSize: number[] = [10, 20, 50];
   dataSource: MatTableDataSource<Producto>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

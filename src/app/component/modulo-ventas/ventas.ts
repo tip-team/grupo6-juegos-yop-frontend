@@ -11,7 +11,7 @@ import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.serv
 export class ModuloVentasComponent {
 
     displayedColumns = ['idCompra', 'nombreProducto', 'monto', 'montoRecibido', 'estadoDePago', 'fecha', 'email'];
-    pageSize: number[] = [1, 10, 20];
+    pageSize: number[] = [10, 20, 50];
     dataSource: MatTableDataSource<Pago>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
