@@ -10,6 +10,5 @@ import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.serv
 export class ProductCardComponent {
 
     @Input() producto: Producto;
-    @Output() mercadoPagoEvento = new EventEmitter<boolean>();
 
 }

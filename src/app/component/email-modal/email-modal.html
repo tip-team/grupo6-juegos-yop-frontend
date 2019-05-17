@@ -1,24 +1,28 @@
 <ng-template #content let-modal>
-        <div class="modalBorder">
-            <div class="modal-body">
-                <div class="closeButton">
-                    <i class="material-icons pointer" (click)="modal.close()">close</i>
-                </div>
-                
-                <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
-                    
-                    <div class="form-group noMarginBottom">
-                        <mat-form-field class="fullWidth">
-                            <input matInput placeholder="Email" formControlName="email" />
-                        </mat-form-field>
-                    </div>
-    
-                    <div class="form-group">
-                        <button mat-raised-button color="primary" class="siguiente">Siguiente</button>
-                    </div>
-                </form>
+    <div class="modalBorder">
+        <div class="modal-body">
+            <div class="closeButton">
+                <i class="material-icons pointer" (click)="modal.close()">close</i>
             </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+
+                <div class="form-group noMarginBottom">
+                    <mat-form-field class="fullWidth">
+                        <input matInput placeholder="Email" formControlName="email" />
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <button mat-raised-button color="primary" class="siguiente">Siguiente</button>
+                </div>
+            </form>
         </div>
-    </ng-template>
-          
-    <button mat-raised-button color="primary" (click)="open(content)" class="actionButton">COMPRAR</button>
+    </div>
+</ng-template>
+
+<ngx-spinner name="solicitandoCompra" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse" [fullScreen]="true">
+    <p class="text" style="color: rgb(35, 31, 97);"> Solicitando compra . . . </p>
+</ngx-spinner>
+
+<button mat-raised-button color="primary" (click)="open(content)" class="actionButton">COMPRAR</button>

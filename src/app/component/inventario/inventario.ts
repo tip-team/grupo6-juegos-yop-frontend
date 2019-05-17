@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -8,24 +8,25 @@ import { NgxSpinnerService } from 'ngx-spinner';
     templateUrl: './inventario.html',
     styleUrls: ['./inventario.css']
 })
-export class InventarioComponent implements OnInit {
+export class InventarioComponent implements AfterViewInit {
 
     productos: Producto[];
+    show: boolean;
 
-    constructor(private _productoService: ProductoService, private _spinner: NgxSpinnerService) { }
-
-    ngOnInit() {
-        this._productoService.getAllProductos().subscribe(productos => {
-            this.productos = productos;
-        }, error => console.log(error));
+    constructor(private _productoService: ProductoService, private spinner: NgxSpinnerService, private cdRef : ChangeDetectorRef) { 
     }
 
-    setSpinnerState(spinnerState: boolean) {
-        if (spinnerState) {
-            this._spinner.show();
-        } else {
-            this._spinner.hide();
-        }
+    ngAfterViewInit() {
+        this.spinner.show("cargandoProductos");
+        this.cdRef.detectChanges();
+        this._productoService.getAllProductos().subscribe(productos => {
+            this.productos = productos;
+            this.spinner.hide("cargandoProductos");
+            this.show = true;
+        }, error => {
+            console.log(error);
+            this.spinner.hide("cargandoProductos");
+        });
     }
 
 }

@@ -1,33 +1,34 @@
-<div *ngIf="productos">
+<div *ngIf="show">
     <div class="row">
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[0]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[0]"></product-card>
         </div>
 
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[1]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[1]"></product-card>
         </div>
 
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[2]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[2]"></product-card>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[3]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[3]"></product-card>
         </div>
 
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[4]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[4]"></product-card>
         </div>
 
         <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[5]" (mercadoPagoEvento)="setSpinnerState($event)"></product-card>
+            <product-card [producto]="productos[5]"></product-card>
         </div>
     </div>
 </div>
 
-<ngx-spinner bdOpacity = 0.9 bdColor = "rgba(2,4,64,0.8)" size = "medium" color = "#ffffff" type = "pacman" [fullScreen] = "true">
-    <p style="color: white" > Cargando . . . </p>
+<ngx-spinner name="cargandoProductos" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse"
+    [fullScreen]="true">
+    <p class="text" style="color: rgb(35, 31, 97);"> Cargando productos . . . </p>
 </ngx-spinner>
