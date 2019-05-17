@@ -14,7 +14,7 @@ export class ModalAgregarProductoComponent implements OnInit {
   base64textString: string;
   checked: boolean;
 
-  constructor(private formBuilder: FormBuilder, private modalService: NgbModal, private productoService: ProductoService) {
+  constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private productoService: ProductoService) {
   }
 
   ngOnInit() {

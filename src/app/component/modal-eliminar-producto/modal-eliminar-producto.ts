@@ -11,7 +11,7 @@ export class ModalEliminarProductoComponent {
 
   @Input() public producto;
 
-  constructor(private productoService: ProductoService, private modalService: NgbModal) {}
+  constructor(private productoService: ProductoService, public modalService: NgbModal) {}
 
   handleSubmit() {
     this.productoService.delProducto(this.producto.id).subscribe(() => {

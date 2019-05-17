@@ -15,7 +15,7 @@ export class ModalEditarProductoComponent implements OnInit {
   checked: boolean;
   @Input() public producto;
 
-  constructor(private formBuilder: FormBuilder, private productoService: ProductoService, private modalService: NgbModal) {
+  constructor(private formBuilder: FormBuilder, private productoService: ProductoService, public modalService: NgbModal) {
   }
 
   handleSubmit() {
