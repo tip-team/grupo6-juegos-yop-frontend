@@ -52,8 +52,6 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
     MatCardModule,
     NgxSpinnerModule,
     HttpClientModule,
-    MatButtonModule,
-    MatIconModule,
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,

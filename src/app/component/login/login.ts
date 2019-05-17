@@ -3,27 +3,31 @@ import { User } from '../../model/user';
 import { AuthService } from '../../service/JWT/auth.service';
 import { TokenStorageService } from '../../service/JWT/token.service';
 import { HttpResponse } from '@angular/common/http';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  providers: [NavBarComponent],
   selector: 'login',
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
 export class LoginComponent implements OnInit {
-  form: any = {};
+
+  loginForm: FormGroup;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   private user: User;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private navBar: NavBarComponent) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
     }
+    this.loginForm = this.formBuilder.group({
+      username: [''],
+      password: ['']
+    });
   }
 
   public logout() {
@@ -34,8 +38,8 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.user = new User(
-      this.form.username,
-      this.form.password);
+        this.loginForm.controls.username.value,
+        this.loginForm.controls.password.value);
 
     this.authService.login(this.user).subscribe(
       data => this.onSuccess(data),
