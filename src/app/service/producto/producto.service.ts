@@ -11,28 +11,30 @@ import { TokenStorageService } from '../JWT/token.service';
 
 export class ProductoService {
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-    }),
-  };
-
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
+
+  getHttpOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
+      })
+    };
+  }
 
   getAllProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(Configuration.BASE_URL + '/productos');
   }
 
   addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }) {
-    return this.http.post(Configuration.BASE_URL + '/productos', data, this.httpOptions);
+    return this.http.post(Configuration.BASE_URL + '/productos', data, this.getHttpOptions());
   }
 
   delProducto(id: number) {
-    return this.http.delete(Configuration.BASE_URL + '/productos/' + id, this.httpOptions);
+    return this.http.delete(Configuration.BASE_URL + '/productos/' + id, this.getHttpOptions());
   }
 
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
-    return this.http.put(Configuration.BASE_URL + '/productos/' + data.id, data, this.httpOptions);
+    return this.http.put(Configuration.BASE_URL + '/productos/' + data.id, data, this.getHttpOptions());
   }
 }
