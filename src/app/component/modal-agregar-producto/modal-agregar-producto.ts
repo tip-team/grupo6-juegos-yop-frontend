@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
+import { getBase64, resizeBase64 } from 'base64js-es6';
 
 @Component({
   selector: 'modal-agregar-producto',
@@ -59,18 +60,11 @@ export class ModalAgregarProductoComponent implements OnInit {
 
   guardarImagen(evento) {
     const files = evento.target.files;
-    const file = files[0];
-
-    if (files && file) {
-      const reader = new FileReader();
-      reader.onload = this._handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
-    }
-  }
-
-  _handleReaderLoaded(readerEvt) {
-    const binaryString = readerEvt.target.result;
-    this.base64textString = 'data:image/png;base64,' + btoa(binaryString);
+    getBase64(files[0]).then((response) => {
+        resizeBase64(response, 361, 158).then((result) => {
+            this.base64textString = result;
+        });
+    });
   }
 
   cambiarHabilitado(evento) {

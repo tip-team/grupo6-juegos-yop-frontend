@@ -26,6 +26,7 @@
     "@ctrl/ngx-csv": "^1.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.2",
     "angular2-notifications": "^2.0.0",
+    "base64js-es6": "^1.0.1",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "express": "~4.16.4",
