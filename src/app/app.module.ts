@@ -23,6 +23,7 @@ import { ModalEditarProductoComponent } from './component/modal-editar-producto/
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmailModalComponent } from './component/email-modal/email-modal';
 import { CsvModule } from '@ctrl/ngx-csv';
+import { MatProgressButtonsModule } from 'mat-progress-buttons';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CsvModule } from '@ctrl/ngx-csv';
     MatTableModule,
     MatPaginatorModule,
     CsvModule,
+    MatProgressButtonsModule,
     NgbModule.forRoot()
   ],
   entryComponents: [ ModalAgregarProductoComponent, ModalEliminarProductoComponent, ModalEditarProductoComponent ],

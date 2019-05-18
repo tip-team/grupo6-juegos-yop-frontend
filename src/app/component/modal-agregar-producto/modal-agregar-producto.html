@@ -12,7 +12,7 @@
                 <div *ngIf="base64textString" class="imagenDiv">
                     <img src="{{base64textString}}" alt="Imágen" class="imagen">
                 </div>
-                <input id="fileToUpload" type="file" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" >
+                <input id="fileToUpload" type="file" accept="image/*" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" >
             </div>
 
             <div class="form-group">
@@ -34,7 +34,9 @@
             </div>
 
             <div class="form-group">
-                <button mat-raised-button color="primary" class="agregar">Agregar</button>
+                <div class="text-right">
+                    <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
+                </div>
             </div>
         </form>
     </div>
