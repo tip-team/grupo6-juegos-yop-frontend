@@ -18,7 +18,7 @@ export class ModalAgregarProductoComponent implements OnInit {
   barButtonOptions: MatProgressButtonOptions = {
     active: false,
     text: 'Agregar',
-    buttonColor: 'accent',
+    buttonColor: 'primary',
     barColor: 'primary',
     raised: true,
     stroked: false,

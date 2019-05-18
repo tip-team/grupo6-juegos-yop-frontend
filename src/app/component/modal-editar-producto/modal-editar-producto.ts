@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {MatProgressButtonOptions} from 'mat-progress-buttons';
 
 @Component({
   selector: 'modal-editar-producto',
@@ -15,10 +16,25 @@ export class ModalEditarProductoComponent implements OnInit {
   checked: boolean;
   @Input() public producto;
 
+  barButtonOptions: MatProgressButtonOptions = {
+    active: false,
+    text: 'Editar',
+    buttonColor: 'primary',
+    barColor: 'primary',
+    raised: true,
+    stroked: false,
+    mode: 'indeterminate',
+    value: 0,
+    disabled: false,
+    fullWidth: false
+  };
+
   constructor(private formBuilder: FormBuilder, private productoService: ProductoService, public modalService: NgbModal) {
   }
 
   handleSubmit() {
+    this.barButtonOptions.active = true;
+    this.barButtonOptions.text = 'Guardando...';
     this.productoService.updateProducto({
       id: this.producto.id,
       precio: this.editForm.controls.precio.value,

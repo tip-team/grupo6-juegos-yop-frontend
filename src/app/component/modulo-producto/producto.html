@@ -35,11 +35,11 @@
             </mat-header-cell>
 
             <mat-cell *matCellDef="let row; let i=index;">
-                <button mat-icon-button color="accent" (click)="editar(row)">
+                <button mat-icon-button (click)="editar(row)">
                     <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
 
-                <button mat-icon-button color="accent" (click)="borrar(row)">
+                <button mat-icon-button color="warn" (click)="borrar(row)">
                     <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
             </mat-cell>
