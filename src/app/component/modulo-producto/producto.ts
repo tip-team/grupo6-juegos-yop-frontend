@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
@@ -14,7 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './producto.html',
   styleUrls: ['./producto.css']
 })
-export class ModuloProductoComponent {
+export class ModuloProductoComponent implements AfterViewInit {
 
   displayedColumns = ['nombre', 'precio', 'imagen', 'habilitado', 'actions'];
   pageSize: number[] = [10, 20, 50];
@@ -23,8 +23,13 @@ export class ModuloProductoComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productoService: ProductoService, private modalService: NgbModal) {
+  constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal) {
     this.obtenerProductos();
+  }
+
+  ngAfterViewInit() {
+    const matPaginator = this.elem.nativeElement.querySelectorAll('.mat-paginator-page-size-label');
+    matPaginator[0].innerText = "Cantidad de productos por página:";
   }
 
   crear() {

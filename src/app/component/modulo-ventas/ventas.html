@@ -1,49 +1,59 @@
-<div class="example-header">
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-    </mat-form-field>
+<div class="row">
+    <div class="col-md-8">
+        <div class="example-header">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="col-md-4 noPaddingLeft">
+        <a *ngIf="dataSource" csvLink [data]="dataSource.filteredData" [headers]="dataSourceHeaders" filename="ventas.csv"><button class="marginTopButton" mat-raised-button
+                color="primary">
+                <mat-icon class="iconSpace">cloud_download</mat-icon>DESCARGAR VENTAS
+            </button></a>
+    </div>
 </div>
 
 <div class="example-container mat-elevation-z8">
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <mat-table class="tableBorder" [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="idCompra">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> ID </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.idCompra}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nombreProducto">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Nombre </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.nombreProducto}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="monto">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Monto </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Monto </mat-header-cell>
             <mat-cell *matCellDef="let row"> ${{row.monto}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="montoRecibido">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Monto Recibido </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Monto Recibido </mat-header-cell>
             <mat-cell *matCellDef="let row"> ${{row.montoRecibido}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="estadoDePago">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Estado </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.estadoDePago}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="fecha">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Fecha </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.fecha}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Email </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
         </ng-container>
 

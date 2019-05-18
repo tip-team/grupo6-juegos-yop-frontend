@@ -5,11 +5,47 @@
     font-family: 'Fredoka One', cursive;
     /*border: 2px solid black;*/
     text-align: center;
+    background-color: #01579b;
+    border-bottom: 1px solid black;
 }
 
 .fila {
     font-family: 'Dosis', sans-serif;
     margin-left: 0px;
     margin-right: 0px;
+    background-color: #1e70b18c;
+    border-top: 2px solid black;
     /*border: 2px solid black;*/
+}
+
+.textBlack {
+    color:black;
+}
+
+.tableBorder {
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+.noPaddingLeft {
+    padding-left: 0px;
+    text-align: right;
+}
+
+.marginTopButton {
+    margin-top: 10px;
+    font-family: 'Fredoka One', cursive;
+    color: #2b2626;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+}
+
+.iconSpace {
+    margin-bottom:4px;
+    margin-right: 4px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px
 }

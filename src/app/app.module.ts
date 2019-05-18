@@ -22,6 +22,7 @@ import { ModalEliminarProductoComponent } from './component/modal-eliminar-produ
 import { ModalEditarProductoComponent } from './component/modal-editar-producto/modal-editar-producto';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmailModalComponent } from './component/email-modal/email-modal';
+import { CsvModule } from '@ctrl/ngx-csv';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
+    CsvModule,
     NgbModule.forRoot()
   ],
   entryComponents: [ ModalAgregarProductoComponent, ModalEliminarProductoComponent, ModalEditarProductoComponent ],

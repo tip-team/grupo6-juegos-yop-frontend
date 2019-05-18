@@ -1,29 +1,7 @@
 <div *ngIf="show">
-    <div class="row">
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[0]"></product-card>
-        </div>
-
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[1]"></product-card>
-        </div>
-
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[2]"></product-card>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[3]"></product-card>
-        </div>
-
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[4]"></product-card>
-        </div>
-
-        <div class="col-md-4 separateBottom">
-            <product-card [producto]="productos[5]"></product-card>
+    <div *ngFor="let arrayProductos of productos;let indice=index" class="row">
+        <div *ngFor="let producto of arrayProductos;let indiceEachProductos = index" class="col-md-4 separateBottom">
+            <product-card [producto]="producto"></product-card>
         </div>
     </div>
 </div>
