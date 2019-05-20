@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmailModalComponent } from './component/email-modal/email-modal';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatProgressButtonsModule } from 'mat-progress-buttons';
     MatPaginatorModule,
     CsvModule,
     MatProgressButtonsModule,
+    SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot()
   ],
   entryComponents: [ ModalAgregarProductoComponent, ModalEliminarProductoComponent, ModalEditarProductoComponent ],

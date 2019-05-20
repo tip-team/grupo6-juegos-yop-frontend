@@ -2,12 +2,11 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
-import { ModalAgregarProductoComponent } from '../modal-agregar-producto/modal-agregar-producto';
+import { ModalAgregarProductoComponent, modalAgregarProductoEvent } from '../modal-agregar-producto/modal-agregar-producto';
 import { ModalEliminarProductoComponent } from '../modal-eliminar-producto/modal-eliminar-producto';
 import { ModalEditarProductoComponent } from '../modal-editar-producto/modal-editar-producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'producto',
@@ -16,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModuloProductoComponent implements AfterViewInit {
 
+  productos;
   displayedColumns = ['nombre', 'precio', 'imagen', 'habilitado', 'actions'];
   pageSize: number[] = [10, 20, 50];
   dataSource: MatTableDataSource<Producto>;
@@ -23,7 +23,18 @@ export class ModuloProductoComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal) {
+  constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService) {
+    modalAgregarProductoEvent.on('agregarProducto', producto => {
+      this.productos.push(producto);
+      this.agregarProductos(this.productos);
+      this._service.success(`Se agrego el producto ${producto.nombre} correctamente.`, '', {
+       timeOut: 8000,
+       showProgressBar: true,
+       pauseOnHover: true,
+       clickToClose: false,
+       clickIconToClose: true
+     });
+    });
     this.obtenerProductos();
   }
 
@@ -33,7 +44,7 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   crear() {
-    this.modalService.open(ModalAgregarProductoComponent).result.finally(() => this.refresh());
+    this.modalService.open(ModalAgregarProductoComponent, {backdrop : 'static', keyboard : false});
  }
 
   borrar(producto: Producto) {
@@ -53,10 +64,15 @@ export class ModuloProductoComponent implements AfterViewInit {
 
   private obtenerProductos() {
     this.productoService.getAllProductos().subscribe(productosResponse => {
-      this.dataSource = new MatTableDataSource(productosResponse);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.agregarProductos(productosResponse);
     }, error => console.log(error));
+  }
+
+  private agregarProductos(productos) {
+    this.productos = productos;
+    this.dataSource = new MatTableDataSource(productos);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }

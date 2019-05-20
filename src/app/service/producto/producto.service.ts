@@ -26,7 +26,7 @@ export class ProductoService {
     return this.http.get<Producto[]>(Configuration.BASE_URL + '/productos');
   }
 
-  addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }) {
+  addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }): any {
     return this.http.post(Configuration.BASE_URL + '/productos', data, this.getHttpOptions());
   }
 

@@ -4,17 +4,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { getBase64, resizeBase64 } from 'base64js-es6';
+import { NotificationsService } from 'angular2-notifications';
+import { EventEmitter } from 'events';
+
+const modalAgregarProductoEvent = new EventEmitter;
 
 @Component({
   selector: 'modal-agregar-producto',
   templateUrl: './modal-agregar-producto.html',
   styleUrls: ['./modal-agregar-producto.css']
 })
-export class ModalAgregarProductoComponent implements OnInit {
+class ModalAgregarProductoComponent implements OnInit {
 
   registerForm: FormGroup;
   base64textString: string;
   checked: boolean;
+  error;
 
   barButtonOptions: MatProgressButtonOptions = {
     active: false,
@@ -29,7 +34,7 @@ export class ModalAgregarProductoComponent implements OnInit {
     fullWidth: false
   };
 
-  constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private productoService: ProductoService) {
+  constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private productoService: ProductoService, private _service: NotificationsService) {
   }
 
   ngOnInit() {
@@ -45,25 +50,39 @@ export class ModalAgregarProductoComponent implements OnInit {
   handleSubmit() {
     this.barButtonOptions.active = true;
     this.barButtonOptions.text = 'Guardando...';
-    this.productoService.addProducto({
+    const producto: any = {
       precio: this.registerForm.controls.precio.value,
       imagen: this.base64textString,
       nombre: this.registerForm.controls.nombre.value,
       habilitado: this.checked
-    }).subscribe(() => {
+    };
+    this.productoService.addProducto(producto).subscribe(productoResponse => {
+      producto.id = productoResponse.id;
+      modalAgregarProductoEvent.emit('agregarProducto', producto);
       this.modalService.dismissAll('close');
-    }, error => {
-      console.log(error)
-      this.modalService.dismissAll('close');
+    }, httpError => {
+      if (httpError.status === 400) {
+        const error = httpError.error.message;
+        const date = new Date();
+        this.error = { error: error, date: date };
+        setTimeout(() => {
+          if (this.error && this.error.date === date) this.error = undefined;
+        }, 4000);
+      }
+      else {
+        console.log(httpError);
+      }
+      this.barButtonOptions.text = 'Agregar';
+      this.barButtonOptions.active = false;
     });
   }
 
   guardarImagen(evento) {
     const files = evento.target.files;
     getBase64(files[0]).then((response) => {
-        resizeBase64(response, 361, 158).then((result) => {
-            this.base64textString = result;
-        });
+      resizeBase64(response, 361, 158).then((result) => {
+        this.base64textString = result;
+      });
     });
   }
 
@@ -72,3 +91,5 @@ export class ModalAgregarProductoComponent implements OnInit {
   }
 
 }
+
+export { ModalAgregarProductoComponent, modalAgregarProductoEvent };

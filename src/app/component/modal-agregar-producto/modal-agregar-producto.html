@@ -6,37 +6,45 @@
     <div class="modal-body">
         <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
             <div class="form-group">
-                <button type="button" mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">
+                <button type="button" mat-raised-button color="primary"
+                    onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen
                 </button>
                 <div *ngIf="base64textString" class="imagenDiv">
                     <img src="{{base64textString}}" alt="Imágen" class="imagen">
                 </div>
-                <input id="fileToUpload" type="file" accept="image/*" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" >
+                <input id="fileToUpload" type="file" accept="image/*" style="display:none;"
+                    (change)="guardarImagen($event)" formControlName="imagen">
             </div>
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" />
+                    <input matInput placeholder="Nombre" formControlName="nombre" required />
                 </mat-form-field>
             </div>
 
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align">
+                    <input matInput placeholder="Precio" type="number" formControlName="precio"
+                        class="example-right-align">
                     <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
             </div>
 
             <div class="form-group">
-                <mat-slide-toggle color="primary" [checked]="checked" (change)="cambiarHabilitado($event)">{{checked ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
+                <mat-slide-toggle color="primary" [checked]="checked" (change)="cambiarHabilitado($event)">
+                    {{checked ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
             </div>
 
             <div class="form-group">
                 <div class="text-right">
                     <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
                 </div>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{error.error}}
             </div>
         </form>
     </div>

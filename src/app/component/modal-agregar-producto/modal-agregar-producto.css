@@ -23,10 +23,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .imagen {
-    /* max-width: 100px;
-    max-height: 100px; */
-    max-width: 200px;
-    max-height: 150px;
+    max-width: 150px;
+    max-height: 100px;
 }
 
 .imagenDiv {
