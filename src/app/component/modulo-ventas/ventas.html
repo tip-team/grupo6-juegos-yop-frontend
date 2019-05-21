@@ -19,41 +19,41 @@
     <mat-table class="tableBorder" [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="idCompra">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> ID </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> ID </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.idCompra}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nombreProducto">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Nombre </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Nombre </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.nombreProducto}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="monto">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Monto </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Monto </mat-header-cell>
             <mat-cell *matCellDef="let row"> ${{row.monto}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="montoRecibido">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Monto Recibido </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Monto Recibido </mat-header-cell>
             <mat-cell *matCellDef="let row"> ${{row.montoRecibido}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="estadoDePago">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Estado </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Estado </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.estadoDePago}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="fecha">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Fecha </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Fecha </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.fecha}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack"> Email </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center emailCenter"> Email </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
         </ng-container>
 

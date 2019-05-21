@@ -18,6 +18,13 @@
     /*border: 2px solid black;*/
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+}
+
 .textBlack {
     color:black;
 }
@@ -48,4 +55,30 @@
 .row {
     margin-left: 0px;
     margin-right: 0px
+}
+
+mat-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+mat-cell:first-of-type {
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-cell:last-of-type {
+    padding-right: 0px;
+}
+
+.emailCenter {
+    padding-right: 0px;
 }

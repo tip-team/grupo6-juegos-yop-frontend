@@ -12,19 +12,19 @@
                 <div class="imagenDiv">
                     <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
                 </div>
-                <input id="fileToUpload" type="file" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" >
+                <input id="fileToUpload" type="file" style="display:none;" (change)="guardarImagen($event)" formControlName="imagen" />
             </div>
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" value="{{producto.nombre}}"/>
+                    <input matInput placeholder="Nombre" formControlName="nombre" value="{{producto.nombre}}" required />
                 </mat-form-field>
             </div>
 
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align" value="{{producto.precio}}">
+                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align" value="{{producto.precio}}" required />
                     <span matPrefix>$&nbsp;</span>
                 </mat-form-field>
             </div>
@@ -37,6 +37,10 @@
                 <div class="text-right">
                     <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
                 </div>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{error.error}}
             </div>
         </form>
     </div>

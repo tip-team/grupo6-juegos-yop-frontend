@@ -7,7 +7,7 @@ import { getBase64, resizeBase64 } from 'base64js-es6';
 import { NotificationsService } from 'angular2-notifications';
 import { EventEmitter } from 'events';
 
-const modalAgregarProductoEvent = new EventEmitter;
+const modalAgregarProductoEvent = new EventEmitter();
 
 @Component({
   selector: 'modal-agregar-producto',
@@ -34,7 +34,7 @@ class ModalAgregarProductoComponent implements OnInit {
     fullWidth: false
   };
 
-  constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private productoService: ProductoService, private _service: NotificationsService) {
+  constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private productoService: ProductoService) {
   }
 
   ngOnInit() {
