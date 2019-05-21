@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule , MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InventarioComponent } from './component/inventario/inventario';
@@ -25,6 +24,7 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { Material } from './imports/material/material';
 
 @NgModule({
   declarations: [
@@ -47,20 +47,12 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    Material,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,
     NgxSpinnerModule,
     HttpClientModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatPaginatorModule,
     CsvModule,
     MatProgressButtonsModule,
     SimpleNotificationsModule.forRoot(),

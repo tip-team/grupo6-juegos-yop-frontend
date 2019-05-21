@@ -9,7 +9,7 @@
 
                 <div class="form-group noMarginBottom">
                     <mat-form-field class="fullWidth">
-                        <input matInput placeholder="Email" formControlName="email" />
+                        <input matInput placeholder="Email" formControlName="email" required />
                     </mat-form-field>
                 </div>
 
@@ -25,4 +25,4 @@
     <p class="text" style="color: rgb(35, 31, 97);"> Solicitando compra . . . </p>
 </ngx-spinner>
 
-<button mat-raised-button color="primary" (click)="open(content)" class="actionButton">COMPRAR</button>
+<button mat-raised-button color="primary" (click)="openModal(content)" class="actionButton">COMPRAR</button>

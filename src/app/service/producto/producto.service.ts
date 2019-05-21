@@ -11,6 +11,8 @@ import { TokenStorageService } from '../JWT/token.service';
 
 export class ProductoService {
 
+  url = `${Configuration.BASE_URL}/productos`;
+
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
 
   getHttpOptions() {
@@ -23,18 +25,18 @@ export class ProductoService {
   }
 
   getAllProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(Configuration.BASE_URL + '/productos');
+    return this.http.get<Producto[]>(this.url);
   }
 
   addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }): any {
-    return this.http.post(Configuration.BASE_URL + '/productos', data, this.getHttpOptions());
+    return this.http.post(this.url, data, this.getHttpOptions());
   }
 
   delProducto(id: number) {
-    return this.http.delete(Configuration.BASE_URL + '/productos/' + id, this.getHttpOptions());
+    return this.http.delete(`${this.url}/${id}`, this.getHttpOptions());
   }
 
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
-    return this.http.put(Configuration.BASE_URL + '/productos/' + data.id, data, this.getHttpOptions());
+    return this.http.put(this.url, data, this.getHttpOptions());
   }
 }

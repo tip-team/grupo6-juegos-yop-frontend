@@ -6,12 +6,8 @@ import { Producto } from '../../model/producto';
     templateUrl: './product-card.component.html',
     styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent implements OnInit{
+export class ProductCardComponent {
 
     @Input() producto: Producto;
-
-    ngOnInit() {
-        console.log(this.producto);
-    }
 
 }

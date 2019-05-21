@@ -3,7 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
 import { ModalAgregarProductoComponent, modalAgregarProductoEvent } from '../modal-agregar-producto/modal-agregar-producto';
-import { ModalEliminarProductoComponent } from '../modal-eliminar-producto/modal-eliminar-producto';
+import { ModalEliminarProductoComponent, modalEliminarProductoEvent } from '../modal-eliminar-producto/modal-eliminar-producto';
 import { ModalEditarProductoComponent, modalEditarProductoEvent } from '../modal-editar-producto/modal-editar-producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
@@ -24,29 +24,31 @@ export class ModuloProductoComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService) {
-    modalAgregarProductoEvent.on('agregarProducto', producto => {
-      this.productos.push(producto);
-      this.agregarProductos(this.productos);
-      this._service.success(`Se agrego el producto ${producto.nombre} correctamente.`, '', {
+    const success = text => this._service.success(text, '', {
         timeOut: 8000,
         showProgressBar: true,
         pauseOnHover: true,
         clickToClose: true,
         clickIconToClose: true
-      });
+    });
+
+    modalAgregarProductoEvent.on('agregarProducto', producto => {
+      this.productos.push(producto);
+      this.updateProductos(this.productos);
+      success(`Se agrego el producto ${producto.nombre} correctamente.`);
     });
 
     modalEditarProductoEvent.on('editarProducto', (producto, nombreProducto) => {
       this.productos[this.productos.findIndex(eachProducto => eachProducto.id === producto.id)] = producto;
-      this.agregarProductos(this.productos);
-      this._service.success(`Se actualizo el producto ${nombreProducto} correctamente.`, '', {
-        timeOut: 8000,
-        showProgressBar: true,
-        pauseOnHover: true,
-        clickToClose: true,
-        clickIconToClose: true
-      });
+      this.updateProductos(this.productos);
+      success(`Se actualizo el producto ${nombreProducto} correctamente.`);
     });
+
+    modalEliminarProductoEvent.on('eliminarProducto', (id, nombreProducto) => {
+      this.productos = this.productos.filter(producto => producto.id !== id);
+      this.updateProductos(this.productos);
+      success(`Se elimino el producto ${nombreProducto} correctamente.`);
+    })
     this.obtenerProductos();
   }
 
@@ -56,31 +58,26 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   crear() {
-    this.modalService.open(ModalAgregarProductoComponent, { backdrop: 'static', keyboard: false });
+    this.modalService.open(ModalAgregarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
   }
 
   borrar(producto: Producto) {
-    const modalRef = this.modalService.open(ModalEliminarProductoComponent);
+    const modalRef = this.modalService.open(ModalEliminarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
     modalRef.componentInstance.producto = producto;
-    modalRef.result.finally(() => this.refresh());
   }
 
   editar(producto: Producto) {
-    const modalRef = this.modalService.open(ModalEditarProductoComponent, { backdrop: 'static', keyboard: false });
+    const modalRef = this.modalService.open(ModalEditarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
     modalRef.componentInstance.producto = producto;
-  }
-
-  private refresh() {
-    this.obtenerProductos();
   }
 
   private obtenerProductos() {
     this.productoService.getAllProductos().subscribe(productosResponse => {
-      this.agregarProductos(productosResponse);
-    }, error => console.log(error));
+      this.updateProductos(productosResponse);
+     }, error => console.log(error));
   }
 
-  private agregarProductos(productos) {
+  private updateProductos(productos) {
     this.productos = productos;
     this.dataSource = new MatTableDataSource(productos);
     this.dataSource.paginator = this.paginator;

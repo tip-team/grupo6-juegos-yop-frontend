@@ -2,13 +2,16 @@ import { Component, Input } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {MatProgressButtonOptions} from 'mat-progress-buttons';
+import { EventEmitter } from 'events';
+
+const modalEliminarProductoEvent = new EventEmitter();
 
 @Component({
   selector: 'modal-eliminar-producto',
   templateUrl: './modal-eliminar-producto.html',
   styleUrls: ['./modal-eliminar-producto.css']
 })
-export class ModalEliminarProductoComponent {
+class ModalEliminarProductoComponent {
 
   barButtonOptions: MatProgressButtonOptions = {
     active: false,
@@ -31,6 +34,7 @@ export class ModalEliminarProductoComponent {
     this.barButtonOptions.active = true;
     this.barButtonOptions.text = 'Eliminando...';
     this.productoService.delProducto(this.producto.id).subscribe(() => {
+      modalEliminarProductoEvent.emit('eliminarProducto', this.producto.id, this.producto.nombre);
       this.modalService.dismissAll('close');
     }, error => {
       console.log(error)
@@ -38,3 +42,5 @@ export class ModalEliminarProductoComponent {
     });
   }
 }
+
+export { ModalEliminarProductoComponent, modalEliminarProductoEvent };

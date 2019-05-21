@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -23,13 +23,6 @@ export class EmailModalComponent implements OnInit {
     });
   }
 
-  open(content) {
-    this.registerForm = this.formBuilder.group({
-        email: [''],
-    });
-    this.modalService.open(content, { centered: true });
-  }
-
   handleSubmit() {
     this.spinner.show("solicitandoCompra");
     this._mercadoPagoService.getUrlPago(this.idProducto, this.registerForm.controls.email.value).subscribe(response => {
@@ -41,6 +34,10 @@ export class EmailModalComponent implements OnInit {
       this.spinner.hide("solicitandoCompra"); 
       this.modalService.dismissAll('close');
     });
+  }
+
+  openModal(content) {
+    this.modalService.open(content, { backdrop: 'static', keyboard: false, centered: true });
   }
 
 }

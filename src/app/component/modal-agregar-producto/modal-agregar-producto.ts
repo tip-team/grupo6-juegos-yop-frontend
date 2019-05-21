@@ -4,7 +4,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { getBase64, resizeBase64 } from 'base64js-es6';
-import { NotificationsService } from 'angular2-notifications';
 import { EventEmitter } from 'events';
 
 const modalAgregarProductoEvent = new EventEmitter();
