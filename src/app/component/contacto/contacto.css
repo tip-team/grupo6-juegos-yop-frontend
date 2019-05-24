@@ -1,19 +1,16 @@
-.example-card {
-    margin: auto;
-    max-width: 800px;
-}
-
 .example-container {
+    display: flex;
+    flex-direction: column;
+
+}
+.componentTitle {
     display: block;
     flex-direction: column;
-}
-
-.example-container > * {
-    width: 100%;
-}
-
-.componentTitle {
     font-size: 35px;
     margin-bottom: 0px;
     font-family: 'Gaegu', cursive;
+}
+
+.mat-form-field{
+    width: 1000px;
 }

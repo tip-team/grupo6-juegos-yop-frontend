@@ -1,48 +1,42 @@
 
 <mat-grid-list cols="6">
-    <mat-grid-tile [colspan]="4" [rowspan]="1">
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
         <div class="example-container">
             <img src="https://i.ibb.co/pRnp8MP/Captura.jpg" alt="imagen">
         </div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="3">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
         <div class="example-container">
             <p>Infinity Rotomolding Ltda.</p>
             <p>Sarandí. Avellaneda, Buenos Aires</p>
-            <p>Tel.: (011) 4203-0673</p>
-            <p>Tel.: (011) 4205-2516</p>
-            <p>Tel.: (011) 4205-2322</p>
-            <p>info@infinityrotomolding.com</p>
+            <a href="tel:01142030673">Tel.: (011) 4203-0673</a>
+            <a href="tel:01142052516">Tel.: (011) 4205-2516</a>
+            <a href="tel:01142052322">Tel.: (011) 4205-2322</a>
+            <a href="mailto:info@infinityrotomolding.com">info@infinityrotomolding.com</a>
         </div>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="2">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <h5 class="componentTitle">Contactanos</h5>
-            </mat-card-header>
-            <mat-card-content>
-                <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
-                    <div class="example-container">
-                        <mat-form-field>
-                            <input matInput placeholder="Nombre" formControlName="contactFormName" required />
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput placeholder="Email" formControlName="contactFormEmail" required />
-                        </mat-form-field>
-                        <mat-form-field>
-                            <input matInput placeholder="Asunto" formControlName="contactFormSubject" required />
-                        </mat-form-field>
-                        <mat-form-field>
-                            <textarea matInput placeholder="Mensaje" formControlName="contactFormMessage" required></textarea>
-                        </mat-form-field>
-                        <div class="form-group">
-                            <div class="text-right">
-                                <button mat-raised-button color="primary">Enviar</button>
-                            </div>
-                        </div>
+    <mat-grid-tile [colspan]="5" [rowspan]="2">
+        <div class="container mt-5">
+            <h2 class="componentTitle">Contactanos</h2>
+            <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
+                <mat-form-field>
+                    <input matInput placeholder="Nombre" formControlName="contactFormName" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="contactFormEmail" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Asunto" formControlName="contactFormSubject" required />
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="Mensaje" formControlName="contactFormMessage" required></textarea>
+                </mat-form-field>
+                <div class="form-group">
+                    <div class="text-right">
+                        <button mat-raised-button color="primary">Enviar</button>
                     </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
+                </div>
+            </form>
+        </div>
     </mat-grid-tile>
 </mat-grid-list>
