@@ -24,6 +24,8 @@ import { EmailModalComponent } from './component/email-modal/email-modal';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { MatProgressButtonsModule } from 'mat-progress-buttons';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Material } from './imports/material/material';
 
 @NgModule({
@@ -55,6 +57,8 @@ import { Material } from './imports/material/material';
     HttpClientModule,
     CsvModule,
     MatProgressButtonsModule,
+    NgxIntlTelInputModule,
+    BsDropdownModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot()
   ],

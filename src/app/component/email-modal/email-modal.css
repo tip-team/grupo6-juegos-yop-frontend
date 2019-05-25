@@ -36,6 +36,24 @@
     margin-bottom: 21px;
 }
 
-.noMarginBottom {
-    margin-bottom: 0px !important;
+.emailTitle {
+    margin-bottom: 7px;
+    font-size: 12px;
+}
+
+.telefonoMarginBottom {
+    margin-bottom: 1em;
+}
+
+.fullWidthForm {
+    width: 100%;
+}
+
+.formPaddingLeft {
+    padding-left: 15px;
+}
+
+.telefonoError {
+    color: red;
+    font-size: 12.4px;
 }

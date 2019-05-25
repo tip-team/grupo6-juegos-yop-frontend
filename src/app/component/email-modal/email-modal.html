@@ -5,23 +5,53 @@
                 <i class="material-icons pointer" (click)="modal.close()">close</i>
             </div>
 
-            <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+            <form class="formPaddingLeft" [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+                <div class="row fullWidthForm">
+                    <div class="form-group fullWidth">
+                        <mat-form-field class="fullWidth">
+                            <input matInput placeholder="Nombre y apellido" formControlName="nombre" />
+                            <mat-error *ngIf="registerForm.controls.nombre.errors">Debe ingresar su nombre y apellido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
 
-                <div class="form-group noMarginBottom">
-                    <mat-form-field class="fullWidth">
-                        <input matInput placeholder="Email" formControlName="email" required />
-                    </mat-form-field>
+                <div class="row fullWidthForm">
+                    <div class="form-group fullWidth">
+                        <mat-form-field class="fullWidth">
+                            <input matInput placeholder="Email" formControlName="email" />
+                            <mat-error *ngIf="registerForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row telefonoMarginBottom">
+                    <div>
+                        <p class="emailTitle"
+                            [ngStyle]="{'color': registerForm.controls.telefono.valid ? 'grey' : 'red' }">
+                            Teléfono
+                        </p>
+                        <ngx-intl-tel-input #telefono [cssClass]="'custom'"
+                            [preferredCountries]="['ar', 'bo', 'uy', 'cl', 'py', 'br']"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" name="telefono"
+                            formControlName="telefono"></ngx-intl-tel-input>
+                        <p class="telefonoError" *ngIf="!registerForm.controls.telefono.valid">
+                            {{getTelefonoErrorMessage()}}</p>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <button mat-raised-button color="primary" class="siguiente">Siguiente</button>
+                    <button mat-raised-button color="primary" class="siguiente"
+                        [disabled]="!registerForm.valid">Siguiente</button>
                 </div>
             </form>
         </div>
     </div>
+
 </ng-template>
 
-<ngx-spinner name="solicitandoCompra" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse" [fullScreen]="true">
+<ngx-spinner name="solicitandoCompra" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse"
+    [fullScreen]="true">
     <p class="text" style="color: rgb(35, 31, 97);"> Solicitando compra . . . </p>
 </ngx-spinner>
 
