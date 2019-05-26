@@ -10,10 +10,10 @@ import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.serv
 })
 export class ModuloVentasComponent implements AfterViewInit {
 
-    displayedColumns = ['idCompra', 'nombreProducto', 'monto', 'montoRecibido', 'estadoDePago', 'fecha', 'email'];
+    displayedColumns = ['idCompra', 'nombreProducto', 'monto', 'montoRecibido', 'estadoDePago', 'fecha', 'nombre', 'telefono', 'email'];
     pageSize: number[] = [10, 20, 50];
     dataSource: MatTableDataSource<Pago>;
-    dataSourceHeaders = [{ label:'ID', key: 'idCompra'}, { label:'NOMBRE', key: 'nombreProducto'}, { label:'MONTO', key: 'monto'}, { label:'MONTO RECIBIDO', key: 'montoRecibido'}, { label:'ESTADO', key: 'estadoDePago'}, { label:'FECHA', key: 'fecha'}, { label:'EMAIL', key: 'email'}];
+    dataSourceHeaders = [{ label:'ID', key: 'idCompra'}, { label:'NOMBRE', key: 'nombreProducto'}, { label:'MONTO', key: 'monto'}, { label:'MONTO RECIBIDO', key: 'montoRecibido'}, { label:'ESTADO', key: 'estadoDePago'}, { label:'FECHA', key: 'fecha'}, { label:'EMAIL', key: 'email'}, { label: 'TELEFONO', key: 'telefono'}, { label: 'NOMBRE', key: 'nombre'}];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
