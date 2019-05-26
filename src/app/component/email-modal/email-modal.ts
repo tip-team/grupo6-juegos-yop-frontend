@@ -33,15 +33,15 @@ export class EmailModalComponent implements OnInit {
   handleSubmit() {
     this.spinner.show("solicitandoCompra");
     const emailValue = this.registerForm.controls.email.value;
-    const telefonoValue = this.registerForm.controls.telefono.value.number.replace(/\s+/g,'').replace(/\+/g, '%2b');
+    const telefonoValue = this.registerForm.controls.telefono.value.internationalNumber.replace(/\s+/g, '').replace(/\+/g, '%2B').replace(/-/i, '');
     const nombre = this.registerForm.controls.nombre.value;
     this._mercadoPagoService.getUrlPago(this.idProducto, emailValue, telefonoValue, nombre).subscribe(response => {
-      this.spinner.hide("solicitandoCompra");  
+      this.spinner.hide("solicitandoCompra");
       window.open(response.urlPago);
       this.modalService.dismissAll('close');
     }, error => {
       console.log(error);
-      this.spinner.hide("solicitandoCompra"); 
+      this.spinner.hide("solicitandoCompra");
       this.modalService.dismissAll('close');
     });
   }
@@ -52,7 +52,7 @@ export class EmailModalComponent implements OnInit {
     return telefonoIsNotEmpty ? 'El número de teléfono ingresado es incorrecto.' : 'Debe ingresar su número de teléfono.';
   }
 
-  getEmailErrorMessage(){
+  getEmailErrorMessage() {
     return this.registerForm.controls.email.errors.required ? 'Debe ingresar su email.' : 'El email ingresado es incorrecto.';
   }
 
