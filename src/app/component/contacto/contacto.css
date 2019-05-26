@@ -11,6 +11,10 @@
     font-family: 'Gaegu', cursive;
 }
 
+.contactoImagen {
+    width: 100%;
+}
+
 .mat-form-field{
     width: 1000px;
 }
