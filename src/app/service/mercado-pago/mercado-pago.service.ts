@@ -21,9 +21,13 @@ export class MercadoPagoService {
     }
   }
 
-  getUrlPago(id: number, email: string): Observable<any> {
+  getUrlPago(id: number, email: string, telefono: string, nombre: string): Observable<any> {
     let params = new HttpParams();
-    params = params.set('id', id.toString()).set('email', email.toString());
+    params = params
+      .set('id', id.toString())
+      .set('email', email.toString())
+      .set('telefono', telefono)
+      .set('nombre', nombre);
     return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago`, {params: params});
   }
 

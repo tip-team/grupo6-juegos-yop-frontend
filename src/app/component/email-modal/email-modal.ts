@@ -19,6 +19,10 @@ export class EmailModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.init();
+  }
+
+  init() {
     this.registerForm = this.formBuilder.group({
       nombre: new FormControl(undefined, [Validators.required]),
       email: new FormControl(undefined, [Validators.required, ValidateEmail]),
@@ -28,7 +32,10 @@ export class EmailModalComponent implements OnInit {
 
   handleSubmit() {
     this.spinner.show("solicitandoCompra");
-    this._mercadoPagoService.getUrlPago(this.idProducto, this.registerForm.controls.email.value).subscribe(response => {
+    const emailValue = this.registerForm.controls.email.value;
+    const telefonoValue = this.registerForm.controls.telefono.value.number.replace(/\s+/g,'').replace(/\+/g, '%2b');
+    const nombre = this.registerForm.controls.nombre.value;
+    this._mercadoPagoService.getUrlPago(this.idProducto, emailValue, telefonoValue, nombre).subscribe(response => {
       this.spinner.hide("solicitandoCompra");  
       window.open(response.urlPago);
       this.modalService.dismissAll('close');
@@ -50,6 +57,7 @@ export class EmailModalComponent implements OnInit {
   }
 
   openModal(content) {
+    this.init();
     this.modalService.open(content, { backdrop: 'static', keyboard: false, centered: true });
   }
 
