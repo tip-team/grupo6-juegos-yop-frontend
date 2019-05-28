@@ -9,6 +9,7 @@
     font-size: 35px;
     margin-bottom: 0px;
     font-family: 'Gaegu', cursive;
+    margin-top: -11px;
 }
 
 .contactoImagen {
@@ -16,5 +17,10 @@
 }
 
 .mat-form-field{
-    width: 1000px;
+    width: 100%;
+}
+
+.numeroTelefono {
+    display: flex;
+    word-break: break-all;
 }
