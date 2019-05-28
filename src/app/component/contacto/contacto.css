@@ -9,7 +9,10 @@
     font-size: 35px;
     margin-bottom: 0px;
     font-family: 'Gaegu', cursive;
-    margin-top: -11px;
+}
+
+.infinityTitulo {
+    margin-top: 10px;
 }
 
 .contactoImagen {
