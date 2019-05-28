@@ -188,7 +188,7 @@
 }
 
 .instagramButton {
-    margin-left: 38px;
+    margin-left: 57px;
 }
 
 .instagramIcon:hover {
@@ -225,4 +225,17 @@
     bottom: 32px;
     font-size: 20px;
     margin-left: 17px;
+}
+
+.redesSocialesSeguinos {
+    font-family: 'Permanent Marker', cursive;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.redesSocialesEnRedes {
+    font-family: 'Permanent Marker', cursive;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 18px;
 }
