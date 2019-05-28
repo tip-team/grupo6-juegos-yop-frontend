@@ -28,7 +28,8 @@
     padding-top: 50px;
     min-width: 190px;
     max-width: 190px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: 100vh;
     z-index: 1;
     background-color: #0288D1;
     position: fixed;
