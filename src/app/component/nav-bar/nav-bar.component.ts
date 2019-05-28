@@ -1,13 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { trigger, state, style, transition, animate} from '@angular/animations';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { AppComponent } from '../../app.component';
-import { TokenStorageService } from 'src/app/service/JWT/token.service';
-import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
 import { AuthService } from 'src/app/service/JWT/auth.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-nav-bar',
@@ -45,8 +44,10 @@ export class NavBarComponent {
   juegosYopMenu = 'on';
   title: string;
   app = AppComponent;
+  stylePosition;
   
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private deviceService: DeviceDetectorService) {
+    this.stylePosition = {'position': 'absolute', 'bottom': this.deviceService.isMobile() ? '65' : '0' + 'px'};
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
       this.router.navigateByUrl(baseUrl + this.app.INVENTARIO.path);

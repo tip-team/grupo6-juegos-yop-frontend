@@ -27,6 +27,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Material } from './imports/material/material';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { Material } from './imports/material/material';
     CsvModule,
     MatProgressButtonsModule,
     NgxIntlTelInputModule,
+    DeviceDetectorModule.forRoot(),
     BsDropdownModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot()
