@@ -1,7 +1,6 @@
 .example-container {
     display: flex;
     flex-direction: column;
-
 }
 .componentTitle {
     display: block;
@@ -17,6 +16,7 @@
 
 .contactoImagen {
     width: 100%;
+	max-height: 223px;
 }
 
 .mat-form-field{
