@@ -18,6 +18,12 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon(
       'juegos-yop',
       this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/juegos-yop.svg')
+    ).addSvgIcon(
+        'instagram-brands',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/instagram-brands.svg')
+    ).addSvgIcon(
+        'facebook-brands',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/facebook-brands.svg')
     );
   }
 }
