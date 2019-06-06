@@ -12,20 +12,27 @@
         <h2 class="componentTitle">Contactanos</h2>
         <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
             <mat-form-field>
-                <input matInput placeholder="Nombre" formControlName="contactFormName" required />
+                <input matInput placeholder="Nombre" formControlName="contactFormName"/>
+                <mat-error *ngIf="contactForm.controls.contactFormName.errors">Debe ingresar su nombre.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Email" formControlName="contactFormEmail" required />
+                <input matInput placeholder="Email" formControlName="contactFormEmail"/>
+                <mat-error *ngIf="contactForm.controls.contactFormEmail.errors">{{getEmailErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Asunto" formControlName="contactFormSubject" required />
+                <input matInput placeholder="Asunto" formControlName="contactFormSubject"/>
+                <mat-error *ngIf="contactForm.controls.contactFormSubject.errors">Debe ingresar un asunto.
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Mensaje" formControlName="contactFormMessage" required></textarea>
+                <textarea matInput placeholder="Mensaje" formControlName="contactFormMessage"></textarea>
+                <mat-error *ngIf="contactForm.controls.contactFormMessage.errors">Debe ingresar un mensaje.
+                </mat-error>
             </mat-form-field>
             <div class="form-group">
                 <div class="text-right">
-                    <button mat-raised-button color="primary">Enviar</button>
+                    <button [disabled]="!contactForm.valid" mat-raised-button color="primary">Enviar</button>
                 </div>
             </div>
         </form>

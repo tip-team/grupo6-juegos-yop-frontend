@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ValidateEmail } from 'src/app/validators/EmailValidator';
 
 @Component({
     selector: 'contacto',
@@ -16,13 +16,18 @@ export class ContactoComponent implements OnInit {
 
     ngOnInit() {
         this.contactForm = this.formBuilder.group({
-            contactFormName: [''],
-            contactFormEmail: [''],
-            contactFormSubject: [''],
-            contactFormMessage: ['']
+            contactFormName: new FormControl(undefined, [Validators.required]),
+            contactFormEmail: new FormControl(undefined, [Validators.required, ValidateEmail]),
+            contactFormSubject: new FormControl(undefined, [Validators.required]),
+            contactFormMessage: new FormControl(undefined, [Validators.required])
         });
     }
 
+    getEmailErrorMessage() {
+        return this.contactForm.controls.contactFormEmail.errors.required ? 'Debe ingresar su email.' : 'El email ingresado es inválido.';
+    }
+
     handleSubmit() {
+        console.log('Próximamente envía el mail.');
     }
 }
