@@ -24,6 +24,9 @@ export class AppComponent {
     ).addSvgIcon(
         'facebook-brands',
         this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/facebook-brands.svg')
+    ).addSvgIcon(
+        'democrat-solid',
+        this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/democrat-solid.svg')
     );
   }
 }
