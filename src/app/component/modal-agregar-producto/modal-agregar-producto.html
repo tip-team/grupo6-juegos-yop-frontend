@@ -10,6 +10,7 @@
                     onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen
                 </button>
+                <p class="imagenRequired" *ngIf="!base64textString">Debe ingresar una imágen para el producto.</p>
                 <div *ngIf="base64textString" class="imagenDiv">
                     <img src="{{base64textString}}" alt="Imágen" class="imagen">
                 </div>
@@ -19,16 +20,17 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" required />
+                    <input matInput placeholder="Nombre" formControlName="nombre" />
+                    <mat-error *ngIf="registerForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
                 </mat-form-field>
             </div>
-
 
             <div class="form-group">
                 <mat-form-field>
                     <input matInput placeholder="Precio" type="number" formControlName="precio"
-                        class="example-right-align" required />
+                        class="example-right-align"/>
                     <span matPrefix>$&nbsp;</span>
+                    <mat-error *ngIf="registerForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
                 </mat-form-field>
             </div>
 

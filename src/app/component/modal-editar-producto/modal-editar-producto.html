@@ -17,15 +17,17 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" value="{{producto.nombre}}" required />
+                    <input matInput placeholder="Nombre" formControlName="nombre" />
+                    <mat-error *ngIf="editForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
                 </mat-form-field>
             </div>
 
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align" value="{{producto.precio}}" required />
+                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align" />
                     <span matPrefix>$&nbsp;</span>
+                    <mat-error *ngIf="editForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
                 </mat-form-field>
             </div>
 

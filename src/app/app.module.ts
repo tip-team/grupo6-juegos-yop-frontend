@@ -28,6 +28,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Material } from './imports/material/material';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     CsvModule,
     MatProgressButtonsModule,
     NgxIntlTelInputModule,
+    TooltipModule,
     DeviceDetectorModule.forRoot(),
     BsDropdownModule.forRoot(),
     SimpleNotificationsModule.forRoot(),

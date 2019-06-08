@@ -3,7 +3,8 @@ import { User } from '../../model/user';
 import { AuthService } from '../../service/JWT/auth.service';
 import { TokenStorageService } from '../../service/JWT/token.service';
 import { HttpResponse } from '@angular/common/http';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'login',
@@ -13,20 +14,21 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  hide = true;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   private user: User;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenStorageService, private _notificationsservice: NotificationsService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
     }
     this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
+      username: new FormControl(undefined, [Validators.required]),
+      password: new FormControl(undefined, [Validators.required])
     });
   }
 
@@ -37,23 +39,43 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    this.user = new User(
-        this.loginForm.controls.username.value,
-        this.loginForm.controls.password.value);
-
+    const { username: { value: userNameValue }, password: { value: passwordValue } } = this.loginForm.controls;
+    this.user = new User(userNameValue, passwordValue);
     this.authService.login(this.user).subscribe(
       data => this.onSuccess(data),
-      error => this.handleError(error));
+      error => error.status === 403 ? this.handleInvalidLogin() : this.handleServerException()
+    );
   }
+
+  handleServerException() {
+    this._notificationsservice.error('Ocurrió un error', 'Por favor vuelve a intentar más tarde.', {
+      timeOut: 8000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      clickIconToClose: true
+    });
+  }
+
   private onSuccess(data: HttpResponse<any>) {
     this.tokenStorage.saveToken(data.headers.get('Authorization'));
     this.isLoginFailed = false;
     this.isLoggedIn = true;
+    this.hide = true;
+    this.loginForm = this.formBuilder.group({
+      username: new FormControl(undefined, [Validators.required]),
+      password: new FormControl(undefined, [Validators.required])
+    });
   }
 
-  private handleError(error: any) {
-    this.errorMessage = error.error.message;
-    this.isLoginFailed = true;
+  private handleInvalidLogin() {
+    this._notificationsservice.error('Error al ingresar', 'Usuario y/o contraseña incorrecta.', {
+      timeOut: 8000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      clickIconToClose: true
+    });
   }
 
 }

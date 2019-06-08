@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
 import { MatProgressButtonOptions } from 'mat-progress-buttons';
@@ -39,45 +39,56 @@ class ModalAgregarProductoComponent implements OnInit {
   ngOnInit() {
     this.checked = true;
     this.registerForm = this.formBuilder.group({
-      nombre: [''],
+      nombre: new FormControl(undefined, [Validators.required]),
       imagen: [''],
-      precio: ['']
+      precio: new FormControl(undefined, [Validators.required])
     });
     this.base64textString = null;
   }
 
   handleSubmit() {
-    this.barButtonOptions.active = true;
-    this.barButtonOptions.text = 'Guardando...';
-    const producto: any = {
-      precio: this.registerForm.controls.precio.value,
-      imagen: this.base64textString,
-      nombre: this.registerForm.controls.nombre.value,
-      habilitado: this.checked
-    };
-    this.productoService.addProducto(producto).subscribe(productoResponse => {
-      producto.id = productoResponse.id;
-      modalAgregarProductoEvent.emit('agregarProducto', producto);
-      this.modalService.dismissAll('close');
-    }, httpError => {
-      if (httpError.status === 400) {
-        const error = httpError.error.message;
-        const date = new Date();
-        this.error = { error: error, date: date };
-        setTimeout(() => {
-          if (this.error && this.error.date === date) this.error = undefined;
-        }, 4000);
-      }
-      else {
-        console.log(httpError);
-      }
-      this.barButtonOptions.text = 'Agregar';
-      this.barButtonOptions.active = false;
-    });
+    if (this.hasErrors()) {
+      const date = new Date();
+      const error = this.getErrorMessage();
+      this.error = { error, date: date };
+      setTimeout(() => {
+        if (this.error && this.error.date === date) this.error = undefined;
+      }, 4000);
+    }
+    else {
+      this.barButtonOptions.active = true;
+      this.barButtonOptions.text = 'Guardando...';
+      const { precio: { value: precioValue }, nombre: { value: nombreValue } } = this.registerForm.controls;
+      const producto: any = {
+        precio: precioValue,
+        imagen: this.base64textString,
+        nombre: nombreValue,
+        habilitado: this.checked
+      };
+      this.productoService.addProducto(producto).subscribe(productoResponse => {
+        producto.id = productoResponse.id;
+        modalAgregarProductoEvent.emit('agregarProducto', producto);
+        this.modalService.dismissAll('close');
+      }, httpError => {
+        if (httpError.status === 400) {
+          const error = httpError.error.message;
+          const date = new Date();
+          this.error = { error: error, date: date };
+          setTimeout(() => {
+            if (this.error && this.error.date === date) this.error = undefined;
+          }, 4000);
+        }
+        else {
+          console.log(httpError);
+        }
+        this.barButtonOptions.text = 'Agregar';
+        this.barButtonOptions.active = false;
+      });
+    }
   }
 
   guardarImagen(evento) {
-    const files = evento.target.files;
+    const { files } = evento.target;
     getBase64(files[0]).then((response) => {
       resizeBase64(response, 361, 158).then((result) => {
         this.base64textString = result;
@@ -87,6 +98,16 @@ class ModalAgregarProductoComponent implements OnInit {
 
   cambiarHabilitado(evento) {
     this.checked = evento.checked;
+  }
+
+  getErrorMessage() {
+    if (!this.base64textString) return 'Para crear un producto debe ingresar una imágen.';
+    if (this.registerForm.controls.nombre.errors) return 'Para crear un producto debe ingresar un nombre.';
+    if (this.registerForm.controls.precio.errors) return 'Para crear un producto debe ingresar un precio.';
+  }
+
+  hasErrors() {
+    return this.registerForm.controls.nombre.errors || this.registerForm.controls.precio.errors || (!this.base64textString);
   }
 
 }

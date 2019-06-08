@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import {MatProgressButtonOptions} from 'mat-progress-buttons';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatProgressButtonOptions } from 'mat-progress-buttons';
 import { EventEmitter } from 'events';
 import { getBase64, resizeBase64 } from 'base64js-es6';
 
@@ -37,34 +37,54 @@ class ModalEditarProductoComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private productoService: ProductoService, public modalService: NgbModal) {
   }
 
-  handleSubmit() {
-    this.barButtonOptions.active = true;
-    this.barButtonOptions.text = 'Guardando...';
-    const producto = {
-      id: this.producto.id,
-      precio: this.editForm.controls.precio.value,
-      imagen: this.base64textString,
-      nombre: this.editForm.controls.nombre.value,
-      habilitado: this.checked
-    };
-    this.productoService.updateProducto(producto).subscribe(() => {
-      modalEditarProductoEvent.emit('editarProducto', producto, this.producto.nombre);
-      this.modalService.dismissAll('close');
-    }, httpError => {
-      if (httpError.status === 400) {
-        const error = httpError.error.message;
-        const date = new Date();
-        this.error = { error: error, date: date };
-        setTimeout(() => {
-          if (this.error && this.error.date === date) this.error = undefined;
-        }, 4000);
-      }
-      else {
-        console.log(httpError);
-      }
-      this.barButtonOptions.text = 'Guardar';
-      this.barButtonOptions.active = false;
+  ngOnInit(): void {
+    this.checked = this.producto.habilitado;
+    this.base64textString = this.producto.imagen;
+    this.editForm = this.formBuilder.group({
+      nombre: new FormControl(this.producto.nombre, [Validators.required]),
+      imagen: [''],
+      precio: new FormControl(this.producto.precio, [Validators.required])
     });
+  }
+
+  handleSubmit() {
+    if (this.hasErrors()) {
+      const date = new Date();
+      const error = this.getErrorMessage();
+      this.error = { error, date: date };
+      setTimeout(() => {
+        if (this.error && this.error.date === date) this.error = undefined;
+      }, 4000);
+    }
+    else {
+      this.barButtonOptions.active = true;
+      this.barButtonOptions.text = 'Guardando...';
+      const producto = {
+        id: this.producto.id,
+        precio: this.editForm.controls.precio.value,
+        imagen: this.base64textString,
+        nombre: this.editForm.controls.nombre.value,
+        habilitado: this.checked
+      };
+      this.productoService.updateProducto(producto).subscribe(() => {
+        modalEditarProductoEvent.emit('editarProducto', producto, this.producto.nombre);
+        this.modalService.dismissAll('close');
+      }, httpError => {
+        if (httpError.status === 400) {
+          const error = httpError.error.message;
+          const date = new Date();
+          this.error = { error: error, date: date };
+          setTimeout(() => {
+            if (this.error && this.error.date === date) this.error = undefined;
+          }, 4000);
+        }
+        else {
+          console.log(httpError);
+        }
+        this.barButtonOptions.text = 'Guardar';
+        this.barButtonOptions.active = false;
+      });
+    }
   }
 
   guardarImagen(evento) {
@@ -79,15 +99,16 @@ class ModalEditarProductoComponent implements OnInit {
   cambiarHabilitado(evento) {
     this.checked = evento.checked;
   }
-  ngOnInit(): void {
-    this.checked = this.producto.habilitado;
-    this.base64textString = this.producto.imagen;
-    this.editForm = this.formBuilder.group({
-      nombre: this.producto.nombre,
-      imagen: [''],
-      precio: this.producto.precio
-    });
+
+  getErrorMessage() {
+    if (this.editForm.controls.nombre.errors) return 'Para editar un producto debe ingresar un nombre.';
+    if (this.editForm.controls.precio.errors) return 'Para editar un producto debe ingresar un precio.';
   }
+
+  hasErrors() {
+    return this.editForm.controls.nombre.errors || this.editForm.controls.precio.errors;
+  }
+
 }
 
 export { ModalEditarProductoComponent, modalEditarProductoEvent };
