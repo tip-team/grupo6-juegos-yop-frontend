@@ -1,23 +1,32 @@
 <mat-card *ngIf="producto" class="example-card">
-  <img mat-card-image src="{{producto.imagen}}" style="border-bottom: solid 2px #01579b; max-height: 160px;">
-  <mat-card-content>
-      <div class="row">
-          <div class="col-md-8 descriptionTextDiv">
-              <p class="descriptionText">{{ producto.nombre }}</p>
-          </div>
-          <div class="col-md-4">
-              <p style="margin-bottom: 0px;" class="money">${{ producto.precio }}</p>
-          </div>
-      </div>
-  </mat-card-content>
-  <mat-card-actions class="bottomActions" style="margin-left: -16px; margin-right: -16px; border-top: solid 2px #01579b !important;">
-      <div class="row buttonsRow">
-          <div class="col-md-6 centerButton">
-              <email-modal idProducto="{{producto.id}}" class="fullSize"></email-modal>
-          </div>
-          <div class="col-md-6 centerButton">
-              <button mat-raised-button color="primary" class="actionButton">DESCRIPCIÓN</button>
-          </div>
-      </div>
-  </mat-card-actions>
+    <img mat-card-image src="{{producto.imagen}}" style="border-bottom: solid 2px #01579b; max-height: 160px;">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-md-8 descriptionTextDiv">
+                <p class="descriptionText">{{ producto.nombre }}</p>
+            </div>
+            <div class="col-md-4">
+                <p style="margin-bottom: 0px;" class="money">${{ producto.precio }}</p>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions class="bottomActions" style="margin-left: -16px; margin-right: -16px; border-top: solid 2px #01579b !important;">
+        <div class="row buttonsRow">
+            <div *ngIf="producto.habilitado; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <div class="col-md-6 centerButton">
+                    <email-modal idProducto="{{producto.id}}" class="fullSize"></email-modal>
+                </div>
+            </ng-template>
+            <ng-template #elseBlock>
+                <div class="col-md-6 centerButton">
+                    <button mat-raised-button color="primary" class="actionButton" disabled>NO DISPONIBLE</button>
+                </div>
+            </ng-template>
+
+            <div class="col-md-6 centerButton">
+                <button mat-raised-button color="primary" class="actionButton">DESCRIPCIÓN</button>
+            </div>
+        </div>
+    </mat-card-actions>
 </mat-card>
