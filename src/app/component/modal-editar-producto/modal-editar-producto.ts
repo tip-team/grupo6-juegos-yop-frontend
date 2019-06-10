@@ -115,9 +115,8 @@ class ModalEditarProductoComponent implements OnInit {
   guardarImagenDesc(evento) {
     const { files } = evento.target;
     getBase64(files[0]).then((response) => {
-      resizeBase64(response, 722, 316).then((result) => {
-        this.imagenDesc = result;
-      });
+      // resizeBase64(response, 722, 316).then((result) => { this.imagenDesc = result; });
+      this.imagenDesc = response;
     });
   }
 
