@@ -31,13 +31,13 @@
 
         <ng-container matColumnDef="monto">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Monto </mat-header-cell>
-            <mat-cell *matCellDef="let row"> ${{row.monto}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.monto | currency}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="montoRecibido">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Monto Recibido
             </mat-header-cell>
-            <mat-cell *matCellDef="let row"> ${{row.montoRecibido}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.montoRecibido | currency}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="estadoDePago">
