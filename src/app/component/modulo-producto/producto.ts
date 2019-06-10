@@ -79,14 +79,18 @@ export class ModuloProductoComponent implements AfterViewInit {
 
   private updateProductos(productos) {
     this.productos = productos;
-    this.productos.forEach(p => {
+    this.dataSource = new MatTableDataSource(productos);
+    this.updateDesc();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  private async updateDesc() {
+    this.dataSource.data.forEach(p => {
       this.productoService.getProductoDesc(p.id).subscribe(response => {
         p.imagenDesc = response.imagenDesc;
       });
     });
-    this.dataSource = new MatTableDataSource(productos);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
 }
