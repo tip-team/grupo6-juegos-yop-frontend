@@ -15,7 +15,7 @@ export class DescModalComponent {
     constructor(private modalService: NgbModal, private productoService: ProductoService) { }
 
     openModal(content) {
-        this.productoService.getProductoDesc(this.idProducto).subscribe(response => {
+        this.productoService.getProductoDesc(this.idProducto).then(response => {
             this.imagenDesc = response.imagenDesc;
         });
         this.modalService.open(content, { backdrop: 'static', keyboard: false, centered: true, size: 'lg' });

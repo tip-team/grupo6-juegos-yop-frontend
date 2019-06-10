@@ -72,7 +72,7 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   private obtenerProductos() {
-    this.productoService.getAllProductos().subscribe(productosResponse => {
+    this.productoService.getAllProductos().then(productosResponse => {
       this.updateProductos(productosResponse);
      }, error => console.log(error));
   }
@@ -85,9 +85,9 @@ export class ModuloProductoComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  private async updateDesc() {
+  private updateDesc() {
     this.dataSource.data.forEach(p => {
-      this.productoService.getProductoDesc(p.id).subscribe(response => {
+      this.productoService.getProductoDesc(p.id).then(response => {
         p.imagenDesc = response.imagenDesc;
       });
     });

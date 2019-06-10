@@ -24,8 +24,8 @@ export class ProductoService {
     };
   }
 
-  getAllProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.url);
+  async getAllProductos() {
+    return this.http.get<Producto[]>(this.url).toPromise();
   }
 
   addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }): any {
@@ -36,8 +36,8 @@ export class ProductoService {
     return this.http.delete(`${this.url}/${id}`, this.getHttpOptions());
   }
 
-  getProductoDesc(id: number) {
-    return this.http.get<any>(`${this.url}/desc/${id}`);
+  async getProductoDesc(id: number) {
+    return this.http.get<any>(`${this.url}/desc/${id}`).toPromise();
   }
 
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
