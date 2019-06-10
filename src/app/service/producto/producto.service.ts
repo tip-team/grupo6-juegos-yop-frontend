@@ -36,6 +36,10 @@ export class ProductoService {
     return this.http.delete(`${this.url}/${id}`, this.getHttpOptions());
   }
 
+  getProductoDesc(id: number) {
+    return this.http.get<any>(`${this.url}/desc/${id}`);
+  }
+
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
     return this.http.put(this.url, data, this.getHttpOptions());
   }

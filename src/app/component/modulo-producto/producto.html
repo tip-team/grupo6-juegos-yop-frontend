@@ -17,6 +17,11 @@
             <mat-cell *matCellDef="let row"> <img class="imagen" src="{{row.imagen}}" alt="Imagen" style="height: 50px;"> </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="imagenDesc">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> ImagenDesc </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <img class="imagenDesc" src="{{row.imagenDesc}}" alt="ImagenDesc" style="height: 50px;"> </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="habilitado">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Habilitado </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.habilitado ? 'SÍ' : 'NO'}} </mat-cell>

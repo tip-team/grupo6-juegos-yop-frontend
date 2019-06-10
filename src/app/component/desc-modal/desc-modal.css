@@ -1,0 +1,19 @@
+.closeButton {
+    margin-bottom: 21px;
+    text-align: right;
+}
+
+.actionButton {
+    font-family: 'Patrick Hand SC', cursive;
+    font-weight: bold;
+    font-size: 17px;
+    color: #070e41;
+    background-color: #37149173;
+    width: 100%;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: 0px;
+}
+

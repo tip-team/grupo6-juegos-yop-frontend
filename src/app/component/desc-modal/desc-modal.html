@@ -1,0 +1,11 @@
+<ng-template #content let-modal>
+    <div class="modal-body">
+        <div class="closeButton">
+            <i class="material-icons pointer" (click)="modal.close()">close</i>
+        </div>
+        <img src="{{imagenDesc}}" alt="ImágenDesc" class="imagen">
+    </div>
+
+</ng-template>
+
+<button mat-raised-button color="primary" (click)="openModal(content)" class="actionButton">DESCRIPCIÓN</button>

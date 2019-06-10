@@ -10,12 +10,25 @@
                     onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen
                 </button>
-                <p class="imagenRequired" *ngIf="!base64textString">Debe ingresar una imágen para el producto.</p>
-                <div *ngIf="base64textString" class="imagenDiv">
-                    <img src="{{base64textString}}" alt="Imágen" class="imagen">
+                <p class="imagenRequired" *ngIf="!imagenPrin">Debe ingresar una imágen para el producto.</p>
+                <div *ngIf="imagenPrin" class="imagenDiv">
+                    <img src="{{imagenPrin}}" alt="Imágen" class="imagen">
                 </div>
                 <input id="fileToUpload" type="file" accept="image/*" style="display:none;"
-                    (change)="guardarImagen($event)" formControlName="imagen">
+                    (change)="guardarImagenPrin($event)" formControlName="imagen">
+            </div>
+
+            <div class="form-group">
+                <button type="button" mat-raised-button color="primary"
+                        onclick="document.getElementById('fileToUploadDesc').click()">
+                    Seleccionar imágen
+                </button>
+                <p class="imagenRequired" *ngIf="!imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
+                <div *ngIf="imagenDesc" class="imagenDiv">
+                    <img src="{{imagenDesc}}" alt="ImágenDesc" class="imagen">
+                </div>
+                <input id="fileToUploadDesc" type="file" accept="image/*" style="display:none;"
+                       (change)="guardarImagenDesc($event)" formControlName="imagen">
             </div>
 
             <div class="form-group">

@@ -3,5 +3,6 @@ export class Producto {
     nombre: string;
     precio: number;
     imagen: string;
+    imagenDesc: string;
     habilitado: boolean;
 }

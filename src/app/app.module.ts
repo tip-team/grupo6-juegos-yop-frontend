@@ -29,6 +29,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { Material } from './imports/material/material';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { DescModalComponent } from './component/desc-modal/desc-modal';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     ModalAgregarProductoComponent,
     ModalEliminarProductoComponent,
     ModalEditarProductoComponent,
-    EmailModalComponent
+    EmailModalComponent,
+    DescModalComponent
   ],
   imports: [
     BrowserModule,

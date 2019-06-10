@@ -31,17 +31,17 @@ export class EmailModalComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.spinner.show("solicitandoCompra");
+    this.spinner.show('solicitandoCompra');
     const emailValue = this.registerForm.controls.email.value;
     const telefonoValue = this.registerForm.controls.telefono.value.internationalNumber.replace(/\s+/g, '').replace(/\+/g, '%2B').replace(/-/i, '');
     const nombre = this.registerForm.controls.nombre.value;
     this._mercadoPagoService.getUrlPago(this.idProducto, emailValue, telefonoValue, nombre).subscribe(response => {
-      this.spinner.hide("solicitandoCompra");
+      this.spinner.hide('solicitandoCompra');
       window.open(response.urlPago);
       this.modalService.dismissAll('close');
     }, error => {
       console.log(error);
-      this.spinner.hide("solicitandoCompra");
+      this.spinner.hide('solicitandoCompra');
       this.modalService.dismissAll('close');
     });
   }

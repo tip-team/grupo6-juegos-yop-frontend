@@ -16,7 +16,8 @@ const modalEditarProductoEvent = new EventEmitter();
 class ModalEditarProductoComponent implements OnInit {
 
   editForm: FormGroup;
-  base64textString: string;
+  imagenPrin: string;
+  imagenDesc: string;
   checked: boolean;
   error;
   @Input() public producto;
@@ -39,10 +40,12 @@ class ModalEditarProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.checked = this.producto.habilitado;
-    this.base64textString = this.producto.imagen;
+    this.imagenPrin = this.producto.imagen;
+    this.imagenDesc = this.producto.imagenDesc;
     this.editForm = this.formBuilder.group({
       nombre: new FormControl(this.producto.nombre, [Validators.required]),
       imagen: [''],
+      imagenDesc: [''],
       precio: new FormControl(this.producto.precio, [Validators.required])
     });
   }
@@ -55,14 +58,14 @@ class ModalEditarProductoComponent implements OnInit {
       setTimeout(() => {
         if (this.error && this.error.date === date) this.error = undefined;
       }, 4000);
-    }
-    else {
+    } else {
       this.barButtonOptions.active = true;
       this.barButtonOptions.text = 'Guardando...';
       const producto = {
         id: this.producto.id,
         precio: this.editForm.controls.precio.value,
-        imagen: this.base64textString,
+        imagen: this.imagenPrin,
+        imagenDesc: this.imagenDesc,
         nombre: this.editForm.controls.nombre.value,
         habilitado: this.checked
       };
@@ -77,23 +80,13 @@ class ModalEditarProductoComponent implements OnInit {
           setTimeout(() => {
             if (this.error && this.error.date === date) this.error = undefined;
           }, 4000);
-        }
-        else {
+        } else {
           console.log(httpError);
         }
         this.barButtonOptions.text = 'Guardar';
         this.barButtonOptions.active = false;
       });
     }
-  }
-
-  guardarImagen(evento) {
-    const files = evento.target.files;
-    getBase64(files[0]).then((response) => {
-      resizeBase64(response, 361, 158).then((result) => {
-        this.base64textString = result;
-      });
-    });
   }
 
   cambiarHabilitado(evento) {
@@ -107,6 +100,25 @@ class ModalEditarProductoComponent implements OnInit {
 
   hasErrors() {
     return this.editForm.controls.nombre.errors || this.editForm.controls.precio.errors;
+  }
+
+  guardarImagenPrin(evento) {
+    console.log('entro al editar imagen ');
+    const { files } = evento.target;
+    getBase64(files[0]).then((response) => {
+      resizeBase64(response, 361, 158).then((result) => {
+        this.imagenPrin = result;
+      });
+    });
+  }
+
+  guardarImagenDesc(evento) {
+    const { files } = evento.target;
+    getBase64(files[0]).then((response) => {
+      resizeBase64(response, 722, 316).then((result) => {
+        this.imagenDesc = result;
+      });
+    });
   }
 
 }

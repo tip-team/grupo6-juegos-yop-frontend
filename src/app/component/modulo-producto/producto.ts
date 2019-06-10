@@ -16,7 +16,7 @@ import { NotificationsService } from 'angular2-notifications';
 export class ModuloProductoComponent implements AfterViewInit {
 
   productos;
-  displayedColumns = ['nombre', 'precio', 'imagen', 'habilitado', 'actions'];
+  displayedColumns = ['nombre', 'precio', 'imagen', 'imagenDesc', 'habilitado', 'actions'];
   pageSize: number[] = [10, 20, 50];
   dataSource: MatTableDataSource<Producto>;
 
@@ -54,7 +54,7 @@ export class ModuloProductoComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const matPaginator = this.elem.nativeElement.querySelectorAll('.mat-paginator-page-size-label');
-    matPaginator[0].innerText = "Cantidad de productos por página:";
+    matPaginator[0].innerText = 'Cantidad de productos por página:';
   }
 
   crear() {
@@ -79,6 +79,11 @@ export class ModuloProductoComponent implements AfterViewInit {
 
   private updateProductos(productos) {
     this.productos = productos;
+    this.productos.forEach(p => {
+      this.productoService.getProductoDesc(p.id).subscribe(response => {
+        p.imagenDesc = response.imagenDesc;
+      });
+    });
     this.dataSource = new MatTableDataSource(productos);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

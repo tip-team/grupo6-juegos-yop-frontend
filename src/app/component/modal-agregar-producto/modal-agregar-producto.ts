@@ -16,7 +16,8 @@ const modalAgregarProductoEvent = new EventEmitter();
 class ModalAgregarProductoComponent implements OnInit {
 
   registerForm: FormGroup;
-  base64textString: string;
+  imagenPrin: string;
+  imagenDesc: string;
   checked: boolean;
   error;
 
@@ -41,9 +42,11 @@ class ModalAgregarProductoComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       nombre: new FormControl(undefined, [Validators.required]),
       imagen: [''],
+      imagenDesc: [''],
       precio: new FormControl(undefined, [Validators.required])
     });
-    this.base64textString = null;
+    this.imagenPrin = null;
+    this.imagenDesc = null;
   }
 
   handleSubmit() {
@@ -54,14 +57,14 @@ class ModalAgregarProductoComponent implements OnInit {
       setTimeout(() => {
         if (this.error && this.error.date === date) this.error = undefined;
       }, 4000);
-    }
-    else {
+    } else {
       this.barButtonOptions.active = true;
       this.barButtonOptions.text = 'Guardando...';
       const { precio: { value: precioValue }, nombre: { value: nombreValue } } = this.registerForm.controls;
       const producto: any = {
         precio: precioValue,
-        imagen: this.base64textString,
+        imagen: this.imagenPrin,
+        imagenDesc: this.imagenDesc,
         nombre: nombreValue,
         habilitado: this.checked
       };
@@ -77,8 +80,7 @@ class ModalAgregarProductoComponent implements OnInit {
           setTimeout(() => {
             if (this.error && this.error.date === date) this.error = undefined;
           }, 4000);
-        }
-        else {
+        } else {
           console.log(httpError);
         }
         this.barButtonOptions.text = 'Agregar';
@@ -87,27 +89,37 @@ class ModalAgregarProductoComponent implements OnInit {
     }
   }
 
-  guardarImagen(evento) {
-    const { files } = evento.target;
-    getBase64(files[0]).then((response) => {
-      resizeBase64(response, 361, 158).then((result) => {
-        this.base64textString = result;
-      });
-    });
-  }
-
   cambiarHabilitado(evento) {
     this.checked = evento.checked;
   }
 
   getErrorMessage() {
-    if (!this.base64textString) return 'Para crear un producto debe ingresar una imágen.';
+    if (!this.imagenPrin) return 'Para crear un producto debe ingresar una imágen.';
+    if (!this.imagenDesc) return 'Para crear un producto debe ingresar una imágen.';
     if (this.registerForm.controls.nombre.errors) return 'Para crear un producto debe ingresar un nombre.';
     if (this.registerForm.controls.precio.errors) return 'Para crear un producto debe ingresar un precio.';
   }
 
   hasErrors() {
-    return this.registerForm.controls.nombre.errors || this.registerForm.controls.precio.errors || (!this.base64textString);
+    return this.registerForm.controls.nombre.errors || this.registerForm.controls.precio.errors || (!this.imagenPrin) || (!this.imagenDesc);
+  }
+
+  guardarImagenPrin(evento) {
+    const { files } = evento.target;
+    getBase64(files[0]).then((response) => {
+      resizeBase64(response, 361, 158).then((result) => {
+        this.imagenPrin = result;
+      });
+    });
+  }
+
+  guardarImagenDesc(evento) {
+    const { files } = evento.target;
+    getBase64(files[0]).then((response) => {
+      resizeBase64(response, 361, 158).then((result) => {
+        this.imagenDesc = result;
+      });
+    });
   }
 
 }
