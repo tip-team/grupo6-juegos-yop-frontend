@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
@@ -25,7 +25,7 @@ export class ModuloProductoComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService) {
+  constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService, private cd: ChangeDetectorRef) {
     const success = text => this._service.success(text, '', {
         timeOut: 8000,
         showProgressBar: true,
@@ -98,6 +98,7 @@ export class ModuloProductoComponent implements AfterViewInit {
         p.imagenDesc = response.imagenDesc;
       });
     });
+    this.cd.detectChanges();
   }
 
 }
