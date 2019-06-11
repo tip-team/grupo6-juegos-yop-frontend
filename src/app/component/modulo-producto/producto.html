@@ -1,34 +1,35 @@
 <div class="example-container mat-elevation-z8">
 
-    <mat-table class="tableBorder" [dataSource]="dataSource" matSort>
+    <mat-table *ngIf="dataSource && dataSource.data" cdkDropList #list="cdkDropList" [dataSource]="dataSource" [cdkDropListData]="dataSource.data"
+    (cdkDropListDropped)="onListDrop($event)" class="tableBorder" matSort>
 
         <ng-container matColumnDef="nombre">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Nombre </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+            <mat-cell *matCellDef="let row" > {{row.nombre}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="precio">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Precio </mat-header-cell>
-            <mat-cell *matCellDef="let row"> ${{row.precio}} </mat-cell>
+            <mat-cell *matCellDef="let row" > ${{row.precio}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="imagen">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Imagen </mat-header-cell>
-            <mat-cell *matCellDef="let row"> <img class="imagen" src="{{row.imagen}}" alt="Imagen" style="height: 50px;"> </mat-cell>
+            <mat-cell *matCellDef="let row" > <img class="imagen" src="{{row.imagen}}" alt="Imagen" style="height: 50px;"> </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="imagenDesc">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> ImagenDesc </mat-header-cell>
-            <mat-cell *matCellDef="let row"> <img class="imagenDesc" src="{{row.imagenDesc}}" alt="ImagenDesc" style="height: 50px;"> </mat-cell>
+            <mat-cell *matCellDef="let row" > <img class="imagenDesc" src="{{row.imagenDesc}}" alt="ImagenDesc" style="height: 50px;"> </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="habilitado">
+        <ng-container matColumnDef="habilitado" >
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Habilitado </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.habilitado ? 'SÍ' : 'NO'}} </mat-cell>
+            <mat-cell *matCellDef="let row" > {{row.habilitado ? 'SÍ' : 'NO'}} </mat-cell>
         </ng-container>
 
         <mat-header-row class="title" *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row class="fila" *matRowDef="let row; columns: displayedColumns;">
+        <mat-row class="fila" *matRowDef="let row; columns: displayedColumns;" cdkDrag>
         </mat-row>
 
         <!-- botones -->

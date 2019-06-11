@@ -7,6 +7,8 @@ import { ModalEliminarProductoComponent, modalEliminarProductoEvent } from '../m
 import { ModalEditarProductoComponent, modalEditarProductoEvent } from '../modal-editar-producto/modal-editar-producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
+import  clonedeep from 'lodash.clonedeep';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'producto',
@@ -55,6 +57,11 @@ export class ModuloProductoComponent implements AfterViewInit {
   ngAfterViewInit() {
     const matPaginator = this.elem.nativeElement.querySelectorAll('.mat-paginator-page-size-label');
     matPaginator[0].innerText = 'Cantidad de productos por página:';
+  }
+
+  onListDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    this.dataSource.data = clonedeep(this.dataSource.data);
   }
 
   crear() {

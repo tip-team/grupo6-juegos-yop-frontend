@@ -30,6 +30,7 @@ import { Material } from './imports/material/material';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { DescModalComponent } from './component/desc-modal/desc-modal';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { DescModalComponent } from './component/desc-modal/desc-modal';
     MatProgressButtonsModule,
     NgxIntlTelInputModule,
     TooltipModule,
+    DragDropModule,
     DeviceDetectorModule.forRoot(),
     BsDropdownModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
