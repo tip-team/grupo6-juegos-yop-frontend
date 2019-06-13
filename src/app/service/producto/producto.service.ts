@@ -43,4 +43,9 @@ export class ProductoService {
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
     return this.http.put(this.url, data, this.getHttpOptions());
   }
+
+  updatePriorities(priorities) {
+    return this.http.put(`${this.url}/order`, priorities, this.getHttpOptions());
+  }
+
 }

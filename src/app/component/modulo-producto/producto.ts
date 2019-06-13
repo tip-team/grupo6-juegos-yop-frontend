@@ -61,6 +61,11 @@ export class ModuloProductoComponent implements AfterViewInit {
 
   onListDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    const priorities = this.dataSource.data.map(({id: idProducto}, index) => ({
+      idProducto,
+      prioridad: index + 1
+    })).reverse();
+    this.productoService.updatePriorities(priorities).subscribe();
     this.dataSource.data = clonedeep(this.dataSource.data);
   }
 
