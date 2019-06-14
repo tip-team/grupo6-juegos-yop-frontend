@@ -1,37 +1,24 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from 'src/app/model/configuration';
-import {Pago} from '../../model/pago';
-import {TokenStorageService} from '../JWT/token.service';
+import { Pago } from '../../model/pago';
+import { HttpUtil } from '../http-util/http-util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MercadoPagoService {
 
-  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
+  constructor(private http: HttpClient) { }
 
-  getHttpOptions() {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.tokenStorage.getToken()
-      })
-    }
-  }
-
-  getUrlPago(id: number, email: string, telefono: string, nombre: string): Observable<any> {
-    let params = new HttpParams();
-    params = params
-      .set('id', id.toString())
-      .set('email', email.toString())
-      .set('telefono', telefono)
-      .set('nombre', nombre);
-    return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago`, {params: params});
+  getUrlPago(intencionDeCompra): Observable<any> {
+    const params = HttpUtil.createHttpParams(intencionDeCompra);
+    return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago`, { params });
   }
 
   getAllPagos() {
-    return this.http.get<Pago[]>(Configuration.BASE_URL + '/mp/pagos', this.getHttpOptions());
+    return this.http.get<Pago[]>(`${Configuration.BASE_URL}/mp/pagos`, HttpUtil.getHttpOptions());
   }
+
 }
