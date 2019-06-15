@@ -45,11 +45,14 @@ export class NavBarComponent {
   title: string;
   app = AppComponent;
   isMobile;
+  navBarTitle;
   
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private deviceService: DeviceDetectorService) {
     // const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
     // this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
     this.isMobile = this.deviceService.isMobile();
+    const fontSizeTitle = this.isMobile ? '25' : '35';
+    this.navBarTitle = { 'font-size': fontSizeTitle + 'px' };
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
       this.router.navigateByUrl(baseUrl + this.app.INVENTARIO.path);
