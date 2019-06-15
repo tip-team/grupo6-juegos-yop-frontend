@@ -10,7 +10,7 @@
 
         <ng-container matColumnDef="precio">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Precio </mat-header-cell>
-            <mat-cell *matCellDef="let row" > ${{row.precio}} </mat-cell>
+            <mat-cell *matCellDef="let row" > ${{row.precio | number}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="imagen">
