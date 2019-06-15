@@ -1,6 +1,7 @@
 .closeButton {
-    margin-bottom: 21px;
     text-align: right;
+    height: 0px;
+    margin-bottom: 0px;
 }
 
 .actionButton {
@@ -20,4 +21,8 @@
 .imagen{
     max-width: 100%;
     max-height: 100%;
+}
+
+.pointer {
+    cursor: pointer;
 }
