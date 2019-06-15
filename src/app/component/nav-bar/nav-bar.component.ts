@@ -47,8 +47,9 @@ export class NavBarComponent {
   stylePosition;
   
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private deviceService: DeviceDetectorService) {
-    const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
-    this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
+    // const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
+    // this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
+    this.stylePosition = {'position': 'fixed', 'bottom': '0' + 'px'};
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
       this.router.navigateByUrl(baseUrl + this.app.INVENTARIO.path);
