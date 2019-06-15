@@ -51,7 +51,7 @@ export class NavBarComponent {
     // const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
     // this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
     this.isMobile = this.deviceService.isMobile();
-    const fontSizeTitle = this.isMobile ? '25' : '35';
+    const fontSizeTitle = this.isMobile ? '29' : '35';
     this.navBarTitle = { 'font-size': fontSizeTitle + 'px' };
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
