@@ -44,12 +44,12 @@ export class NavBarComponent {
   juegosYopMenu = 'on';
   title: string;
   app = AppComponent;
-  stylePosition;
+  isMobile;
   
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private deviceService: DeviceDetectorService) {
     // const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
     // this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
-    this.stylePosition = {'position': 'fixed', 'bottom': '0' + 'px'};
+    this.isMobile = this.deviceService.isMobile();
     const baseUrl = '/';
     if (this.router.url === baseUrl) {
       this.router.navigateByUrl(baseUrl + this.app.INVENTARIO.path);

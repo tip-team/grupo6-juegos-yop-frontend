@@ -6,6 +6,14 @@
         <div class="selectedScreen">
             <p class="componentTitle">{{title}}</p>
         </div>
+        <div *ngIf="isMobile" class="mobileRedesSociales">
+            <button mat-icon-button aria-label="instagram" (click)="openInstagram()">
+                <mat-icon class="iconHeight"><i class="fab fa-instagram instagramIcon"></i></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="facebook" (click)="openFacebook()">
+                <mat-icon class="iconHeight"><i class="fab fa-facebook-square facebookIcon"></i></mat-icon>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -59,7 +67,7 @@
                     </a>
                 </li>
             </ul>
-            <div [ngStyle]="stylePosition">
+            <div * ngIf="!isMobile" class="bottomRedesSociales">
                 <p style="margin-left: 4px; margin-bottom: -8px;" class="redesSocialesSeguinos">Seguinos</p>
                 <p style="margin-bottom: 0px;" class="redesSocialesEnRedes">en redes sociales</p>
                 <div style="margin-top: -3px;">
@@ -70,16 +78,6 @@
                         <mat-icon class="iconHeight"><i class="fab fa-facebook-square facebookIcon"></i></mat-icon>
                     </button>
                 </div>
-                <!-- <p class="redesSociales redesSocialesTitle">Seguinos</p>
-                <p class="redesSociales redesSocialesSubtitle">en redes sociales</p>
-                <div class="socialDiv">
-                    <button class="instagramButton" mat-icon-button aria-label="instagram" (click)="openInstagram()">
-                        <mat-icon class="iconHeight"><i class="fab fa-instagram instagramIcon"></i></mat-icon>
-                    </button>
-                    <button class="facebookButton" mat-icon-button aria-label="facebook" (click)="openFacebook()">
-                        <mat-icon class="iconHeight"><i class="fab fa-facebook-square facebookIcon"></i></mat-icon>
-                    </button>
-                </div> -->
             </div>
         </nav>
     </div>
