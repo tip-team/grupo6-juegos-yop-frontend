@@ -6,12 +6,12 @@
         <div class="selectedScreen">
             <p class="componentTitle">{{title}}</p>
         </div>
-        <div *ngIf="isMobile" class="mobileRedesSociales">
+        <div *ngIf="isMobile">
             <button mat-icon-button aria-label="instagram" (click)="openInstagram()">
-                <mat-icon class="iconHeight"><i class="fab fa-instagram instagramIcon"></i></mat-icon>
+                <mat-icon class="iconHeight"><i class="fab fa-instagram"></i></mat-icon>
             </button>
             <button mat-icon-button aria-label="facebook" (click)="openFacebook()">
-                <mat-icon class="iconHeight"><i class="fab fa-facebook-square facebookIcon"></i></mat-icon>
+                <mat-icon class="iconHeight"><i class="fab fa-facebook-square"></i></mat-icon>
             </button>
         </div>
     </div>
