@@ -48,11 +48,11 @@
         </div>
     </div>
 
-</ng-template>
+    <ngx-spinner name="solicitandoCompra" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse"
+        [fullScreen]="true">
+        <p class="text" style="color: rgb(35, 31, 97);"> Solicitando compra . . . </p>
+    </ngx-spinner>
 
-<ngx-spinner name="solicitandoCompra" bdOpacity=0.9 bdColor="#7071b0" size="large" color="#0c056e" type="ball-pulse"
-    [fullScreen]="true">
-    <p class="text" style="color: rgb(35, 31, 97);"> Solicitando compra . . . </p>
-</ngx-spinner>
+</ng-template>
 
 <button mat-raised-button color="primary" (click)="openModal(content)" class="actionButton">COMPRAR</button>
