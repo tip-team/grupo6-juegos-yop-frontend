@@ -1,4 +1,3 @@
-export class Configuration {
+const BASE_URL = 'https://tip-juegos-yop-backend.herokuapp.com/';
 
-    static BASE_URL = 'https://tip-juegos-yop-backend.herokuapp.com/api';
-}
+export { BASE_URL };

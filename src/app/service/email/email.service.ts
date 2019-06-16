@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Configuration } from 'src/app/model/configuration';
 import { Email } from 'src/app/model/email';
+import { HttpService } from '../http/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmailService {
+export class EmailService extends HttpService{
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+    super(http);
+  }
 
   sendEmail(email: Email) {
-    return this.http.post(`${Configuration.BASE_URL}/email`, email);
+    return this.post('email', email);
   }
 
 }

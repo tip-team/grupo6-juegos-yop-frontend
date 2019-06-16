@@ -1,40 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Producto } from '../../model/producto';
-import { Configuration } from 'src/app/model/configuration';
-import { HttpUtil } from '../http-util/http-util';
+import { HttpService } from '../http/http.service';
+
+const url = 'productos';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductoService {
+export class ProductoService extends HttpService {
 
-  url = `${Configuration.BASE_URL}/productos`;
+  constructor(protected http: HttpClient) { 
+    super(http);
+  }
 
-  constructor(private http: HttpClient) { }
+  private getPromise(endpoint) {
+    return this.get(endpoint).toPromise();
+  }
 
   async getAllProductos() {
-    return this.http.get<Producto[]>(this.url).toPromise();
+    return this.getPromise(url);
   }
 
   addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }): any {
-    return this.http.post(this.url, data, HttpUtil.getHttpOptions());
+    return this.postAdmin(url, data);
   }
 
   delProducto(id: number) {
-    return this.http.delete(`${this.url}/${id}`, HttpUtil.getHttpOptions());
+    return this.delete(url, id);
   }
 
-  async getProductoDesc(id: number) {
-    return this.http.get<any>(`${this.url}/desc/${id}`).toPromise();
+  async getProductoDesc(id: number): Promise<any> {
+    return this.getPromise(`${url}/desc/${id}`);
   }
 
   updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
-    return this.http.put(this.url, data, HttpUtil.getHttpOptions());
+    return this.putAdmin(url, data);
   }
 
   updatePriorities(priorities) {
-    return this.http.put(`${this.url}/order`, priorities, HttpUtil.getHttpOptions());
+    return this.putAdmin(`${url}/order`, priorities);
   }
 
 }

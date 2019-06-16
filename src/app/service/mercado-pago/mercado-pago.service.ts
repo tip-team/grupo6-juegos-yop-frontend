@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Configuration } from 'src/app/model/configuration';
-import { Pago } from '../../model/pago';
-import { HttpUtil } from '../http-util/http-util';
+import { createHttpParams, getHttpOptions } from '../http-util/http-util';
+import { HttpService } from '../http/http.service';
+
+const endpoint = url => 'mp/' + url;
 
 @Injectable({
   providedIn: 'root'
 })
-export class MercadoPagoService {
+export class MercadoPagoService extends HttpService {
 
-  constructor(private http: HttpClient) { }
-
-  getUrlPago(intencionDeCompra): Observable<any> {
-    const params = HttpUtil.createHttpParams(intencionDeCompra);
-    return this.http.get<string>(`${Configuration.BASE_URL}/mp/obtenerUrlPago`, { params });
+  constructor(protected http: HttpClient) {
+    super(http);
   }
 
-  getAllPagos() {
-    return this.http.get<Pago[]>(`${Configuration.BASE_URL}/mp/pagos`, HttpUtil.getHttpOptions());
+  private getEndpoint(url, options) {
+    return this.get(endpoint(url), options);
+  }
+
+  getUrlPago(intencionDeCompra): Observable<any> {
+    return this.getEndpoint('obtenerUrlPago', { params: createHttpParams(intencionDeCompra) });
+  }
+
+  getAllPagos(): any {
+    return this.getEndpoint('pagos', getHttpOptions());
   }
 
 }
