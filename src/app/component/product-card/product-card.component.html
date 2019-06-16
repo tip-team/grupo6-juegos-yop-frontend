@@ -10,7 +10,8 @@
             </div>
         </div>
     </mat-card-content>
-    <mat-card-actions class="bottomActions" style="margin-left: -16px; margin-right: -16px; border-top: solid 2px #01579b !important;">
+    <mat-card-actions class="bottomActions"
+        style="margin-left: -16px; margin-right: -16px; border-top: solid 2px #01579b !important;">
         <div class="row buttonsRow">
             <div *ngIf="producto.habilitado; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
@@ -20,7 +21,10 @@
             </ng-template>
             <ng-template #elseBlock>
                 <div class="col-md-6 centerButton">
-                    <button mat-raised-button color="primary" class="actionButton" disabled>NO DISPONIBLE</button>
+                    <span tooltip="Próximamente" placement="top">
+                        <button mat-raised-button color="primary" class="actionButton notAllowed" disabled>NO
+                            DISPONIBLE</button>
+                    </span>
                 </div>
             </ng-template>
 
