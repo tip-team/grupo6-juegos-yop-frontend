@@ -58,6 +58,10 @@
     float: right;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 .money {
     font-family: 'NTR', cursive;
     margin-bottom: 0px;
