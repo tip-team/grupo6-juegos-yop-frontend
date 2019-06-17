@@ -33,8 +33,8 @@ const routes: Routes = [
           component: NosotrosComponent,
           data: { title: AppComponent.NOSOTROS.title }
         },
-        { 
-          path:  AppComponent.ADMIN.path, 
+        {
+          path:  AppComponent.ADMIN.path,
           component: LoginComponent,
           data: { title: AppComponent.ADMIN.title }
         }

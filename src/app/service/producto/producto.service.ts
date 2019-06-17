@@ -9,7 +9,7 @@ const url = 'productos';
 })
 export class ProductoService extends HttpService {
 
-  constructor(protected http: HttpClient) { 
+  constructor(protected http: HttpClient) {
     super(http);
   }
 
@@ -21,7 +21,7 @@ export class ProductoService extends HttpService {
     return this.getPromise(url);
   }
 
-  addProducto(data: { precio: number; imagen: string; nombre: string, habilitado: boolean }): any {
+  addProducto(data): any {
     return this.postAdmin(url, data);
   }
 
@@ -33,7 +33,7 @@ export class ProductoService extends HttpService {
     return this.getPromise(`${url}/desc/${id}`);
   }
 
-  updateProducto(data: {id: number; precio: number; imagen: string; nombre: string, habilitado: boolean }) {
+  updateProducto(data) {
     return this.putAdmin(url, data);
   }
 

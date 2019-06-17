@@ -14,7 +14,7 @@ export class HttpService {
 
   protected get(endpoint, options?) {
     return options ? this.http.get(url + endpoint, options) : this.http.get(url + endpoint);
-  };
+  }
 
   protected postAdmin(endpoint, body) {
     return this.http.post(url + endpoint, body, getHttpOptions());

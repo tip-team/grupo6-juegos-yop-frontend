@@ -6,7 +6,7 @@ import { HttpService } from '../http/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class EmailService extends HttpService{
+export class EmailService extends HttpService {
 
   constructor(protected http: HttpClient) {
     super(http);

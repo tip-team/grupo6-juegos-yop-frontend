@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user';
 import { AuthService } from '../../service/JWT/auth.service';
-// import { TokenStorageService } from '../../service/JWT/token.service';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
-import { TokenStorageUtil } from 'src/app/service/token-storage-util/token-storage-util';
+import { saveToken, getToken } from 'src/app/service/token-storage-util/token-storage-util';
 
 @Component({
   selector: 'login',
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private _notificationsservice: NotificationsService) { }
 
   ngOnInit() {
-    if (TokenStorageUtil.getToken()) {
+    if (getToken()) {
       this.isLoggedIn = true;
     }
     this.loginForm = this.formBuilder.group({
@@ -59,7 +58,7 @@ export class LoginComponent implements OnInit {
   }
 
   private onSuccess(data: HttpResponse<any>) {
-    TokenStorageUtil.saveToken(data.headers.get('Authorization'));
+    saveToken(data.headers.get('Authorization'));
     this.isLoginFailed = false;
     this.isLoggedIn = true;
     this.hide = true;

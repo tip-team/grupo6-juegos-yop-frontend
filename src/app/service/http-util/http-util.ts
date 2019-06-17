@@ -1,11 +1,17 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { TokenStorageUtil } from '../token-storage-util/token-storage-util';
+import { getToken } from '../token-storage-util/token-storage-util';
 
 const getHttpOptions = () => ({
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TokenStorageUtil.getToken()}`
+        'Authorization': `Bearer ${getToken()}`
     })
+});
+
+const getHttpOptionsAuth = () => ({
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json' }),
+        observe: 'response' as 'response'
 });
 
 const createHttpParams = httpParams => {
@@ -14,11 +20,4 @@ const createHttpParams = httpParams => {
     return params;
 }
 
-const url = 'https://tip-juegos-yop-backend.herokuapp.com/api/';
-
-const get = (http, endpoint, options?) => {
-    const fullEndpoint = url + endpoint;
-    return options ? http.get(fullEndpoint, options) : http.get(fullEndpoint);
-};
-
-export { getHttpOptions, createHttpParams, get };
+export { getHttpOptions, getHttpOptionsAuth, createHttpParams };
