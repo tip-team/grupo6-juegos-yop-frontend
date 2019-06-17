@@ -4,7 +4,7 @@
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
     </div>
     <div class="modal-body">
-        <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+        <form [formGroup]="editForm" (ngSubmit)="!hasErrors() && handleSubmit()">
             <div class="form-group">
                 <button type="button" mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen principal

@@ -8,7 +8,7 @@
     </div>
     <div class="col noPaddingLeft">
         <a *ngIf="dataSource" csvLink [data]="dataSource.filteredData" [headers]="dataSourceHeaders"
-            filename="ventas.csv"><button class="marginTopButton" mat-raised-button color="primary">
+            [filename]="ventasFileName"><button class="marginTopButton" mat-raised-button color="primary">
                 <mat-icon class="iconSpace">cloud_download</mat-icon>DESCARGAR VENTAS
             </button></a>
     </div>

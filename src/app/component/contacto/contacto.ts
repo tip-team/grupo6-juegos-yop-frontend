@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ValidateEmail } from 'src/app/validators/EmailValidator';
 import { EmailService } from 'src/app/service/email/email.service';
 import { NotificationsService } from 'angular2-notifications';
+import { getPrimaryBarButtonOptions } from '../../model/configuration';
 
 @Component({
     selector: 'contacto',
@@ -12,18 +13,7 @@ import { NotificationsService } from 'angular2-notifications';
 export class ContactoComponent implements OnInit {
 
     contactForm: FormGroup;
-    barButtonOptions = {
-        active: false,
-        text: 'Enviar',
-        buttonColor: 'primary',
-        barColor: 'primary',
-        raised: true,
-        stroked: false,
-        mode: 'indeterminate',
-        value: 0,
-        disabled: false,
-        fullWidth: false
-    };
+    barButtonOptions = getPrimaryBarButtonOptions('Enviar');
 
     constructor(private formBuilder: FormBuilder, private _emailService: EmailService, private _notificationsService: NotificationsService) {
     }

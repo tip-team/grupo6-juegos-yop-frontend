@@ -40,16 +40,13 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class NavBarComponent {
   menuState = 'in';
-  arrowState = 'right';
   juegosYopMenu = 'on';
   title: string;
   app = AppComponent;
   isMobile;
   navBarTitle;
-  
+
   constructor(private router: Router, private activatedRoute: ActivatedRoute, public authService: AuthService, private deviceService: DeviceDetectorService) {
-    // const bottomPosition = this.deviceService.isMobile() ? '63' : '0';
-    // this.stylePosition = {'position': 'absolute', 'bottom': bottomPosition + 'px'};
     this.isMobile = this.deviceService.isMobile();
     const fontSizeTitle = this.isMobile ? '29' : '35';
     this.navBarTitle = { 'font-size': fontSizeTitle + 'px' };
@@ -78,10 +75,6 @@ export class NavBarComponent {
   toogleMenu() {
     this.juegosYopMenu = this.juegosYopMenu === 'off' ? 'on' : 'off';
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
-  }
-
-  toogleSubMenu() {
-    this.arrowState = this.arrowState === 'down' ? 'right' : 'down';
   }
 
   clickRoute() {

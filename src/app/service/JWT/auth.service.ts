@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  public login(user: User) {
+  public login(user) {
     return this.http.post(BASE_URL + 'auth/token', user, getHttpOptionsAuth());
   }
 

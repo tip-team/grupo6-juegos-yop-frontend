@@ -67,7 +67,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule,
     DeviceDetectorModule.forRoot(),
     BsDropdownModule.forRoot(),
-    SimpleNotificationsModule.forRoot(),
+    SimpleNotificationsModule.forRoot({
+      timeOut: 8000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      clickIconToClose: true
+    }),
     NgbModule.forRoot()
   ],
   entryComponents: [ ModalAgregarProductoComponent, ModalEliminarProductoComponent, ModalEditarProductoComponent ],

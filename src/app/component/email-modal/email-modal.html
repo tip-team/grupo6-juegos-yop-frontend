@@ -6,6 +6,8 @@
             </div>
 
             <form class="formPaddingLeft" [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+                <ngx-intl-tel-input hidden="true"></ngx-intl-tel-input>
+
                 <div class="row fullWidthForm">
                     <div class="form-group fullWidth">
                         <mat-form-field class="fullWidth">

@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
 import { ModalAgregarProductoComponent, modalAgregarProductoEvent } from '../modal-agregar-producto/modal-agregar-producto';
@@ -7,8 +7,8 @@ import { ModalEliminarProductoComponent, modalEliminarProductoEvent } from '../m
 import { ModalEditarProductoComponent, modalEditarProductoEvent } from '../modal-editar-producto/modal-editar-producto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
-import  clonedeep from 'lodash.clonedeep';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import clonedeep from 'lodash.clonedeep';
 
 @Component({
   selector: 'producto',
@@ -23,16 +23,9 @@ export class ModuloProductoComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Producto>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService, private cd: ChangeDetectorRef) {
-    const success = text => this._service.success(text, '', {
-        timeOut: 8000,
-        showProgressBar: true,
-        pauseOnHover: true,
-        clickToClose: true,
-        clickIconToClose: true
-    });
+    const success = text => this._service.success(text, '');
 
     modalAgregarProductoEvent.on('agregarProducto', producto => {
       this.productos.push(producto);
@@ -41,7 +34,7 @@ export class ModuloProductoComponent implements AfterViewInit {
     });
 
     modalEditarProductoEvent.on('editarProducto', (producto, nombreProducto) => {
-      this.productos[this.productos.findIndex(eachProducto => eachProducto.id === producto.id)] = producto;
+      this.productos[this.productos.findIndex(({id}) => id === producto.id)] = producto;
       this.updateProductos(this.productos);
       success(`Se actualizo el producto ${nombreProducto} correctamente.`);
     });
@@ -94,7 +87,6 @@ export class ModuloProductoComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(productos);
     this.updateDesc();
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   private updateDesc() {

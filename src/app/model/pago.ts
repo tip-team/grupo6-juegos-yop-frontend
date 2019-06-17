@@ -6,4 +6,6 @@ export class Pago {
   estadoDePago: string;
   fecha: string;
   email: string;
+  telefono: string;
+  nombre: string;
 }

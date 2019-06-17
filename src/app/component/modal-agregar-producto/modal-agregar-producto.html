@@ -4,7 +4,7 @@
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
     </div>
     <div class="modal-body">
-        <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="!hasErrors() && handleSubmit()">
             <div class="form-group">
                 <button type="button" mat-raised-button color="primary"
                     onclick="document.getElementById('fileToUpload').click()">
@@ -56,10 +56,6 @@
                 <div class="text-right">
                     <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
                 </div>
-            </div>
-
-            <div *ngIf="error" class="alert alert-danger" role="alert">
-                {{error.error}}
             </div>
         </form>
     </div>
