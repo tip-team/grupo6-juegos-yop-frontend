@@ -10,7 +10,7 @@
                     Seleccionar imágen principal
                 </button>
                 <div class="imagenDiv">
-                    <img src="{{imagenPrin}}" alt="Imágen" class="imagen">
+                    <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
                 </div>
                 <input id="fileToUpload" type="file" style="display:none;" (change)="guardarImagenPrin($event)" formControlName="imagen" />
             </div>
@@ -20,7 +20,7 @@
                     Seleccionar imágen descripción
                 </button>
                 <div class="imagenDiv">
-                    <img src="{{imagenDesc}}" alt="ImágenDesc" class="imagen">
+                    <img src="{{producto.imagenDesc}}" alt="ImágenDesc" class="imagen">
                 </div>
                 <input id="fileDescToUpload" type="file" style="display:none;" (change)="guardarImagenDesc($event)" formControlName="imagen" />
             </div>
@@ -42,17 +42,13 @@
             </div>
 
             <div class="form-group">
-                <mat-slide-toggle color="primary" [checked]="checked" (change)="cambiarHabilitado($event)">{{checked ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
+                <mat-slide-toggle color="primary" [checked]="producto.habilitado" (change)="cambiarHabilitado($event)">{{producto.habilitado ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
             </div>
 
             <div class="form-group">
                 <div class="text-right">
                     <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
                 </div>
-            </div>
-
-            <div *ngIf="error" class="alert alert-danger" role="alert">
-                {{error.error}}
             </div>
         </form>
     </div>

@@ -37,5 +37,10 @@ const saveImagenPrin = (evento, setImagen) => guardarImagen(evento, setImagen, 3
 
 const saveImagenDesc = (evento, setImagen) => guardarImagen(evento, setImagen, 722, 316);
 
+const getValues = (form, ...values) => {
+    const result = {};
+    values.forEach(value => result[value] = form.controls[value].value)
+    return result;
+}
 
-export { BASE_URL, getPrimaryBarButtonOptions, getWarnBarButtonOptions, activeBarButton, saveImagenPrin, saveImagenDesc };
+export { BASE_URL, getPrimaryBarButtonOptions, getWarnBarButtonOptions, activeBarButton, saveImagenPrin, saveImagenDesc, getValues };

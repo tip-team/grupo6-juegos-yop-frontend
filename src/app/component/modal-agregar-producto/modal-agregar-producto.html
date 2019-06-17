@@ -10,9 +10,9 @@
                     onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen
                 </button>
-                <p class="imagenRequired" *ngIf="!imagenPrin">Debe ingresar una imágen para el producto.</p>
-                <div *ngIf="imagenPrin" class="imagenDiv">
-                    <img src="{{imagenPrin}}" alt="Imágen" class="imagen">
+                <p class="imagenRequired" *ngIf="!producto.imagen">Debe ingresar una imágen para el producto.</p>
+                <div *ngIf="producto.imagen" class="imagenDiv">
+                    <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
                 </div>
                 <input id="fileToUpload" type="file" accept="image/*" style="display:none;"
                     (change)="guardarImagenPrin($event)" formControlName="imagen">
@@ -23,9 +23,9 @@
                         onclick="document.getElementById('fileToUploadDesc').click()">
                     Seleccionar imágen
                 </button>
-                <p class="imagenRequired" *ngIf="!imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
-                <div *ngIf="imagenDesc" class="imagenDiv">
-                    <img src="{{imagenDesc}}" alt="ImágenDesc" class="imagen">
+                <p class="imagenRequired" *ngIf="!producto.imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
+                <div *ngIf="producto.imagenDesc" class="imagenDiv">
+                    <img src="{{producto.imagenDesc}}" alt="ImágenDesc" class="imagen">
                 </div>
                 <input id="fileToUploadDesc" type="file" accept="image/*" style="display:none;"
                        (change)="guardarImagenDesc($event)" formControlName="imagen">
@@ -48,8 +48,8 @@
             </div>
 
             <div class="form-group">
-                <mat-slide-toggle color="primary" [checked]="checked" (change)="cambiarHabilitado($event)">
-                    {{checked ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
+                <mat-slide-toggle color="primary" [checked]="producto.habilitado" (change)="cambiarHabilitado($event)">
+                    {{producto.habilitado ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
             </div>
 
             <div class="form-group">
