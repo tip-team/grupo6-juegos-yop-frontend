@@ -17,15 +17,14 @@ export class InventarioComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.spinner.show("cargandoProductos");
+        this.spinner.show('cargandoProductos');
         this.cdRef.detectChanges();
         this._productoService.getAllProductos().then(productos => {
             this.productos = this.chunk(productos, 3);
-            this.spinner.hide("cargandoProductos");
+            this.spinner.hide('cargandoProductos');
             this.show = true;
         }, error => {
-            console.log(error);
-            this.spinner.hide("cargandoProductos");
+            this.spinner.hide('cargandoProductos');
         });
     }
 

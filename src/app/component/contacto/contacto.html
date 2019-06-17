@@ -12,22 +12,22 @@
         <h2 class="componentTitle">Contactanos</h2>
         <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
             <mat-form-field>
-                <input matInput placeholder="Nombre" formControlName="name" />
-                <mat-error *ngIf="contactForm.controls.name.errors">Debe ingresar su nombre.
+                <input matInput placeholder="Nombre" formControlName="nombre" />
+                <mat-error *ngIf="contactForm.controls.nombre.errors">Debe ingresar su nombre.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Email" formControlName="email" />
-                <mat-error *ngIf="contactForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+                <input matInput placeholder="Email" formControlName="remitente" />
+                <mat-error *ngIf="contactForm.controls.remitente.errors">{{getEmailErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Asunto" formControlName="subject" />
-                <mat-error *ngIf="contactForm.controls.subject.errors">Debe ingresar un asunto.
+                <input matInput placeholder="Asunto" formControlName="asunto" />
+                <mat-error *ngIf="contactForm.controls.asunto.errors">Debe ingresar un asunto.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Mensaje" formControlName="message"></textarea>
-                <mat-error *ngIf="contactForm.controls.message.errors">Debe ingresar un mensaje.
+                <textarea matInput placeholder="Mensaje" formControlName="cuerpo"></textarea>
+                <mat-error *ngIf="contactForm.controls.cuerpo.errors">Debe ingresar un mensaje.
                 </mat-error>
             </mat-form-field>
 
