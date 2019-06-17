@@ -5,6 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 import { saveToken, getToken } from 'src/app/service/token-storage-util/token-storage-util';
+import {getValues} from '../../model/configuration';
 
 @Component({
   selector: 'login',
@@ -17,7 +18,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
   private user: User;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private _notificationsservice: NotificationsService) { }
@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    const { username: { value: userNameValue }, password: { value: passwordValue } } = this.loginForm.controls;
-    this.user = new User(userNameValue, passwordValue);
+    const { username, password } =  getValues(this.loginForm, 'username', 'password');
+    this.user = new User(username, password);
     this.authService.login(this.user).subscribe(
       data => this.onSuccess(data),
       error => error.status === 403 ? this.handleInvalidLogin() : this.handleServerException()
@@ -48,13 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleServerException() {
-    this._notificationsservice.error('Ocurrió un error', 'Por favor vuelve a intentar más tarde.', {
-      timeOut: 8000,
-      showProgressBar: true,
-      pauseOnHover: true,
-      clickToClose: true,
-      clickIconToClose: true
-    });
+    this._notificationsservice.error('Ocurrió un error', 'Por favor vuelve a intentar más tarde.');
   }
 
   private onSuccess(data: HttpResponse<any>) {
@@ -69,13 +63,7 @@ export class LoginComponent implements OnInit {
   }
 
   private handleInvalidLogin() {
-    this._notificationsservice.error('Error al ingresar', 'Usuario y/o contraseña incorrecta.', {
-      timeOut: 8000,
-      showProgressBar: true,
-      pauseOnHover: true,
-      clickToClose: true,
-      clickIconToClose: true
-    });
+    this._notificationsservice.error('Error al ingresar', 'Usuario y/o contraseña incorrecta.');
   }
 
 }
