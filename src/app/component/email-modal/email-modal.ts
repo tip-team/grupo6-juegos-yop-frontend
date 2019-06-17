@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ValidateEmail } from 'src/app/validators/EmailValidator';
+import {getValues} from '../../model/configuration';
 
 @Component({
   selector: 'email-modal',
@@ -32,20 +33,14 @@ export class EmailModalComponent implements OnInit {
 
   handleSubmit() {
     this.spinner.show('solicitandoCompra');
-    const { idProducto, registerForm } = this;
-    const { email: { value: emailValue }, telefono: { value: telefonoValue }, nombre: { value: nombreValue } } = registerForm.controls;
-
-    //const emailValue = this.registerForm.controls.email.value;
-    //const telefonoValue = this.registerForm.controls.telefono.value.internationalNumber.replace(/\s+/g, '').replace(/\+/g, '%2B').replace(/-/i, '');
-    //const nombre = this.registerForm.controls.nombre.value;
-    const getNumeroTelefono = numeroTelefono => numeroTelefono.internationalNumber.replace(/\s+/g, '').replace(/\+/g, '%2B').replace(/-/i, '');
-    const intencionDeCompra = { id: idProducto, email: emailValue, telefono: getNumeroTelefono(telefonoValue), nombre: nombreValue };
-    this._mercadoPagoService.getUrlPago(intencionDeCompra).subscribe(response => {
+    const intencionDeCompra: any = getValues(this.registerForm, 'email', 'nombre', 'telefono');
+    intencionDeCompra.telefono = intencionDeCompra.telefono.internationalNumber.replace(/\s+/g, '').replace(/\+/g, '%2B').replace(/-/i, '');
+    intencionDeCompra.id = this.idProducto;
+    this._mercadoPagoService.getUrlPago(intencionDeCompra).subscribe(({urlPago}) => {
       this.spinner.hide('solicitandoCompra');
-      window.open(response.urlPago);
+      window.open(urlPago);
       this.modalService.dismissAll('close');
     }, error => {
-      console.log(error);
       this.spinner.hide('solicitandoCompra');
       this.modalService.dismissAll('close');
     });
@@ -53,8 +48,7 @@ export class EmailModalComponent implements OnInit {
 
   getTelefonoErrorMessage() {
     const telefonoValue = this.registerForm.controls.telefono.value;
-    const telefonoIsNotEmpty = telefonoValue && telefonoValue.number.length > 0;
-    return telefonoIsNotEmpty ? 'El número de teléfono ingresado es incorrecto.' : 'Debe ingresar su número de teléfono.';
+    return telefonoValue ? 'El número de teléfono ingresado es incorrecto.' : 'Debe ingresar su número de teléfono.';
   }
 
   getEmailErrorMessage() {
