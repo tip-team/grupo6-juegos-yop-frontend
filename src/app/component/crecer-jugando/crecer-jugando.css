@@ -1,3 +1,22 @@
-.mediaImagen {
-    max-height: 70vh;
+.center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.text {
+    font-family: 'Fredoka One', cursive;
+    display: inline;
+}
+
+.textBlack {
+    color: #000000db;
+}
+
+.textBlue {
+    color: #2180ff
+}
+
+.textCenter {
+    text-align: center;
 }

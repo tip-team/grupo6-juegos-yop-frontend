@@ -1,13 +1,26 @@
 <div class="row">
-    <div class="col-sm-3">
-        <br><br>
-        <span>El desarrollo de un niño involucra muchos factores. Uno de los más importantes es el juego.</span>
-        <br>
-        <span>Los espacios de juego proponen desafìos para los chicos, dan motivación al aprendizaje y provocan sensación de bienestar en ellos.</span>
-        <br>
-        <span>Es por eso que al desarrollar el diseño de la gama YOP, se ha contado con la opinión de diversos profesionales que aporten su conocimiento para mejorar los aspectos de cada uno de nuestros productos.</span>
+    <div class="col textCenter">
+        <p class="text textBlack" [ngStyle]="textSize">
+            El desarrollo de un niño involucra muchos factores. 
+            <br />
+            <br />Uno de los más importantes es el juego.
+            <br />
+            <br />Los espacios de juego proponen desafìos para los chicos, dan motivación al aprendizaje y 
+            provocan sensación de bienestar en ellos.
+            <br />
+            <br />Es por eso que al desarrollar el diseño de la gama
+        </p> 
+        <p class="text textBlue" [ngStyle]="textSize">
+            YOP
+        </p>
+        <p class="text textBlack" [ngStyle]="textSize">
+        , se ha contado con la opinión de diversos profesionales que aporten su conocimiento para 
+        mejorar los aspectos de cada uno de nuestros productos.
+        </p>
     </div>
-    <div class="col-sm-9">
-        <img class="mediaImagen" src="https://static.wixstatic.com/media/c64e94_361e9d320a7143cba7d9231d0162673f.png/v1/fill/w_784,h_1120,al_c,q_85,usm_0.66_1.00_0.01/c64e94_361e9d320a7143cba7d9231d0162673f.webp" alt="imagen">
+    <div class="col center">
+        <div [ngStyle]="imagenMargin">
+            <img [ngStyle]="imagenHeight" src="https://static.wixstatic.com/media/c64e94_361e9d320a7143cba7d9231d0162673f.png/v1/fill/w_784,h_1120,al_c,q_85,usm_0.66_1.00_0.01/c64e94_361e9d320a7143cba7d9231d0162673f.webp" alt="imagen">
+        </div>
     </div>
 </div>
