@@ -35,7 +35,10 @@ const guardarImagen = (evento, setImagen, x, y) => {
 const saveImagenPrin = (evento, setImagen) => guardarImagen(evento, setImagen, 361, 158);
 
 
-const saveImagenDesc = (evento, setImagen) => guardarImagen(evento, setImagen, 722, 316);
+const saveImagenDesc = (evento, setImagen) =>  {
+    const { files } = evento.target;
+    getBase64(files[0]).then(setImagen);
+}
 
 const getValues = (form, ...values): any => {
     const result = {};
