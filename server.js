@@ -9,7 +9,7 @@ app.use(compression());
 app.use(express.static('./dist'));
 
 app.get('/*', function(req,res) {
-    res.sendFile('index.html');
+    res.sendFile(__dirname + 'index.html');
 });
 
 // Start the app by listening on the default Heroku port
