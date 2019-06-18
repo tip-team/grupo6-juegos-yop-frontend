@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { ValidateEmail } from 'src/app/validators/EmailValidator';
 import { EmailService } from 'src/app/service/email/email.service';
 import { NotificationsService } from 'angular2-notifications';
-import {activeBarButton, getPrimaryBarButtonOptions, getValues} from '../../model/configuration';
+import { activeBarButton, getPrimaryBarButtonOptions, getValues } from '../../model/configuration';
 
 @Component({
     selector: 'contacto',
