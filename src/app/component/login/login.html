@@ -1,6 +1,6 @@
 <div *ngIf="isLoggedIn; else loggedOut">
   <admin></admin>
-  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  <button class="text" mat-raised-button color="primary" (click)="logout()">Logout</button>
 </div>
 
 <ng-template #loggedOut>
@@ -25,12 +25,12 @@
     <div class="form-group">
       <div *ngIf="!loginForm.valid; else validForm">
           <span [tooltip]="loginForm.controls.username.errors ? 'Debe ingresar su nombre de usuario.' : 'Debe ingresar su contraseña.'" placement="right">
-              <button mat-raised-button color="primary" [disabled]="true" class="login">Login</button>
+              <button mat-raised-button color="primary" [disabled]="true" class="text">Login</button>
           </span>
       </div>
       
       <ng-template #validForm>
-        <button mat-raised-button color="primary" class="login">Login</button>
+        <button mat-raised-button color="primary" class="text">Login</button>
       </ng-template>
     </div>
   </form>

@@ -89,3 +89,10 @@ input:-webkit-autofill:active {
 .errorText {
     font-family: 'Fredoka One', cursive;
 }
+
+.text {
+    font-family: 'Fredoka One', cursive;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 10px;
+}

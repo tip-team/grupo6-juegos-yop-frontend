@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ const modalEditarProductoEvent = new EventEmitter();
   templateUrl: './modal-editar-producto.html',
   styleUrls: ['./modal-editar-producto.css']
 })
-class ModalEditarProductoComponent implements OnInit {
+class ModalEditarProductoComponent implements OnInit, AfterViewInit {
 
   editForm: FormGroup;
   @Input() public producto;
@@ -36,6 +36,17 @@ class ModalEditarProductoComponent implements OnInit {
       imagenDesc: [''],
       precio: new FormControl(this.producto.precio, [Validators.required])
     });
+  }
+
+  ngAfterViewInit() {
+    const setStyle = element => {
+      element.style['font-family'] = 'Fredoka One';
+      element.style.color =  'black';
+      element.style['font-size'] = '15px';
+    }
+
+    setStyle(document.getElementsByClassName('mat-slide-toggle-content')[0]);
+    setStyle(document.getElementsByTagName('mat-bar-button')[0].getElementsByClassName('mat-button-wrapper')[0]);
   }
 
   handleSubmit() {

@@ -49,10 +49,6 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: 'Fredoka One', cursive;
 }
 
-mat-slide-toggle.mat-primary:not(.mat-checked):not(.mat-disabled) .mat-slide-toggle-bar {
-    background-color: red;
-  }
-
 ::ng-deep .mat-form-field-label{
     font-family: 'Fredoka One', cursive !important;
     color:black !important;
