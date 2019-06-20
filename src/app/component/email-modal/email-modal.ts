@@ -15,6 +15,7 @@ export class EmailModalComponent implements OnInit {
 
   @Input() idProducto: number;
   registerForm: FormGroup;
+  telefonoColor;
 
   constructor(private formBuilder: FormBuilder, private modalService: NgbModal, private spinner: NgxSpinnerService, private _mercadoPagoService: MercadoPagoService) {
   }
