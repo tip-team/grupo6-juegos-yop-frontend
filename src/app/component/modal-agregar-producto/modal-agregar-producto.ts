@@ -40,10 +40,14 @@ class ModalAgregarProductoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const bla: any = document.getElementsByClassName('mat-slide-toggle-content')[0];
-    bla.style['font-family'] = 'Fredoka One';
-    bla.style.color =  'black';
-    bla.style['font-size'] = '15px';
+    const setStyle = element => {
+      element.style['font-family'] = 'Fredoka One';
+      element.style.color =  'black';
+      element.style['font-size'] = '15px';
+    }
+
+    setStyle(document.getElementsByClassName('mat-slide-toggle-content')[0]);
+    setStyle(document.getElementsByTagName('mat-bar-button')[0].getElementsByClassName('mat-button-wrapper')[0]);
   }
 
   handleSubmit() {

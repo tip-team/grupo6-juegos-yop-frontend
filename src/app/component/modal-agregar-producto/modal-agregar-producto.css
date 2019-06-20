@@ -58,6 +58,11 @@ mat-slide-toggle.mat-primary:not(.mat-checked):not(.mat-disabled) .mat-slide-tog
     color:black !important;
 }
 
+.seleccionarImagen {
+    font-family: 'Fredoka One', cursive;
+    color: black;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -65,4 +70,8 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: #000000a6 !important;
     color: #000000a6 !important;
     font-size: 15px;
+}
+
+.title {
+    font-family: 'Fredoka One', cursive;
 }
