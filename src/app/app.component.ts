@@ -20,4 +20,5 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/juegos-yop.svg')
     );
   }
+  
 }

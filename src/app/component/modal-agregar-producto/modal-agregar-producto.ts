@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
@@ -19,7 +19,7 @@ const modalAgregarProductoEvent = new EventEmitter();
   templateUrl: './modal-agregar-producto.html',
   styleUrls: ['./modal-agregar-producto.css']
 })
-class ModalAgregarProductoComponent implements OnInit {
+class ModalAgregarProductoComponent implements OnInit, AfterViewInit {
 
   registerForm: FormGroup;
   producto;
@@ -37,6 +37,13 @@ class ModalAgregarProductoComponent implements OnInit {
       imagenDesc: [''],
       precio: new FormControl(undefined, [Validators.required])
     });
+  }
+
+  ngAfterViewInit() {
+    const bla: any = document.getElementsByClassName('mat-slide-toggle-content')[0];
+    bla.style['font-family'] = 'Fredoka One';
+    bla.style.color =  'black';
+    bla.style['font-size'] = '15px';
   }
 
   handleSubmit() {
