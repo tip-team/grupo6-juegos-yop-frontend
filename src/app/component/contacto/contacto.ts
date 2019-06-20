@@ -4,6 +4,7 @@ import { ValidateEmail } from 'src/app/validators/EmailValidator';
 import { EmailService } from 'src/app/service/email/email.service';
 import { NotificationsService } from 'angular2-notifications';
 import { activeBarButton, getPrimaryBarButtonOptions, getValues } from '../../model/configuration';
+import { interval } from 'rxjs';
 
 @Component({
     selector: 'contacto',
@@ -24,6 +25,24 @@ export class ContactoComponent implements OnInit {
             remitente: new FormControl(undefined, [Validators.required, ValidateEmail]),
             asunto: new FormControl(undefined, [Validators.required]),
             cuerpo: new FormControl(undefined, [Validators.required])
+        });
+
+        this.contactForm.statusChanges.subscribe(() => {
+            if (this.contactForm.valid) {
+                const styleButton = interval(10).subscribe(() => {
+                    const setStyle = element => {
+                        element.style['font-family'] = 'Fredoka One';
+                        element.style.color = 'black';
+                        element.style['font-size'] = '15px';
+                    }
+
+                    let matBarButton = document.getElementsByTagName('mat-bar-button')[0];
+                    if (matBarButton) {
+                        setStyle(matBarButton.getElementsByClassName('mat-button-wrapper')[0]);
+                        styleButton.unsubscribe();
+                    }
+                });
+            }
         });
     }
 

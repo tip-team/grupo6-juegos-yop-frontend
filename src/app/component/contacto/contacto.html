@@ -35,7 +35,7 @@
                 <div *ngIf="!contactForm.valid; else validForm">
                     <div class="text-right">
                         <span [tooltip]="getErrorMessage()" placement="left">
-                            <button mat-raised-button color="primary" [disabled]="true">Enviar</button>
+                            <button class="buttonText" mat-raised-button color="primary" [disabled]="true">Enviar</button>
                         </span>
                     </div>
                 </div>
