@@ -1,0 +1,21 @@
+::ng-deep .mat-tab-label-active {
+    font-family: 'Fredoka One', cursive;
+    font-size: 23px;
+    background-color: #1471a3;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+::ng-deep .mat-ink-bar {
+    background-color:black !important;
+}
+
+::ng-deep .mat-tab-label {
+    color: black;
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+}
+
+::ng-deep .mat-tab-header {
+    margin-bottom: 12px;
+}
