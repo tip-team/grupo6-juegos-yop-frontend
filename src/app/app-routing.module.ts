@@ -39,6 +39,10 @@ const routes: Routes = [
           data: { title: AppComponent.ADMIN.title }
         }
       ]
+  },
+  {
+    path: '**',
+    redirectTo: '/'
   }
 ];
 
