@@ -25,24 +25,24 @@ export class ModuloProductoComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private productoService: ProductoService, private elem: ElementRef, private modalService: NgbModal, private _service: NotificationsService, private cd: ChangeDetectorRef) {
-    const success = text => this._service.success(text, '');
+    const success = (accion, nombreProducto) => {
+      this.updateProductos(this.productos);
+      this._service.success(`Se ${accion} el producto ${nombreProducto} correctamente.`, '');
+    };
 
     modalAgregarProductoEvent.on('agregarProducto', producto => {
       this.productos.push(producto);
-      this.updateProductos(this.productos);
-      success(`Se agrego el producto ${producto.nombre} correctamente.`);
+      success('agrego', producto.nombre);
     });
 
     modalEditarProductoEvent.on('editarProducto', (producto, nombreProducto) => {
       this.productos[this.productos.findIndex(({id}) => id === producto.id)] = producto;
-      this.updateProductos(this.productos);
-      success(`Se actualizo el producto ${nombreProducto} correctamente.`);
+      success('actualizo', nombreProducto);
     });
 
     modalEliminarProductoEvent.on('eliminarProducto', (id, nombreProducto) => {
       this.productos = this.productos.filter(producto => producto.id !== id);
-      this.updateProductos(this.productos);
-      success(`Se elimino el producto ${nombreProducto} correctamente.`);
+      success('elimino', nombreProducto);
     })
     this.obtenerProductos();
   }
@@ -62,18 +62,24 @@ export class ModuloProductoComponent implements AfterViewInit {
     this.dataSource.data = clonedeep(this.dataSource.data);
   }
 
+  open(modal) {
+    return this.modalService.open(modal, { backdrop: 'static', keyboard: false, centered: true });
+  }
+
+  openWithProducto(modal, producto) {
+    this.open(modal).componentInstance.producto = producto;
+  }
+
   crear() {
-    this.modalService.open(ModalAgregarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
+    this.open(ModalAgregarProductoComponent);
   }
 
   borrar(producto: Producto) {
-    const modalRef = this.modalService.open(ModalEliminarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
-    modalRef.componentInstance.producto = producto;
+    this.openWithProducto(ModalEliminarProductoComponent, producto);
   }
 
   editar(producto: Producto) {
-    const modalRef = this.modalService.open(ModalEditarProductoComponent, { backdrop: 'static', keyboard: false, centered: true });
-    modalRef.componentInstance.producto = producto;
+    this.openWithProducto(ModalEditarProductoComponent, producto);
   }
 
   private obtenerProductos() {

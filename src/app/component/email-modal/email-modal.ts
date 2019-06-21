@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ValidateEmail } from 'src/app/validators/EmailValidator';
-import {getValues} from '../../model/configuration';
+import { formGroupWithEmail, getValues, getFormErrors } from '../../model/util';
 
 @Component({
   selector: 'email-modal',
@@ -25,11 +24,7 @@ export class EmailModalComponent implements OnInit {
   }
 
   init() {
-    this.registerForm = this.formBuilder.group({
-      nombre: new FormControl(undefined, [Validators.required]),
-      email: new FormControl(undefined, [Validators.required, ValidateEmail]),
-      telefono: new FormControl(undefined, [Validators.required])
-    });
+    this.registerForm = formGroupWithEmail(this.formBuilder, 'email', 'nombre', 'telefono');
   }
 
   handleSubmit() {
@@ -41,19 +36,19 @@ export class EmailModalComponent implements OnInit {
       this.spinner.hide('solicitandoCompra');
       window.open(urlPago);
       this.modalService.dismissAll('close');
-    }, error => {
+    }, () => {
       this.spinner.hide('solicitandoCompra');
       this.modalService.dismissAll('close');
     });
   }
 
   getTelefonoErrorMessage() {
-    const telefonoValue = this.registerForm.controls.telefono.value;
-    return telefonoValue ? 'El número de teléfono ingresado es incorrecto.' : 'Debe ingresar su número de teléfono.';
+    const { telefono } = getValues(this.registerForm, 'telefono');
+    return telefono ? 'El número de teléfono ingresado es incorrecto.' : 'Debe ingresar su número de teléfono.';
   }
 
   getEmailErrorMessage() {
-    return this.registerForm.controls.email.errors.required ? 'Debe ingresar su email.' : 'El email ingresado es incorrecto.';
+    return getFormErrors(this.registerForm, 'email').required ? 'Debe ingresar su email.' : 'El email ingresado es incorrecto.';
   }
 
   openModal(content) {

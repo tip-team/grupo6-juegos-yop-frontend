@@ -5,7 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 import { saveToken, getToken } from 'src/app/service/token-storage-util/token-storage-util';
-import {getValues} from '../../model/configuration';
+import { getValues, formGroup } from '../../model/util';
 
 @Component({
   selector: 'login',
@@ -26,10 +26,7 @@ export class LoginComponent implements OnInit {
     if (getToken()) {
       this.isLoggedIn = true;
     }
-    this.loginForm = this.formBuilder.group({
-      username: new FormControl(undefined, [Validators.required]),
-      password: new FormControl(undefined, [Validators.required])
-    });
+    this.loginForm = formGroup(this.formBuilder, 'username', 'password');
   }
 
   public logout() {
@@ -56,10 +53,7 @@ export class LoginComponent implements OnInit {
     this.isLoginFailed = false;
     this.isLoggedIn = true;
     this.hide = true;
-    this.loginForm = this.formBuilder.group({
-      username: new FormControl(undefined, [Validators.required]),
-      password: new FormControl(undefined, [Validators.required])
-    });
+    this.loginForm = formGroup(this.formBuilder, 'username', 'password');
   }
 
   private handleInvalidLogin() {

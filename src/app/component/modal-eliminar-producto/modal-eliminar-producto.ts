@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from 'events';
-import { activeBarButton, getWarnBarButtonOptions } from '../../model/configuration';
+import { activeBarButton, getWarnBarButtonOptions, matBarButtonWithStyle } from '../../model/util';
 
 const modalEliminarProductoEvent = new EventEmitter();
 
@@ -20,13 +20,7 @@ class ModalEliminarProductoComponent implements AfterViewInit {
   constructor(private productoService: ProductoService, public modalService: NgbModal) {}
 
   ngAfterViewInit() {
-    const setStyle = element => {
-      element.style['font-family'] = 'Fredoka One';
-      element.style.color =  'black';
-      element.style['font-size'] = '15px';
-    }
-    
-    setStyle(document.getElementsByTagName('mat-bar-button')[0].getElementsByClassName('mat-button-wrapper')[0]);
+    matBarButtonWithStyle();
   }
 
   handleSubmit() {

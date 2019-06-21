@@ -1,16 +1,17 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventEmitter } from 'events';
-import { getBase64, resizeBase64 } from 'base64js-es6';
 import {
   activeBarButton,
   getPrimaryBarButtonOptions,
   saveImagenPrin,
   saveImagenDesc,
-  getValues
-} from '../../model/configuration';
+  getValues,
+  formGroupImages,
+  matBarButtonAndSlideWithStyle
+} from '../../model/util';
 
 const modalEditarProductoEvent = new EventEmitter();
 
@@ -30,23 +31,12 @@ class ModalEditarProductoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.editForm = this.formBuilder.group({
-      nombre: new FormControl(this.producto.nombre, [Validators.required]),
-      imagen: [''],
-      imagenDesc: [''],
-      precio: new FormControl(this.producto.precio, [Validators.required])
-    });
+    const { nombre, precio } = this.producto;
+    this.editForm = formGroupImages(this.formBuilder, nombre, precio);
   }
 
   ngAfterViewInit() {
-    const setStyle = element => {
-      element.style['font-family'] = 'Fredoka One';
-      element.style.color =  'black';
-      element.style['font-size'] = '15px';
-    }
-
-    setStyle(document.getElementsByClassName('mat-slide-toggle-content')[0]);
-    setStyle(document.getElementsByTagName('mat-bar-button')[0].getElementsByClassName('mat-button-wrapper')[0]);
+    matBarButtonAndSlideWithStyle()
   }
 
   handleSubmit() {
