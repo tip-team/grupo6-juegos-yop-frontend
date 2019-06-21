@@ -3,7 +3,7 @@ import { getBase64, resizeBase64 } from 'base64js-es6';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ValidateEmail } from 'src/app/validators/EmailValidator';
 
-const BASE_URL = 'https://tip-juegos-yop.appspot.com/';
+const BASE_URL = 'https://tip-juegos-yop-backend.herokuapp.com/';
 
 const getWarnBarButtonOptions = (text): MatProgressButtonOptions => getBarButtonOptions(text, 'warn');
 const getPrimaryBarButtonOptions = (text): MatProgressButtonOptions => getBarButtonOptions(text, 'primary');
