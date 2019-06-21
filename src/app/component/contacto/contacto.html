@@ -12,22 +12,22 @@
         <h2 class="componentTitle">Contactanos</h2>
         <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()">
             <mat-form-field>
-                <input matInput placeholder="Nombre" formControlName="nombre" />
-                <mat-error *ngIf="contactForm.controls.nombre.errors">Debe ingresar su nombre.
+                <input class="inputText" matInput placeholder="Nombre" formControlName="nombre" />
+                <mat-error class="errorText" *ngIf="contactForm.controls.nombre.errors">Debe ingresar su nombre.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Email" formControlName="remitente" />
-                <mat-error *ngIf="contactForm.controls.remitente.errors">{{getEmailErrorMessage()}}</mat-error>
+                <input class="inputText" matInput placeholder="Email" formControlName="remitente" />
+                <mat-error class="errorText" *ngIf="contactForm.controls.remitente.errors">{{getEmailErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Asunto" formControlName="asunto" />
-                <mat-error *ngIf="contactForm.controls.asunto.errors">Debe ingresar un asunto.
+                <input class="inputText" matInput placeholder="Asunto" formControlName="asunto" />
+                <mat-error class="errorText" *ngIf="contactForm.controls.asunto.errors">Debe ingresar un asunto.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Mensaje" formControlName="cuerpo"></textarea>
-                <mat-error *ngIf="contactForm.controls.cuerpo.errors">Debe ingresar un mensaje.
+                <textarea class="inputText" matInput placeholder="Mensaje" formControlName="cuerpo"></textarea>
+                <mat-error class="errorText" *ngIf="contactForm.controls.cuerpo.errors">Debe ingresar un mensaje.
                 </mat-error>
             </mat-form-field>
 
@@ -35,13 +35,13 @@
                 <div *ngIf="!contactForm.valid; else validForm">
                     <div class="text-right">
                         <span [tooltip]="getErrorMessage()" placement="left">
-                            <button mat-raised-button color="primary" [disabled]="true">Enviar</button>
+                            <button class="buttonText" mat-raised-button color="primary" [disabled]="true">Enviar</button>
                         </span>
                     </div>
                 </div>
 
                 <ng-template #validForm>
-                    <div class="text-left">
+                    <div class="text-right">
                         <mat-bar-button [options]="barButtonOptions"></mat-bar-button>
                     </div>
                 </ng-template>

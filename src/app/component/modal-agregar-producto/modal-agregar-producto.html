@@ -1,16 +1,16 @@
 <div class="modal-content modalBorder">
     <div class="modal-header header">
-        <h4 class="modal-title" id="modal-basic-title">Agregar Producto</h4>
+        <h4 class="modal-title title" id="modal-basic-title">Agregar Producto</h4>
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
     </div>
     <div class="modal-body">
         <form [formGroup]="registerForm" (ngSubmit)="!hasErrors() && handleSubmit()">
             <div class="form-group">
-                <button type="button" mat-raised-button color="primary"
+                <button class="seleccionarImagen" type="button" mat-raised-button color="primary"
                     onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen
                 </button>
-                <p class="imagenRequired" *ngIf="!producto.imagen">Debe ingresar una imágen para el producto.</p>
+                <p class="imageError" *ngIf="!producto.imagen">Debe ingresar una imágen para el producto.</p>
                 <div *ngIf="producto.imagen" class="imagenDiv">
                     <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
                 </div>
@@ -19,11 +19,11 @@
             </div>
 
             <div class="form-group">
-                <button type="button" mat-raised-button color="primary"
+                <button class="seleccionarImagen" type="button" mat-raised-button color="primary"
                         onclick="document.getElementById('fileToUploadDesc').click()">
                     Seleccionar imágen
                 </button>
-                <p class="imagenRequired" *ngIf="!producto.imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
+                <p class="imageError" *ngIf="!producto.imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
                 <div *ngIf="producto.imagenDesc" class="imagenDiv">
                     <img src="{{producto.imagenDesc}}" alt="ImágenDesc" class="imagen">
                 </div>
@@ -33,28 +33,28 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" />
-                    <mat-error *ngIf="registerForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
+                    <input class="inputText" matInput placeholder="Nombre" formControlName="nombre" />
+                    <mat-error class="errorText" *ngIf="registerForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="form-group">
                 <mat-form-field>
                     <input matInput placeholder="Precio" type="number" formControlName="precio"
-                        class="example-right-align"/>
+                        class="example-right-align inputText"/>
                     <span matPrefix>$&nbsp;</span>
-                    <mat-error *ngIf="registerForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
+                    <mat-error class="errorText" *ngIf="registerForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
                 </mat-form-field>
             </div>
 
             <div class="form-group">
-                <mat-slide-toggle color="primary" [checked]="producto.habilitado" (change)="cambiarHabilitado($event)">
+                <mat-slide-toggle class="inputText" color="primary" [checked]="producto.habilitado" (change)="cambiarHabilitado($event)">
                     {{producto.habilitado ? 'Habilitado': 'Deshabilitado'}}</mat-slide-toggle>
             </div>
 
             <div class="form-group">
                 <div class="text-right">
-                    <mat-bar-button [options]="barButtonOptions"> </mat-bar-button>
+                    <mat-bar-button [options]="barButtonOptions"></mat-bar-button>
                 </div>
             </div>
         </form>

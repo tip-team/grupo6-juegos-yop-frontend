@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductoService } from 'src/app/service/producto/producto.service';
-import { getBase64, resizeBase64 } from 'base64js-es6';
 import { EventEmitter } from 'events';
 import {
   activeBarButton,
   getPrimaryBarButtonOptions,
   saveImagenPrin,
   saveImagenDesc,
-  getValues
-} from '../../model/configuration';
+  getValues,
+  formGroupImages,
+  matBarButtonAndSlideWithStyle
+} from '../../model/util';
 
 const modalAgregarProductoEvent = new EventEmitter();
 
@@ -19,7 +20,7 @@ const modalAgregarProductoEvent = new EventEmitter();
   templateUrl: './modal-agregar-producto.html',
   styleUrls: ['./modal-agregar-producto.css']
 })
-class ModalAgregarProductoComponent implements OnInit {
+class ModalAgregarProductoComponent implements OnInit, AfterViewInit {
 
   registerForm: FormGroup;
   producto;
@@ -31,12 +32,11 @@ class ModalAgregarProductoComponent implements OnInit {
   ngOnInit() {
     this.producto = {};
     this.producto.habilitado = true;
-    this.registerForm = this.formBuilder.group({
-      nombre: new FormControl(undefined, [Validators.required]),
-      imagen: [''],
-      imagenDesc: [''],
-      precio: new FormControl(undefined, [Validators.required])
-    });
+    this.registerForm = formGroupImages(this.formBuilder, undefined, undefined);
+  }
+
+  ngAfterViewInit() {
+    matBarButtonAndSlideWithStyle();
   }
 
   handleSubmit() {

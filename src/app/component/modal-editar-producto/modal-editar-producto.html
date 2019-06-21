@@ -1,12 +1,12 @@
 <div class="modal-content modalBorder">
     <div class="modal-header header">
-        <h4 class="modal-title" id="modal-basic-title">Editar Producto</h4>
+        <h4 class="modal-title title" id="modal-basic-title">Editar Producto</h4>
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
     </div>
     <div class="modal-body">
         <form [formGroup]="editForm" (ngSubmit)="!hasErrors() && handleSubmit()">
             <div class="form-group">
-                <button type="button" mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">
+                <button class="seleccionarImagen" type="button" mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">
                     Seleccionar imágen principal
                 </button>
                 <div class="imagenDiv">
@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group">
-                <button type="button" mat-raised-button color="primary" onclick="document.getElementById('fileDescToUpload').click()">
+                <button class="seleccionarImagen" type="button" mat-raised-button color="primary" onclick="document.getElementById('fileDescToUpload').click()">
                     Seleccionar imágen descripción
                 </button>
                 <div class="imagenDiv">
@@ -27,17 +27,17 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Nombre" formControlName="nombre" />
-                    <mat-error *ngIf="editForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
+                    <input class="inputText"  matInput placeholder="Nombre" formControlName="nombre" />
+                    <mat-error class="errorText" *ngIf="editForm.controls.nombre.errors">Debe ingresar un nombre para el producto.</mat-error>
                 </mat-form-field>
             </div>
 
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align" />
+                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align inputText" />
                     <span matPrefix>$&nbsp;</span>
-                    <mat-error *ngIf="editForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
+                    <mat-error class="errorText" *ngIf="editForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
                 </mat-form-field>
             </div>
 

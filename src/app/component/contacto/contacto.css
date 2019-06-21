@@ -5,9 +5,11 @@
 .componentTitle {
     display: block;
     flex-direction: column;
-    font-size: 35px;
+    font-size: 38px;
     margin-bottom: 0px;
-    font-family: Roboto,"Helvetica Neue",sans-serif;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-weight: bold;
 }
 
 .infinityTitulo {
@@ -29,5 +31,34 @@
 }
 
 .text {
-    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-family: 'Fredoka One', cursive;
+}
+
+.inputText {
+    font-family: 'Fredoka One', cursive;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+::ng-deep .mat-form-field-label{
+    font-family: 'Fredoka One', cursive !important;
+    color:black !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000a6 !important;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+.errorText {
+    font-family: 'Fredoka One', cursive;
+}
+
+.buttonText {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
 }

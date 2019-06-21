@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ValidateEmail } from 'src/app/validators/EmailValidator';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmailService } from 'src/app/service/email/email.service';
 import { NotificationsService } from 'angular2-notifications';
-import { activeBarButton, getPrimaryBarButtonOptions, getValues } from '../../model/configuration';
+import { activeBarButton, getPrimaryBarButtonOptions, getValues, getFormErrors, formGroupWithEmail, setStyle } from '../../model/util';
+import { interval } from 'rxjs';
 
 @Component({
     selector: 'contacto',
@@ -19,25 +19,34 @@ export class ContactoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.contactForm = this.formBuilder.group({
-            nombre: new FormControl(undefined, [Validators.required]),
-            remitente: new FormControl(undefined, [Validators.required, ValidateEmail]),
-            asunto: new FormControl(undefined, [Validators.required]),
-            cuerpo: new FormControl(undefined, [Validators.required])
+        this.contactForm = formGroupWithEmail(this.formBuilder, 'remitente', 'nombre', 'asunto', 'cuerpo');
+        this.contactForm.statusChanges.subscribe(() => {
+            if (this.contactForm.valid) {
+                const styleButton = interval(10).subscribe(() => {
+                    let matBarButton = document.getElementsByTagName('mat-bar-button')[0];
+                    if (matBarButton) {
+                        setStyle(matBarButton.getElementsByClassName('mat-button-wrapper')[0]);
+                        styleButton.unsubscribe();
+                    }
+                });
+            }
         });
     }
 
     getEmailErrorMessage() {
-        return this.contactForm.controls.remitente.errors.required ? 'Debe ingresar su email.' : 'El email ingresado es inválido.';
+        return getFormErrors(this.contactForm, 'remitente').required ? 'Debe ingresar su email.' : 'El email ingresado es inválido.';
     }
 
     getErrorMessage() {
-        if (this.contactForm.controls.nombre.errors) return 'Para enviar la consulta debe ingresar su nombre.';
-        if (this.contactForm.controls.remitente.errors) {
-            return this.contactForm.controls.remitente.errors.required ? 'Para enviar la consulta debe ingresar su email.' : 'Para enviar la consulta su email debe ser válido.';
+        const { contactForm } = this;
+        const getErrors = field => getFormErrors(contactForm, field);
+        if (getErrors('nombre')) return 'Para enviar la consulta debe ingresar su nombre.';
+        if (getErrors('asunto')) return 'Para enviar la consulta debe ingresar un asunto.';
+        if (getErrors('cuerpo')) return 'Para enviar la consulta debe ingresar un mensaje.';
+        const remitenteHasErrors = getErrors('remitente');
+        if (remitenteHasErrors) {
+            return remitenteHasErrors.required ? 'Para enviar la consulta debe ingresar su email.' : 'Para enviar la consulta su email debe ser válido.';
         }
-        if (this.contactForm.controls.asunto.errors) return 'Para enviar la consulta debe ingresar un asunto.';
-        if (this.contactForm.controls.cuerpo.errors) return 'Para enviar la consulta debe ingresar un mensaje.';
     }
 
     handleSubmit() {

@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { ProductoService } from '../../service/producto/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from 'events';
-import { activeBarButton, getWarnBarButtonOptions } from '../../model/configuration';
+import { activeBarButton, getWarnBarButtonOptions, matBarButtonWithStyle } from '../../model/util';
 
 const modalEliminarProductoEvent = new EventEmitter();
 
@@ -11,13 +11,17 @@ const modalEliminarProductoEvent = new EventEmitter();
   templateUrl: './modal-eliminar-producto.html',
   styleUrls: ['./modal-eliminar-producto.css']
 })
-class ModalEliminarProductoComponent {
+class ModalEliminarProductoComponent implements AfterViewInit {
 
   barButtonOptions = getWarnBarButtonOptions('Eliminar');
 
   @Input() public producto;
 
   constructor(private productoService: ProductoService, public modalService: NgbModal) {}
+
+  ngAfterViewInit() {
+    matBarButtonWithStyle();
+  }
 
   handleSubmit() {
     activeBarButton(this.barButtonOptions, 'Eliminando');

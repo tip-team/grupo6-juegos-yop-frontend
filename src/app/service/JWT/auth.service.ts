@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../model/user';
 import { HttpClient } from '@angular/common/http';
 import { getToken, clear } from '../token-storage-util/token-storage-util';
-import { BASE_URL } from '../../model/configuration';
+import { BASE_URL } from '../../model/util';
 import { getHttpOptionsAuth } from '../http-util/http-util';
 
 

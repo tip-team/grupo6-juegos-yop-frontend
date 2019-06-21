@@ -15,6 +15,8 @@
 .siguiente {
     float: right;
     margin-bottom: 18px;
+    font-family: 'Fredoka One', cursive;
+    color: black;
 }
 
 .text {
@@ -52,6 +54,49 @@
 }
 
 .telefonoError {
-    color: red;
+    color: #f44336;
     font-size: 12.4px;
+}
+
+.errorText {
+    font-family: 'Fredoka One', cursive;
+}
+
+.inputText {
+    font-family: 'Fredoka One', cursive;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+.telefonoTitle {
+    color:black !important;
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.telefonoText {
+    font-family: 'Fredoka One', cursive;
+    color: #000000a6 !important;
+    font-size: 14.5px;
+}
+
+::ng-deep .mat-form-field-label{
+    font-family: 'Fredoka One', cursive !important;
+    color:black !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000a6 !important;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+
+
+::ng-deep .intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=text], .intl-tel-input.separate-dial-code input[type=tel] {
+    color:#000000a6 !important;
 }

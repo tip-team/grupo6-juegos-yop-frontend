@@ -32,3 +32,16 @@ input[type=number]::-webkit-outer-spin-button {
 .imagenDiv {
     margin-top: 30px;
 }
+
+
+.text {
+    font-family: 'Fredoka One', cursive;
+}
+
+.inline {
+    display: inline;
+}
+
+.red {
+    color: #f44336;
+}

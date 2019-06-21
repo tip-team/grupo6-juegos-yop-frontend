@@ -1,4 +1,4 @@
-<div class="modal-content modalBorder">
+<div class="modal-content modalBorder text">
     <div class="modal-header header">
         <h4 class="modal-title" id="modal-basic-title">Eliminar Producto</h4>
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
@@ -6,7 +6,9 @@
     <div class="modal-body">
         <form (ngSubmit)="handleSubmit()">
             <div class="form-group">
-                <label>¿Está seguro que desea eliminar el producto {{producto.nombre}}?</label>
+                <p class="inline">¿Está seguro que desea eliminar el producto</p>
+                <p class="inline red"> {{producto.nombre}} </p>
+                <p class="inline">?</p>
                 <div class="imagenDiv">
                     <img src="{{producto.imagen}}" alt="Imágen" class="imagen">
                 </div>

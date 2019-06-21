@@ -11,8 +11,10 @@
                 <div class="row fullWidthForm">
                     <div class="form-group fullWidth">
                         <mat-form-field class="fullWidth">
-                            <input matInput placeholder="Nombre y apellido" formControlName="nombre" />
-                            <mat-error *ngIf="registerForm.controls.nombre.errors">Debe ingresar su nombre y apellido.
+                            <input class="inputText" matInput placeholder="Nombre y apellido"
+                                formControlName="nombre" />
+                            <mat-error class="errorText" *ngIf="registerForm.controls.nombre.errors">Debe ingresar su
+                                nombre y apellido.
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -21,23 +23,21 @@
                 <div class="row fullWidthForm">
                     <div class="form-group fullWidth">
                         <mat-form-field class="fullWidth">
-                            <input matInput placeholder="Email" formControlName="email" />
-                            <mat-error *ngIf="registerForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+                            <input class="inputText" matInput placeholder="Email" formControlName="email" />
+                            <mat-error class="errorText" *ngIf="registerForm.controls.email.errors">
+                                {{getEmailErrorMessage()}}</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
 
                 <div class="row telefonoMarginBottom">
                     <div>
-                        <p class="emailTitle"
-                            [ngStyle]="{'color': registerForm.controls.telefono.valid ? 'grey' : 'red' }">
-                            Teléfono
-                        </p>
-                        <ngx-intl-tel-input #telefono [cssClass]="'custom'"
+                        <p class="telefonoTitle">Teléfono</p>
+                        <ngx-intl-tel-input #telefono [cssClass]="'custom'" class="telefonoText"
                             [preferredCountries]="['ar', 'bo', 'uy', 'cl', 'py', 'br']"
                             [enableAutoCountrySelect]="false" [enablePlaceholder]="true" name="telefono"
                             formControlName="telefono"></ngx-intl-tel-input>
-                        <p class="telefonoError" *ngIf="!registerForm.controls.telefono.valid">
+                        <p class="telefonoError errorText" *ngIf="!registerForm.controls.telefono.valid">
                             {{getTelefonoErrorMessage()}}</p>
                     </div>
                 </div>

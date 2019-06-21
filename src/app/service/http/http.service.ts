@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getHttpOptions } from '../http-util/http-util';
-import { BASE_URL } from '../../model/configuration';
+import { BASE_URL } from '../../model/util';
 
 const url = BASE_URL + 'api/';
 

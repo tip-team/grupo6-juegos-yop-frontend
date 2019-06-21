@@ -65,3 +65,34 @@
 .contrasenhiaWidth {
     width: 180px;
 }
+
+.inputText {
+    font-family: 'Fredoka One', cursive;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+::ng-deep .mat-form-field-label{
+    font-family: 'Fredoka One', cursive !important;
+    color:black !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000a6 !important;
+    color: #000000a6 !important;
+    font-size: 15px;
+}
+
+.errorText {
+    font-family: 'Fredoka One', cursive;
+}
+
+.text {
+    font-family: 'Fredoka One', cursive;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
