@@ -23,7 +23,7 @@ export class InventarioComponent implements AfterViewInit {
             this.productos = this.chunk(productos, 3);
             this.spinner.hide('cargandoProductos');
             this.show = true;
-        }, error => {
+        }, () => {
             this.spinner.hide('cargandoProductos');
         });
     }

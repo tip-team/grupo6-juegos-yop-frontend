@@ -10,7 +10,6 @@ export class CrecerJugandoComponent {
 
     textSize;
     imagenHeight;
-    imagenMargin;
 
     constructor(private deviceService: DeviceDetectorService) {
         const isMobile = this.deviceService.isMobile();
@@ -18,7 +17,7 @@ export class CrecerJugandoComponent {
         this.textSize = { 'font-size': fontSizeTitle + 'px' };
         const imagenHeighResponsive = isMobile ? '80' : '90';
         this.imagenHeight = { 'max-height': imagenHeighResponsive + 'vh' };
-        this.imagenMargin = isMobile ? { 'margin-top': '15px', 'margin-bottom': '20px' } : {};
+        if (isMobile) Object.assign(this.imagenHeight, { 'margin-top': '15px', 'margin-bottom': '20px' });
     }
 
 }

@@ -52,7 +52,6 @@ export class ContactoComponent implements OnInit {
     handleSubmit() {
         activeBarButton(this.barButtonOptions, 'Enviando');
         const data = getValues(this.contactForm, 'nombre', 'remitente', 'asunto', 'cuerpo');
-
         this._emailService.sendEmail(data).subscribe(
             () => {
                 this.deactiveBarButton();

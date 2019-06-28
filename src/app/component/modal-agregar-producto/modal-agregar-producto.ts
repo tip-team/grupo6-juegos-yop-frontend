@@ -10,7 +10,8 @@ import {
   saveImagenDesc,
   getValues,
   formGroupImages,
-  matBarButtonAndSlideWithStyle
+  matBarButtonAndSlideWithStyle,
+  numbersOnly
 } from '../../model/util';
 
 const modalAgregarProductoEvent = new EventEmitter();
@@ -63,6 +64,10 @@ class ModalAgregarProductoComponent implements OnInit, AfterViewInit {
 
   guardarImagenDesc(evento) {
     saveImagenDesc(evento, result => this.producto.imagenDesc = result);
+  }
+
+  numbersOnly(event) {
+    return numbersOnly(event);
   }
 
 }

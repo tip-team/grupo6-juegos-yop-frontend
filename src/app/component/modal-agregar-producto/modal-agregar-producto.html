@@ -40,7 +40,7 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio"
+                    <input matInput (keypress)="numbersOnly($event)" placeholder="Precio" type="number" formControlName="precio"
                         class="example-right-align inputText"/>
                     <span matPrefix>$&nbsp;</span>
                     <mat-error class="errorText" *ngIf="registerForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>

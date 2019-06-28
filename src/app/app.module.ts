@@ -72,7 +72,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       showProgressBar: true,
       pauseOnHover: true,
       clickToClose: true,
-      clickIconToClose: true
+      clickIconToClose: true,
+      preventDuplicates: true
     }),
     NgbModule.forRoot()
   ],

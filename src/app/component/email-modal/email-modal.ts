@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MercadoPagoService } from '../../service/mercado-pago/mercado-pago.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { formGroupWithEmail, getValues, getFormErrors } from '../../model/util';
+import { formGroupWithEmail, getValues, getFormErrors, openModal } from '../../model/util';
 
 @Component({
   selector: 'email-modal',
@@ -53,7 +53,7 @@ export class EmailModalComponent implements OnInit {
 
   openModal(content) {
     this.init();
-    this.modalService.open(content, { backdrop: 'static', keyboard: false, centered: true });
+    openModal(this.modalService, content);
   }
 
 }

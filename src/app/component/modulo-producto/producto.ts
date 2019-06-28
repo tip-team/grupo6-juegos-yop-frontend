@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, ViewRef } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Producto } from '../../model/producto';
 import { ProductoService } from '../../service/producto/producto.service';
@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsService } from 'angular2-notifications';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import clonedeep from 'lodash.clonedeep';
+import { openModal } from '../../model/util';
 
 @Component({
   selector: 'producto',
@@ -63,7 +64,7 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   open(modal) {
-    return this.modalService.open(modal, { backdrop: 'static', keyboard: false, centered: true });
+    return openModal(this.modalService, modal);
   }
 
   openWithProducto(modal, producto) {
@@ -83,9 +84,7 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   private obtenerProductos() {
-    this.productoService.getAllProductos().then(productosResponse => {
-      this.updateProductos(productosResponse);
-     }, error => console.log(error));
+    this.productoService.getAllProductos().then(producto => this.updateProductos(producto));
   }
 
   private updateProductos(productos) {
@@ -96,12 +95,12 @@ export class ModuloProductoComponent implements AfterViewInit {
   }
 
   private updateDesc() {
-    this.dataSource.data.forEach(p => {
-      this.productoService.getProductoDesc(p.id).then(response => {
-        p.imagenDesc = response.imagenDesc;
-      });
-    });
-    this.cd.detectChanges();
+    this.dataSource.data.forEach(producto => 
+      this.productoService.getProductoDesc(producto.id).then(({imagenDesc}) => producto.imagenDesc = imagenDesc)
+    );
+    if (!(this.cd as ViewRef).destroyed) {
+      this.cd.detectChanges();
+    }
   }
 
 }

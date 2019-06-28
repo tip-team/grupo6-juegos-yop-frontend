@@ -20,7 +20,7 @@
                     Seleccionar imágen descripción
                 </button>
                 <div class="imagenDiv">
-                    <img src="{{producto.imagenDesc}}" alt="ImágenDesc" class="imagen">
+                    <img src="{{producto.imagenDesc}}" alt="Descripción del producto" class="imagen">
                 </div>
                 <input id="fileDescToUpload" type="file" style="display:none;" (change)="guardarImagenDesc($event)" formControlName="imagen" />
             </div>
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <mat-form-field>
-                    <input matInput placeholder="Precio" type="number" formControlName="precio" class="example-right-align inputText" />
+                    <input matInput (keypress)="numbersOnly($event)" placeholder="Precio" type="number" formControlName="precio" class="example-right-align inputText" />
                     <span matPrefix>$&nbsp;</span>
                     <mat-error class="errorText" *ngIf="editForm.controls.precio.errors">Debe ingresar un precio para el producto.</mat-error>
                 </mat-form-field>

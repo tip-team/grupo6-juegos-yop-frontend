@@ -10,7 +10,8 @@ import {
   saveImagenDesc,
   getValues,
   formGroupImages,
-  matBarButtonAndSlideWithStyle
+  matBarButtonAndSlideWithStyle,
+  numbersOnly
 } from '../../model/util';
 
 const modalEditarProductoEvent = new EventEmitter();
@@ -45,7 +46,7 @@ class ModalEditarProductoComponent implements OnInit, AfterViewInit {
       this.productoService.updateProducto(this.producto).subscribe(() => {
         modalEditarProductoEvent.emit('editarProducto', this.producto, this.producto.nombre);
         this.modalService.dismissAll('close');
-      });
+      }, () => this.modalService.dismissAll('close'));
   }
 
   cambiarHabilitado(evento) {
@@ -62,6 +63,10 @@ class ModalEditarProductoComponent implements OnInit, AfterViewInit {
 
   guardarImagenDesc(evento) {
     saveImagenDesc(evento, result => this.producto.imagenDesc = result);
+  }
+
+  numbersOnly(event) {
+    return numbersOnly(event);
   }
 
 }
