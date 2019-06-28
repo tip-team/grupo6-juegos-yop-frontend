@@ -33,17 +33,17 @@ export class ModuloProductoComponent implements AfterViewInit {
 
     modalAgregarProductoEvent.on('agregarProducto', producto => {
       this.productos.push(producto);
-      success('agrego', producto.nombre);
+      success('agregó', producto.nombre);
     });
 
     modalEditarProductoEvent.on('editarProducto', (producto, nombreProducto) => {
       this.productos[this.productos.findIndex(({id}) => id === producto.id)] = producto;
-      success('actualizo', nombreProducto);
+      success('actualizó', nombreProducto);
     });
 
     modalEliminarProductoEvent.on('eliminarProducto', (id, nombreProducto) => {
       this.productos = this.productos.filter(producto => producto.id !== id);
-      success('elimino', nombreProducto);
+      success('eliminó', nombreProducto);
     })
     this.obtenerProductos();
   }
