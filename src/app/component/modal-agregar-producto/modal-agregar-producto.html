@@ -8,7 +8,7 @@
             <div class="form-group">
                 <button class="seleccionarImagen" type="button" mat-raised-button color="primary"
                     onclick="document.getElementById('fileToUpload').click()">
-                    Seleccionar imágen
+                    Seleccionar imágen principal
                 </button>
                 <p class="imageError" *ngIf="!producto.imagen">Debe ingresar una imágen para el producto.</p>
                 <div *ngIf="producto.imagen" class="imagenDiv">
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <button class="seleccionarImagen" type="button" mat-raised-button color="primary"
                         onclick="document.getElementById('fileToUploadDesc').click()">
-                    Seleccionar imágen
+                    Seleccionar imágen descripción
                 </button>
                 <p class="imageError" *ngIf="!producto.imagenDesc">Debe ingresar una imágen para la descripción producto.</p>
                 <div *ngIf="producto.imagenDesc" class="imagenDiv">
